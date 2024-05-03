@@ -1,0 +1,5 @@
+git+https://github.com/Pycord-Development/pycord@feat/ua
+pymongo
+skyblockparser
+aiohttp
+numerize
