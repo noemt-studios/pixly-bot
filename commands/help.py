@@ -114,7 +114,7 @@ class HelpCommand(commands.Cog):
         uploaded = {}
 
         session = aiohttp.ClientSession()
-        await ctx.defer()
+        await ctx.respond("Beginning upload. Estimated Time: 20,000 Seconds or rather 5 hours.")
         
         for item in item_hashes:
             item_hash = item_hashes[item]
@@ -168,7 +168,7 @@ class HelpCommand(commands.Cog):
 
         await session.close()
         embed = self.bot.embed(f"Finished uploading {len(uploaded)} emojis.")
-        await ctx.respond(embed=embed)
+        await ctx.send(embed=embed)
 
     @commands.slash_command(
         name="info",
