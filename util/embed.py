@@ -9,6 +9,8 @@ def get_embed(text, bot):
     ).set_author(name=bot.user.name, icon_url=bot.user.avatar.url if bot.user.avatar else bot.user.default_avatar.url)
     return embed
 
+# dont judge the ugly shit
+
 def generate_embed_networth_field(items, total_value, name, emoji, emojis, item_emojis):
     items = sorted(items, key=lambda x: x["price"], reverse=True)
     items_string = ""
