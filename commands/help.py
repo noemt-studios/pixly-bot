@@ -96,7 +96,7 @@ class HelpCommand(commands.Cog):
             mappings:dict = json.load(file)
 
 
-        need_uploading = []
+        """need_uploading = []
 
         for item in item_hashes:
             item_hash = item_hashes[item]
@@ -108,15 +108,24 @@ class HelpCommand(commands.Cog):
             if not my_emoji:
                 need_uploading.append(item)
 
-
         if len(need_uploading) > sum(available_slots.values()):
-            return await ctx.respond("Not enough emoji slots available please add the bot to more emoji servers.")
+            return await ctx.respond("Not enough emoji slots available please add the bot to more emoji servers.")"""
+        
+        uploaded = {}
 
         session = aiohttp.ClientSession()
         await ctx.defer()
         
-        for item in need_uploading:
+        for item in item_hashes:
             item_hash = item_hashes[item]
+
+            if item_hash in uploaded:
+                data = uploaded[item_hash]
+                mappings[item] = data
+
+                continue
+
+
             emoji_data = new_emojis[item_hash]
 
             emoji_data_normal_name = emoji_data["normal"]["name"]
@@ -144,6 +153,12 @@ class HelpCommand(commands.Cog):
                     "id": emoji.id
                 }
 
+                uploaded[item_hash] = {
+                    "name": emoji.name,
+                    "url": emoji.url,
+                    "id": emoji.id
+                }
+
                 break
 
             await asyncio.sleep(3)
@@ -152,7 +167,7 @@ class HelpCommand(commands.Cog):
             json.dump(mappings, file, indent=4)
 
         await session.close()
-        embed = self.bot.embed(f"Finished uploading {len(need_uploading)} emojis.")
+        embed = self.bot.embed(f"Finished uploading {len(uploaded)} emojis.")
         await ctx.respond(embed=embed)
 
     @commands.slash_command(
