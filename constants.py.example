@@ -295,14 +295,14 @@ HOTM_TREE_MAPPING = [
 	]
 ]
 HOTM_TREE_EMOJIS = {
-    "empty": "<:empty:1208792848162357288>",
-    "selected_ability": "<a:selected_ability:1208792853543788574>",
-    "ability": "<:emerald_block:1208793890602360872>",
-    "unlocked_path": "<:emerald:1208792850926407770>",
-    "peak": "<:redstone_block:1208792840696627221>",
-    "maxed_path": "<:diamond:1208792849609662514>",
-    "locked_path": "<:coal:1208792841875234837>",
-    "locked_ability": "<:coal_block:1208792839270441042>"
+    "empty": "<:empty:1236755746335621181>",
+    "selected_ability": "<a:selected_ability:1236747686611255357>",
+    "ability": "<:emerald_block:1236755744540463196>",
+    "unlocked_path": "<:emerald:1236755743127113839>",
+    "peak": "<:redstone_block:1236755424452284507>",
+    "maxed_path": "<:diamond:1236755801977127023>",
+    "locked_path": "<:coal:1236755797048823943>",
+    "locked_ability": "<:coal_block:1236755798617624576>"
 }
 
 RARITY_ORDER = ["MYTHIC", "LEGENDARY", "EPIC", "RARE", "UNCOMMON", "COMMON"]
