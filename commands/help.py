@@ -71,6 +71,18 @@ class HelpCommand(commands.Cog):
     )
     @commands.is_owner()
     async def upload_emojis_to_servers(self, ctx:discord.ApplicationContext):
+        await ctx.respond("Retrying this whole goofy bullshit... (EST: 10 Hours)")
+
+        for guild in EMOJI_SERVERS:
+            guild = self.bot.get_guild(guild)
+
+            for emoji in guild.emojis:
+                await emoji.delete()
+
+                await asyncio.sleep(3)
+
+        await ctx.send("finished deleting the old emojis that were 90% duplicates. :sob:")
+
         available_slots = {}
 
         for server in EMOJI_SERVERS:
@@ -114,7 +126,6 @@ class HelpCommand(commands.Cog):
         uploaded = {}
 
         session = aiohttp.ClientSession()
-        await ctx.respond("Beginning upload. Estimated Time: 20,000 Seconds or rather 5 hours.")
         
         for item in item_hashes:
             item_hash = item_hashes[item]
@@ -129,6 +140,23 @@ class HelpCommand(commands.Cog):
             emoji_data = new_emojis[item_hash]
 
             emoji_data_normal_name = emoji_data["normal"]["name"]
+            for server in EMOJI_SERVERS:
+                guild:discord.Guild = self.bot.get_guild(server)
+                for emoji in guild.emojis:
+                    if emoji.name == emoji_data_normal_name:
+                        mappings[item] = {
+                            "name": emoji.name,
+                            "url": emoji.url,
+                            "id": emoji.id
+                        }
+                        uploaded[item_hash] = {
+                            "name": emoji.name,
+                            "url": emoji.url,
+                            "id": emoji.id
+                        }
+                        break
+
+
             emoji_data_normal_id = emoji_data["normal"]["id"]
             animated = emoji_data["normal"]["animated"]
 
@@ -146,22 +174,28 @@ class HelpCommand(commands.Cog):
                 if emoji_amount >= 50:
                     continue
 
-                emoji = await guild.create_custom_emoji(name=emoji_data_normal_name, image=emoji_data)
-                mappings[item] = {
-                    "name": emoji.name,
-                    "url": emoji.url,
-                    "id": emoji.id
-                }
+                try:
+                    emoji = await guild.create_custom_emoji(name=emoji_data_normal_name, image=emoji_data)
+                    mappings[item] = {
+                        "name": emoji.name,
+                        "url": emoji.url,
+                        "id": emoji.id
+                    }
 
-                uploaded[item_hash] = {
-                    "name": emoji.name,
-                    "url": emoji.url,
-                    "id": emoji.id
-                }
+                    uploaded[item_hash] = {
+                        "name": emoji.name,
+                        "url": emoji.url,
+                        "id": emoji.id
+                    }
+
+                except:
+                    print(emoji_data_normal_name)
+
 
                 break
 
             await asyncio.sleep(3)
+
 
         with open("./data/mappings.json", "w") as file:
             json.dump(mappings, file, indent=4)

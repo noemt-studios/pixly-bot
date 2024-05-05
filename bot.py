@@ -42,7 +42,9 @@ class Bot(commands.Bot):
         self.owner_ids = [1233409760078991422]
         self.token = DISCORD_BOT_TOKEN
         self.session = None
+
         self.cache = {}
+
         self._emojis = Emojis()
         self.exchange_rates = {}
         self.auctionable = []

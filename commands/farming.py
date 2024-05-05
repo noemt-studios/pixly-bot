@@ -33,9 +33,13 @@ class Farming(Cog):
     async def skills(self, ctx:discord.ApplicationContext, name: str, profile: str = "selected"):
         await ctx.defer()
 
-        _uuid = await get_uuid(self.bot.session, name, True)
-        if _uuid == "Invalid username.":
-            return await ctx.respond(embed=get_embed("Invalid username.", self.bot))
+        while True:
+            _uuid = await get_uuid(self.bot.session, name, True)
+            if _uuid == "Invalid username.":
+                return await ctx.respond(embed=get_embed("Invalid username.", self.bot))
+            
+            elif _uuid is not None:
+                break
 
         uuid = _uuid["id"]
         username = _uuid["name"]

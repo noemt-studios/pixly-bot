@@ -16,6 +16,7 @@ from .timeout import timeout_view
 from .embed import get_embed
 from .progress import get_progress_bar
 from .profile_autocomplete import get_uuid
+from .cache_util import get_data_from_cache
 from constants import (HOTM_TREE_MAPPING, HOTM_TREE_EMOJIS, 
                        SPECIAL_HOTM_TYPES, RARITY_EMOJIS, 
                        RARITY_ORDER, RIFT_EMOJIS,
@@ -64,26 +65,7 @@ class NetworthProfileSelector(View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         networth = profile_data.networth_data
         embed = discord.Embed(color=discord.Color.blue(
@@ -249,29 +231,12 @@ class NetworthProfileSelector(View):
 
     @button(label="View Breakdown", style=discord.ButtonStyle.grey)
     async def view_breakdown(self, button: discord.ui.Button, interaction: discord.Interaction):
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
+        profile_data = await get_data_from_cache(self)
 
         interaction = await interaction.response.send_message(content="\u200b", ephemeral=True)
         view = TypeSwitcherView(self.bot, profile_data,
                                 self.username, self.soulbound, interaction)
+        
         embed = await view.create_embed()
 
         await interaction.edit_original_response(content=None, embed=embed, view=view)
@@ -550,26 +515,7 @@ class ProfileCommandProfileSelector(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         networth = profile_data.networth_data
         embed = discord.Embed(color=discord.Color.blue(
@@ -737,52 +683,31 @@ Co-op: {coops_string}"""
     )
     async def show_sub_stats(self, select: discord.ui.Select, interaction: discord.Interaction):
         value = select.values[0]
+        message = await interaction.response.send_message(content="\u200b", ephemeral=True)
 
         if value == "mining":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = HotmProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         elif value == "farming":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = FarmingProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         elif value == "skills":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = SkillsView(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         elif value == "pets":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = PetsProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         elif value == "rift":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = RiftProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         elif value == "networth":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = NetworthProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         elif value == "slayers":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = SlayersView(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
-        else:
-            embed = await self.create_embed()
-            await interaction.response.edit_message(embed=embed, view=self)
+        embed = await view.create_embed()
+        await message.edit_original_response(embed=embed, view=view)
 
 
 class HotmProfileSelector(discord.ui.View):
@@ -824,26 +749,7 @@ class HotmProfileSelector(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -982,26 +888,7 @@ class SkillsView(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -1096,23 +983,20 @@ class SkillsView(discord.ui.View):
     async def show_sub_stats(self, select: discord.ui.Select, interaction: discord.Interaction):
         value = select.values[0]
 
+        message = await interaction.response.send_message(content="\u200b", ephemeral=True)
+
         if value == "mining":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = HotmProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
+
 
         elif value == "farming":
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = FarmingProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
 
         else:
-            message = await interaction.response.send_message(content="\u200b", ephemeral=True)
             view = PetsProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-            embed = await view.create_embed()
-            await message.edit_original_response(embed=embed, view=view)
+
+        embed = await view.create_embed()
+        await message.edit_original_response(embed=embed, view=view)
 
 class FarmingProfileSelector(discord.ui.View):
     def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
@@ -1153,26 +1037,7 @@ class FarmingProfileSelector(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -1197,6 +1062,9 @@ class FarmingProfileSelector(discord.ui.View):
         perks = farming_data.get("perks", {})
 
         unique_golds = brackets.get("gold", {})
+        unique_platinum = brackets.get("platinum", {})
+        unique_diamond = brackets.get("diamond", {})
+
         mappings = {
             "INK_SACK:3": {"name": "Cocoa Beans", "emoji": self.emojis.cocoa_beans},
             "CARROT_ITEM": {"name": "Carrot", "emoji": self.emojis.carrot},
@@ -1210,14 +1078,33 @@ class FarmingProfileSelector(discord.ui.View):
             "MUSHROOM_COLLECTION": {"name": "Mushroom", "emoji": self.emojis.red_mushroom},
         }
 
+        done = []
+
         unique_golds_string = ""
         for gold in unique_golds:
             if gold in mappings:
                 bracket_data = mappings[gold]
+                done.append(gold)
+                unique_golds_string += f"{bracket_data['emoji']} {bracket_data['name']}\n"
+
+        for platinum in unique_platinum:
+            if platinum in done:
+                continue
+            if platinum in mappings:
+                bracket_data = mappings[platinum]
+                done.append(platinum)
+                unique_golds_string += f"{bracket_data['emoji']} {bracket_data['name']}\n"
+
+        for diamond in unique_diamond:
+            if diamond in done:
+                continue
+            if diamond in mappings:
+                bracket_data = mappings[diamond]
+                done.append(diamond)
                 unique_golds_string += f"{bracket_data['emoji']} {bracket_data['name']}\n"
 
         embed.add_field(
-            name=f"Unique Gold Medals ({len(unique_golds)})",
+            name=f"Unique Gold Medals ({len(done)})",
             value=unique_golds_string if len(unique_golds_string) != 0 else "Player has no Unique Gold Medals."
         )
 
@@ -1368,26 +1255,7 @@ class PetsProfileSelector(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -1524,24 +1392,7 @@ class PetsProfileSelector(discord.ui.View):
             if option.value == value:
                 option.default = True
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -1660,7 +1511,7 @@ Skin: {pet_skin}
 Current XP: **{format(int(pet.exp - pet_xp_sum_lower), ',d')}** / {format(int(next_xp), ',d')} (**{current_xp_percentage}%**)
 Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**{round((pet.exp / pet.max_xp) * 100, 2)}%**)"""
         
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.response.edit_message(embed=embed)
         
     async def update_paginator_button(self):
         if self.page_count == 1:
@@ -1753,26 +1604,7 @@ class RiftProfileSelector(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -1895,7 +1727,7 @@ class LeaderboardView(discord.ui.View):
 
         leaderboard_string = ""
         for profile in enumerate(leaderboard_data):
-            position = profile[0]+1
+            position = self.page*25+profile[0]+1
             profile = profile[1]
 
             data_stat = profile["data"]
@@ -2071,26 +1903,7 @@ class SlayersView(discord.ui.View):
 
     async def create_embed(self):
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        await self.bot.handle_data(profile_data.uuid, profile_data, self.username)
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -2207,24 +2020,7 @@ Total XP: **{numerize(total_xp)}**
 
         slayer = select.values[0]
 
-        cache = self.bot.cache
-        if not cache.get(self.parser.uuid):
-
-            cache[self.parser.uuid] = {"parser": self.parser}
-
-            profile_data = self.parser.select_profile(self.embed_cutename)
-            await profile_data.init()
-
-            self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
-
-        else:
-            if cache[self.parser.uuid].get(self.embed_cutename):
-                profile_data = cache[self.parser.uuid][self.embed_cutename]
-
-            else:
-                profile_data = self.parser.select_profile(self.embed_cutename)
-                await profile_data.init()
-                self.bot.cache[profile_data.uuid][profile_data.cute_name] = profile_data
+        profile_data = await get_data_from_cache(self)
 
         embed = discord.Embed(color=discord.Color.blue(
         ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
@@ -2314,4 +2110,4 @@ Progress to Max Level ({numerize(max_xp)}):
             value=boss_kills_field
         )
 
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.response.edit_message(embed=embed)

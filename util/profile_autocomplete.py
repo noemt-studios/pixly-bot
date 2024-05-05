@@ -50,6 +50,7 @@ async def get_uuid(session, username, username_too=False):
             
             data = await resp.json()
             return data["id"]
+
     
 
 async def get_profiles(ctx: discord.AutocompleteContext):
