@@ -363,7 +363,7 @@ SLAYER_EMOJIS = {
     "wolf": "<:wolf_slayer:1208757322277593088>",
     "enderman": "<:enderman_slayer:1208757317995204708>",
     "blaze": "<a:blaze_slayer:1208757315348594739>",
-    "vampire": "<:vamp_slayer:1228342834122330172>"
+    "vampire": "<:vamp_slayer:1236636902606770297>"
 }
 
 SLAYER_NAMES = {

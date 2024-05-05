@@ -780,7 +780,7 @@ class HotmProfileSelector(discord.ui.View):
         embed.description = f"""
 {self.bot.emojis.hotm} Level: **{hotm.get("level", 0)}** (**{format(int(hotm.get("experience", 0)), ',d')} EXP**)
 {self.bot.emojis.iron_nugget} **{hotm.get("tokens", 0)-hotm.get("tokens_spent", 0)}** (of **{hotm.get("tokens", 0)}** Total)
-{self.bot.emojis.greendye} **{numerize(mithril.get("total", 0))}** / {self.bot.emojis.pinkdye}**{numerize(gemstone.get("total", 0))}** / <:NIIKu8ruVsED7AGY:1213948965687525447> **{numerize(glacite.get("total", 0))}**
+{self.bot.emojis.greendye} **{numerize(mithril.get("total", 0))}** / {self.bot.emojis.pinkdye}**{numerize(gemstone.get("total", 0))}** / <:NIIKu8ruVsED7AGY:1236464465009049722> **{numerize(glacite.get("total", 0))}**
 
 \u200b"""
 

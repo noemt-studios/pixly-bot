@@ -23,3 +23,4 @@ if you want to add a new package please include it in the requirements.txt.
 - I will be sharing an identity with which you can add your testing bot to each emoji server.
 - The emoji files get automatically updated by me on a regular basis, therefore look at step updating.
 
+### do not update emojis.
