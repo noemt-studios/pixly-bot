@@ -56,6 +56,7 @@ class Bot(commands.Bot):
         self.collection = self.db["profiles"]
         self.bazaar = self.db["bazaar"]
         self.items = self.db["items"]
+        self.lennies = [501901347512385539]
 
 
         for filename in os.listdir("commands"):

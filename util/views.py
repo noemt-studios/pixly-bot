@@ -207,11 +207,11 @@ class NetworthProfileSelector(View):
     @select(
         custom_id="item_type_switcher",
         options=[
-            discord.SelectOption(label="All", value="normal", emoji="<:bankitem:1077719988946862111>"),
+            discord.SelectOption(label="All", value="normal", emoji="<:bankitem:1236756044588253184>"),
             discord.SelectOption(
                 label="Soulbound", value="soulbound", emoji="❌"),
             discord.SelectOption(label="Unsoulbound", value="unsoulbound",
-                                 emoji="<:gold_ingot:1208781619616555128>"),
+                                 emoji="<:gold_ingot:1236755670628307017>"),
         ],
         placeholder="Select the Type of Items to Display.",
     )
@@ -426,13 +426,13 @@ class TypeSwitcherView(View):
     @select(
         custom_id="category_switcher",
         options=[
-            discord.SelectOption(label="Armor", value="armor", emoji="<:armor:1049700060708999229>"),
+            discord.SelectOption(label="Armor", value="armor", emoji="<:armor:1236756110531104839>"),
             discord.SelectOption(label="Items", value="items",
-                                 emoji="<:chest:1208889519215214642>"),
+                                 emoji="<:chest:1236755795505451059>"),
             discord.SelectOption(label="Pets", value="pets",
-                                 emoji="<:pets:1049700070167163002>"),
+                                 emoji="<:pets:1236755498657910864>"),
             discord.SelectOption(label="Accessories", value="accessories",
-                                 emoji="<:talismans:1049700079474331759>"),
+                                 emoji="<:talismans:1236755177818816702>"),
             discord.SelectOption(label="Museum", value="museum", emoji="🏛️"),
         ],
         row=0,
@@ -448,11 +448,11 @@ class TypeSwitcherView(View):
         custom_id="item_type_switcher",
         options=[
             discord.SelectOption(label="All", value="normal",
-                                 emoji="<:bankitem:1077719988946862111>"),
+                                 emoji="<:bankitem:1236756044588253184>"),
             discord.SelectOption(
                 label="Soulbound", value="soulbound", emoji="❌"),
             discord.SelectOption(label="Unsoulbound", value="unsoulbound",
-                                 emoji="<:gold_ingot:1208781619616555128>"),
+                                 emoji="<:gold_ingot:1236755670628307017>"),
         ],
         row=1,
         placeholder="Select the Type of Items to Display.",
@@ -670,13 +670,13 @@ Co-op: {coops_string}"""
     @select(
         row=1,
         options=[
-            discord.SelectOption(label="Networth", value="networth", emoji="<:bankitem:1077719988946862111>"),
-            discord.SelectOption(label="HotM", value="mining", emoji="<:hotm:1077719574335725588>"),
-            discord.SelectOption(label="Farming", value="farming", emoji="<:golden_hoe:1208546825695535187>"),
-            discord.SelectOption(label="Skills", value="skills", emoji="<:skills:1061397448066600980>"),
-            discord.SelectOption(label="Pets", value="pets", emoji="<:taming:1208767938719522846>"),
-            discord.SelectOption(label="Rift", value="rift", emoji="<a:mirrorverse_timecharm:1226110817422938165>"),
-            discord.SelectOption(label="Slayers", value="slayers", emoji="<:revenant_horror:1061397450373476603>"), 
+            discord.SelectOption(label="Networth", value="networth", emoji="<:bankitem:1236756044588253184>"),
+            discord.SelectOption(label="HotM", value="mining", emoji="<:hotm:1236755608494149735>"),
+            discord.SelectOption(label="Farming", value="farming", emoji="<:golden_hoe:1236755672264212481>"),
+            discord.SelectOption(label="Skills", value="skills", emoji="<:skills:1236755374254850099>"),
+            discord.SelectOption(label="Pets", value="pets", emoji="<:taming:1236755128871161989>"),
+            discord.SelectOption(label="Rift", value="rift", emoji="<a:mirrorverse_timecharm:1236747535582756894>"),
+            discord.SelectOption(label="Slayers", value="slayers", emoji="<:revenant_horror:1236755427165999186>"), 
 
         ],
         placeholder="Select a Statistic to View."
@@ -975,8 +975,8 @@ class SkillsView(discord.ui.View):
     @select(
         row=1,
         options=[
-            discord.SelectOption(label="Mining", value="mining", emoji="<:stonepickaxe:1077720250633703585>"),
-            discord.SelectOption(label="Farming", value="farming", emoji="<:golden_hoe:1208546825695535187>")
+            discord.SelectOption(label="Mining", value="mining", emoji="<:stonepickaxe:1236755172139728997>"),
+            discord.SelectOption(label="Farming", value="farming", emoji="<:golden_hoe:1236755672264212481>")
         ],
         placeholder="Select a Statistic to View."
     )

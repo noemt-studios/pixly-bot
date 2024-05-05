@@ -46,6 +46,7 @@ class HelpCommand(commands.Cog):
     
         await ctx.respond(embed=embed)
 
+
     @commands.slash_command(
         name="fetch-emojis",
         description="Fetches all emojis from the server. in the format <name:id>.",
@@ -56,8 +57,9 @@ class HelpCommand(commands.Cog):
 
         emojis = {}
         for guild in self.bot.guilds:
-            for emoji in guild.emojis:
-                emojis[emoji.name] = f"<:{emoji.name}:{emoji.id}>"
+            if guild.id not in EMOJI_SERVERS:
+                for emoji in guild.emojis:
+                    emojis[emoji.name] = f"<:{emoji.name}:{emoji.id}>"
         
         with open("emojis.json", "w") as file:
             json.dump(emojis, file, indent=4)
