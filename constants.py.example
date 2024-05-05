@@ -2839,4 +2839,23 @@ MINIONS = {
 UNIQUE_MINIONS = 0
 for type in MINION_TYPES:
   UNIQUE_MINIONS += len(MINIONS[type])
-  
+
+MEDAL_DATA = {
+    "diamond": {
+        "gold": 1,
+        "silver": 1,
+    },
+    "platinum": {
+        "gold": 1,
+        "bronze": 1
+    },
+    "gold": {
+        "gold": 1
+    },
+    "silver": {
+        "silver": 1
+    },
+    "bronze": {
+        "bronze": 1
+    }
+}

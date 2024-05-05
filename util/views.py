@@ -22,7 +22,7 @@ from constants import (HOTM_TREE_MAPPING, HOTM_TREE_EMOJIS,
                        RARITY_ORDER, RIFT_EMOJIS,
                        TIMECHARM_NAMES, TIMECHARM_ORDER,
                        HYPIXEL_API_KEY, SLAYER_NAMES,
-                       SLAYER_EMOJIS)
+                       SLAYER_EMOJIS, MEDAL_DATA)
 
 
 
@@ -1109,6 +1109,26 @@ class FarmingProfileSelector(discord.ui.View):
         )
 
         contests = farming_data.get("contests", {})
+        total_medals_claimed = {}
+        for contest in contests:
+            contest_data = contests[contest]
+            medal = contest_data.get("claimed_medal")
+            if medal is None:
+                continue
+
+            medal_data = MEDAL_DATA[medal]
+            for reward in medal_data:
+                if reward not in total_medals_claimed:
+                    total_medals_claimed[reward] = 0
+
+                total_medals_claimed[reward] += medal_data[reward]
+
+        bronze_medals_t = total_medals_claimed.get("bronze", 0)
+        silver_medals_t = total_medals_claimed.get("silver", 0)
+        gold_medals_t = total_medals_claimed.get("gold", 0)
+        all_medals = bronze_medals_t+silver_medals_t+gold_medals_t
+
+        
         pelts = farming_data.get("pelts", 0)
 
         bronze_medals = medals.get("bronze", 0)
@@ -1121,20 +1141,130 @@ class FarmingProfileSelector(discord.ui.View):
 {self.emojis.pelts} Pelts: **{pelts}**"""
         
         embed.add_field(
-            name=f"Total Medals ({total_medals})",
+            name=f"Medals: {total_medals} (**{all_medals}**)",
             value=f"""
-{self.emojis.gold_ingot} Gold **{gold_medals}**
-{self.emojis.iron_ingot} Silver **{silver_medals}**
-{self.emojis.brick} Bronze **{bronze_medals}**"""
+{self.emojis.gold_ingot} Gold **{gold_medals}** (**{gold_medals_t}**)
+{self.emojis.iron_ingot} Silver **{silver_medals}** (**{silver_medals_t}**)
+{self.emojis.brick} Bronze **{bronze_medals}** (**{bronze_medals_t}**)""" 
         )
 
         embed.add_field(
             name="Farming Perks",
             value=f"""
 {self.emojis.hay_bale} Farming Level Cap: **{perks.get("farming_level_cap", 0)}** / 10
-{self.emojis.wheat} Extra Farming Drops: **☘ {perks.get("double_drops", 0)*4}** / ☘ 60""",
+{self.emojis.wheat} Extra Farming Drops: **☘ {perks.get("double_drops", 0)*4}** / ☘ 60
+<:7MfDLLTROQyjP5kr:1236437778976210994> Personal Bests: **{perks.get("personal_bests", False)}**""",
             inline=False
         )
+
+        return embed
+    
+    async def create_embed_contest_display(self):
+        
+        profile_data = await get_data_from_cache(self)
+
+        embed = discord.Embed(color=discord.Color.blue(
+        ), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
+
+        profile_type = profile_data.profile_type
+        profile_type = gamemode_to_emoji(profile_type)
+        cute_name = profile_data.cute_name
+
+        suffix = " "
+        if profile_type != " ":
+            suffix = f" {profile_type}"
+
+        formatted_username = f"{self.username}'s"
+        if self.username.endswith("s"):
+            formatted_username = f"{self.username}'"
+
+        embed.title = f"{formatted_username} Best Contests on {cute_name}{suffix}{getattr(self.emojis, cute_name.lower())}"
+
+        farming_data = profile_data.farming_data
+        contests = farming_data.get("contests", {})
+        if len(contests) == 0:
+            embed.description = "Player has not participated in a Jacob's Contests."
+            return embed
+        
+        mappings = {
+            "INK_SACK:3": {"name": "Cocoa Beans", "emoji": self.emojis.cocoa_beans},
+            "CARROT_ITEM": {"name": "Carrot", "emoji": self.emojis.carrot},
+            "POTATO_ITEM": {"name": "Potato", "emoji": self.emojis.potato},
+            "SUGAR_CANE": {"name": "Sugar Cane", "emoji": self.emojis.sugar_cane},
+            "CACTUS": {"name": "Cactus", "emoji": self.emojis.cactus},
+            "WHEAT": {"name": "Wheat", "emoji": self.emojis.wheat},
+            "PUMPKIN": {"name": "Pumpkin", "emoji": self.emojis.pumpkin},
+            "MELON": {"name": "Melon", "emoji": self.emojis.melon},
+            "NETHER_STALK": {"name": "Nether Wart", "emoji": self.emojis.nether_wart},
+            "MUSHROOM_COLLECTION": {"name": "Mushroom", "emoji": self.emojis.red_mushroom},
+        }
+
+        contest_data = {}
+
+        for contest in contests:
+            _contest = contest
+            for mapping in mappings:
+                contest = contest.replace(mapping, mappings[mapping]["name"])
+
+            contest_type = contest.split(":")[-1]
+
+            if contest_type not in contest_data:
+                contest_data[contest_type] = {}
+
+            pos = contest_data[contest_type].get("claimed_position", -1)
+            if pos != -1:
+                if pos < contests[_contest].get("claimed_position", 10e10):
+                    continue
+
+                else:
+                    contest_data[contest_type] = contests[_contest]
+
+            else:
+                contest_data[contest_type] = contests[_contest]
+
+        medal_emojis = {
+            "diamond": self.emojis.diamond_medal,
+            "platinum": self.emojis.platinum_medal,
+            "gold": self.emojis.gold_ingot,
+            "silver": self.emojis.iron_ingot,
+            "bronze": self.emojis.brick,
+            "none": self.emojis.empty
+        }
+        
+        for contest in enumerate(contest_data):
+            index = contest[0]
+            contest = contest[1]
+
+            for mapping in mappings:
+                mapping_name = mappings[mapping]["name"]
+                if mapping_name == contest:
+                    contest_data[contest]["name"] = mappings[mapping]["name"]
+                    contest_data[contest]["emoji"] = mappings[mapping]["emoji"]
+
+            data = contest_data[contest]
+            position = data.get("claimed_position", "Not detected")
+            if type(position) == int:
+                position_string = f"#{position+1}"
+            else:
+                position_string = position
+
+            if index % 2 == 0 and index != 0:
+                embed.add_field(
+                    name="\u200b", value="\u200b"
+                )
+
+            embed.add_field(
+                name=f"{data['emoji']} {data['name']}",
+                value=f"""
+{self.emojis.jacobs_medal} Position: **{position_string}**
+{medal_emojis[data.get('claimed_medal', 'none')]} Medal: **{data.get('claimed_medal', 'None').title()}**
+<:8ASHktnMmjcBdY5T:1236485633334050856> Collected: **{numerize(data['collected'])}**""",
+            )
+
+        if (len(embed.fields) + 1) % 3 == 0:
+            embed.add_field(
+                name="\u200b", value="\u200b"
+            )
 
         return embed
 
@@ -1151,6 +1281,13 @@ class FarmingProfileSelector(discord.ui.View):
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
         await interaction.edit_original_response(embed=embed, view=self)
+
+    @button(row=1, label="Best Contests", style=discord.ButtonStyle.secondary)
+    async def best_contests(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
+
+        embed = await self.create_embed_contest_display()
+        await interaction.followup.send(embed=embed, ephemeral=True)
 
 class PetsProfileSelector(discord.ui.View):
     def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
