@@ -1,7 +1,7 @@
 import discord
 from discord import slash_command, option
 from util.cog import Cog
-from util.profile_autocomplete import get_profiles, get_uuid
+from util.profile_autocomplete import get_profiles, get_uuid, get_usernames
 from skyblockparser.profile import SkyblockParser
 from util.views import PetsProfileSelector
 from util.embed import get_embed
@@ -17,10 +17,11 @@ class Pets(Cog):
         integration_types={discord.IntegrationType.user_install, discord.IntegrationType.guild_install},
     )
     @option(
-        name="player",
+        name="name",
         description="The player to get the pets of",
         required=True,
         type=str,
+        autocomplete=get_usernames
     )
     @option(
         name="profile",

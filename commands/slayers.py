@@ -1,7 +1,7 @@
 import discord
 from discord import slash_command, option
 from util.cog import Cog
-from util.profile_autocomplete import get_profiles, get_uuid
+from util.profile_autocomplete import get_profiles, get_uuid, get_usernames
 from skyblockparser.profile import SkyblockParser
 from util.views import SlayersView
 from util.embed import get_embed
@@ -17,10 +17,11 @@ class Slayers(Cog):
         integration_types={discord.IntegrationType.user_install, discord.IntegrationType.guild_install},
     )
     @option(
-        name="player",
+        name="name",
         description="The player to get the slayers of",
         required=True,
         type=str,
+        autocomplete=get_usernames
     )
     @option(
         name="profile",
@@ -29,7 +30,7 @@ class Slayers(Cog):
         type=str,
         autocomplete=get_profiles
     )
-    async def skills(self, ctx:discord.ApplicationContext, name: str, profile: str = "selected"):
+    async def slayers(self, ctx:discord.ApplicationContext, name: str, profile: str = "selected"):
         await ctx.defer()
 
         while True:

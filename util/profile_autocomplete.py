@@ -2,6 +2,13 @@ import aiohttp
 import discord
 from constants import HYPIXEL_API_KEY, CURRENCY_SYMBOLS
 from skyblockparser.profile import SkyblockParser
+from pymongo import MongoClient
+
+
+client = MongoClient("mongodb://127.0.0.1:27017/")
+db = client["pixly"]
+collection = db["profiles"]
+user_configs = db["user-configs"]
 
 
 def gamemode_to_emoji(gamemode):
@@ -36,8 +43,22 @@ def gamemode_to_gamemode(gamemode):
     
     else:
         return "Unknown"
-
-
+    
+def gamemode_to_emoji_autocomplete(gamemode):
+    if gamemode == "island":
+        return "🏝"
+    
+    elif gamemode in ["normal", None]:
+        return ""
+    
+    elif gamemode == "ironman":
+        return "♻️"
+    
+    elif gamemode == "bingo":
+        return "🎲"
+    
+    else:
+        return "Unknown"
 
 async def get_uuid(session, username, username_too=False):
     async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{username}") as resp:
@@ -78,8 +99,22 @@ async def get_profiles(ctx: discord.AutocompleteContext):
                     else:
                         ctx.bot.cache[uuid] = {"parser": SkyblockParser(data, uuid, HYPIXEL_API_KEY)}
 
-                    return [f"{profile['cute_name']} {gamemode_to_emoji(profile.get('game_mode'))}" for profile in data["profiles"]]
-               
+                    return [f"{profile['cute_name']} {gamemode_to_emoji_autocomplete(profile.get('game_mode'))}" for profile in data["profiles"]]
+                
+
+async def get_usernames(ctx: discord.AutocompleteContext):
+    username = ctx.options["name"]
+    query = collection.find({"username": {"$regex": f"^{username}", "$options": "i"}}).limit(25)
+
+
+    usernames = []
+
+    for data in query:
+        usernames.append(data["username"])
+
+    username_list = set(usernames)
+    return [username for username in username_list]
+
                 
 async def get_currency(ctx: discord.AutocompleteContext):
     return [currency for currency in CURRENCY_SYMBOLS.keys() if currency.lower().startswith(ctx.options["currency"].lower())]

@@ -8,7 +8,7 @@ from skyblockparser.levels import revenant, spider, sven, enderman, blaze, vampi
 
 from numerize.numerize import numerize
 
-from util.profile_autocomplete import gamemode_to_emoji, gamemode_to_gamemode
+from util.profile_autocomplete import gamemode_to_emoji, gamemode_to_gamemode, gamemode_to_emoji_autocomplete
 from .embed import generate_embed_networth_field
 from .formatting import count
 from .hotm import get_hotm_emojis
@@ -1871,7 +1871,7 @@ class LeaderboardView(discord.ui.View):
             cute_name_emoji = getattr(self.bot.emojis, profile["cute_name"].lower(), None)
 
             gamemode = data_stat["profile_type"]
-            gamemode_emoji = gamemode_to_emoji(gamemode)
+            gamemode_emoji = gamemode_to_emoji_autocomplete(gamemode)
                 
             path = self.stat.split(".")
             for i in path:

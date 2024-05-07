@@ -56,8 +56,7 @@ class Bot(commands.Bot):
         self.collection = self.db["profiles"]
         self.bazaar = self.db["bazaar"]
         self.items = self.db["items"]
-        self.lennies = [501901347512385539]
-
+        self.user_configs = self.db["user-configs"]
 
         for filename in os.listdir("commands"):
             if filename.endswith(".py"):

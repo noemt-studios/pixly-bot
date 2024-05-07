@@ -234,7 +234,7 @@ class HelpCommand(commands.Cog):
             color=discord.Color.blue(),
             description="A bot that fetches data from the Hypixel API and displays it in a user-friendly way."
         )
-        embed.set_author(name="@noemt", icon_url="https://cdn.discordapp.com/avatars/1102912537424560160/b0845cf357bb9425539f098d46012cf6", url="https://github.com/noemtdev")
+        embed.set_author(name="@notnomv6", icon_url="https://cdn.discordapp.com/avatars/1233409760078991422/7b73d636f2c5a26b9c2e37765a9d332f", url="https://github.com/noemtdev")
         embed.set_image(url=self.bot.user.avatar.url)
 
         embed.add_field(
@@ -251,6 +251,11 @@ class HelpCommand(commands.Cog):
             name="Last Update (Bazaar and Skyblock Items)",
             value=f"<t:{int(self.bot.update)}:R>",
             inline=False
+        )
+
+        embed.add_field(
+            name="`🧑‍💻` Developers",
+            value="`@notnomv6`, `@byrazyor`, `@dahobby`",
         )
 
         await ctx.respond(embed=embed, view=view)

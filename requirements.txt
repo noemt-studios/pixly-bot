@@ -3,3 +3,4 @@ pymongo
 skyblockparser
 aiohttp
 numerize
+Pillow==9.3.0/r

@@ -3,6 +3,7 @@ from discord import slash_command, option
 from util.cog import Cog
 from util.embed import get_embed
 import aiohttp
+from util.profile_autocomplete import get_usernames
 
 class Status(Cog):
     def __init__(self, bot):
@@ -15,16 +16,17 @@ class Status(Cog):
         integration_types={discord.IntegrationType.user_install, discord.IntegrationType.guild_install},
     )
     @option(
-        name="player",
+        name="name",
         description="The player to get the status of",
         required=True,
         type=str,
+        autocomplete=get_usernames
     )
-    async def status(self, ctx: discord.ApplicationContext, player: str):
+    async def status(self, ctx: discord.ApplicationContext, name: str):
         await ctx.defer()
 
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{player}") as request:
+            async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{name}") as request:
                 if request.status == 204:
                     embed = get_embed("Invalid username.", self.bot)
                     return await ctx.followup.send(embed=embed)
