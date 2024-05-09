@@ -17,6 +17,7 @@ from .embed import get_embed
 from .progress import get_progress_bar
 from .profile_autocomplete import get_uuid
 from .cache_util import get_data_from_cache
+from .footer import get_footer
 from constants import (HOTM_TREE_MAPPING, HOTM_TREE_EMOJIS, 
                        SPECIAL_HOTM_TYPES, RARITY_EMOJIS, 
                        RARITY_ORDER, RIFT_EMOJIS,
@@ -187,6 +188,10 @@ class NetworthProfileSelector(View):
 
             if field:
                 embed.add_field(**field)
+
+        embed.set_footer(
+            text=get_footer("nom")
+        )
 
         return embed
 
@@ -421,6 +426,11 @@ class TypeSwitcherView(View):
             items_string += f"↳ {item_emoji}{count(item[1], super_suffix)}{suffix} (**{numerize(item[1]['price'])}**)\n"
 
         embed.description += items_string
+
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+        
         return embed
 
     @select(
@@ -651,6 +661,10 @@ Co-op: {coops_string}"""
             value=slayer_string[:-1]
         )
 
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+
         return embed
 
 
@@ -832,6 +846,10 @@ class HotmProfileSelector(discord.ui.View):
             value=crystal_field_value if len(crystal_field_value) != 0 else "Player has never found a crystal."
         )
 
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+        
         return embed
 
 
@@ -953,6 +971,10 @@ class SkillsView(discord.ui.View):
         embed.add_field(
             name=f"{self.emojis.mort} Dungoneering",
             value=f"**{catacombs_level}** ({numerize(catacombs_xp)} XP)"
+        )
+
+        embed.set_footer(
+            text=get_footer("nom")
         )
 
         return embed
@@ -1157,6 +1179,10 @@ class FarmingProfileSelector(discord.ui.View):
             inline=False
         )
 
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+        
         return embed
     
     async def create_embed_contest_display(self):
@@ -1184,6 +1210,11 @@ class FarmingProfileSelector(discord.ui.View):
         contests = farming_data.get("contests", {})
         if len(contests) == 0:
             embed.description = "Player has not participated in a Jacob's Contests."
+
+            embed.set_footer(
+                text=get_footer("nom")
+            )
+        
             return embed
         
         mappings = {
@@ -1266,6 +1297,10 @@ class FarmingProfileSelector(discord.ui.View):
                 name="\u200b", value="\u200b"
             )
 
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+        
         return embed
 
 
@@ -1427,6 +1462,10 @@ class PetsProfileSelector(discord.ui.View):
             await self.update_paginator_button()
             embed.description = "No Pets Found."
             await self.create_select([])
+            embed.set_footer(
+                text=get_footer("nom")
+            )
+        
             return embed
         
         await self.update_paginator_button()
@@ -1497,7 +1536,7 @@ class PetsProfileSelector(discord.ui.View):
         embed.description = pet_string
 
         await self.create_select(pet_chunk)
-        embed.set_footer(text=f"Page {self.page+1}/{self.page_count} | made by @noemt")
+        embed.set_footer(text=f"Page {self.page+1}/{self.page_count} | made by nom")
         return embed
 
 
@@ -1764,6 +1803,9 @@ class RiftProfileSelector(discord.ui.View):
         currencies = profile_data.currencies
         if rift == {}:
             embed.description = "Player has never entered the Rift."
+            embed.set_footer(
+                text=get_footer("nom")
+            )
             return embed
         
         motes = currencies.get("motes_purse", 0)
@@ -1816,6 +1858,10 @@ class RiftProfileSelector(discord.ui.View):
             value=timecharm_field_value
         )
 
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+        
         return embed
 
 
@@ -1900,9 +1946,10 @@ class LeaderboardView(discord.ui.View):
             description=leaderboard_string
         )
 
-        embed.set_footer(text=f"Page {self.page+1}/{self.page_count} | made by @noemt")
+        embed.set_footer(text=f"Page {self.page+1}/{self.page_count} | made by nom")
 
         self.children[0].options = options
+        
         return embed
 
 
@@ -2113,7 +2160,11 @@ XP: **{numerize(slayer_xp)}**
         embed.description = f"""
 Total XP: **{numerize(total_xp)}**
 {slayer_string[:-1]}"""
-
+        
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+    
         return embed
 
 

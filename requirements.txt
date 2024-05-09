@@ -1,6 +1,5 @@
 git+https://github.com/Pycord-Development/pycord@feat/ua
 pymongo
-skyblockparser
 aiohttp
 numerize
-Pillow==9.3.0/r
+Pillow==9.3.0

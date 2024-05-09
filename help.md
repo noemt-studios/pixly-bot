@@ -1,7 +1,7 @@
 ## pixly - a general purpose Skyblock Bot designed to be better than blockhelper, which was also made by me ^^
 
 ### Updating
-- try to ensure that you always have the latest version of `skyblockparser` with the latest code installed
+- ensure you have the latest code. always.
 
 ### Installing
 - create a virtual environment and execute the activate Script.

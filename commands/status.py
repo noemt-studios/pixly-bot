@@ -47,13 +47,14 @@ class Status(Cog):
                             return await ctx.respond(embed=embed)
                         
                         last_login = _data["player"]["lastLogin"]//1000
+                        last_logout = _data["player"]["lastLogout"]//1000
                     
                     if data["session"]["online"] is False:
                         embed = discord.Embed(
                             title=f"Online Status for {username}",
                             url=f"https://plancke.io/hypixel/player/stats/{username}",
                             description=f"""{username} is currently **offline**.
-Last login: **<t:{last_login}:R>**""",
+Last logout: **<t:{last_logout}:R>**""",
                             color=discord.Color.blue()
 
                         ).set_thumbnail(url=f"https://mc-heads.net/body/{uuid}/left")

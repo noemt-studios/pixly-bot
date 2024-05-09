@@ -158,7 +158,7 @@ class Bot(commands.Bot):
 
 
 intents = discord.Intents.default()
-activity = discord.CustomActivity("/help | by @noemt")
+activity = discord.CustomActivity("/help | by nom")
 # intents.members = True
 
 bot = Bot(command_prefix=">", intents=intents, activity=activity)
