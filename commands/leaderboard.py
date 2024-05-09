@@ -39,7 +39,7 @@ class Leaderboard(commands.Cog):
         
         await ctx.defer()
 
-        view = LeaderboardView(self.bot, ugly_statistic, statistic)
+        view = LeaderboardView(ctx.author.id, self.bot, ugly_statistic, statistic)
         embed = await view.create_embed()
     
         await ctx.respond(embed=embed, view=view)

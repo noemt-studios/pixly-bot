@@ -3,34 +3,35 @@ from discord import slash_command, option
 from util.cog import Cog
 from util.profile_autocomplete import get_profiles, get_uuid, get_usernames, get_username
 from skyblockparser.profile import SkyblockParser
-from util.views import RiftProfileSelector
+from util.views import ChocoFactorySelector
 from util.embed import get_embed
 
-class Rift(Cog):
+class ChocolateFactory(Cog):
     def __init__(self, bot):
         self.bot = bot
         super().__init__(category="Stat Commands")
 
+    
     @slash_command(
-        name="rift",
-        description="Get the rift stats of a player",
+        name="factory",
+        description="Get the chocolate factory of a player",
         integration_types={discord.IntegrationType.user_install, discord.IntegrationType.guild_install},
     )
     @option(
         name="name",
-        description="The player to get the rift stats of",
+        description="The player to get the chocolate factory of",
         required=False,
         type=str,
         autocomplete=get_usernames
     )
     @option(
         name="profile",
-        description="The profile to get the rift stats of",
+        description="The profile to get the chocolate factory of",
         required=False,
         type=str,
         autocomplete=get_profiles
     )
-    async def rift(self, ctx:discord.ApplicationContext, name: str, profile: str = "selected"):
+    async def factory(self, ctx:discord.ApplicationContext, name: str, profile: str = "selected"):
         await ctx.defer()
 
         if not name:
@@ -93,12 +94,12 @@ class Rift(Cog):
                 self.bot.cache[uuid]["selected"] = profile_data
 
         cute_name = profile_data.cute_name
-        
+
         interaction = await ctx.respond("\u200b")
-        view = RiftProfileSelector(ctx.author.id, username, self.bot, parser, cute_name, interaction)
+        view = ChocoFactorySelector(ctx.author.id, username, self.bot, parser, cute_name, interaction)
         embed = await view.create_embed()
         await interaction.edit(embed=embed, view=view)
 
 
 def setup(bot):
-    bot.add_cog(Rift(bot))
+    bot.add_cog(ChocolateFactory(bot))

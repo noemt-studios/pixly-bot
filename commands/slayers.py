@@ -95,7 +95,7 @@ class Slayers(Cog):
         cute_name = profile_data.cute_name
 
         interaction = await ctx.respond("\u200b")
-        view = SlayersView(username, self.bot, parser, cute_name, interaction)
+        view = SlayersView(ctx.author.id, username, self.bot, parser, cute_name, interaction)
         embed = await view.create_embed()
         await interaction.edit(embed=embed, view=view)
 

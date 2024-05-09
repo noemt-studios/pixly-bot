@@ -63,6 +63,9 @@ class Bot(commands.Bot):
 
         self.hypixel_guilds = self.db["guilds"]
         self.verified = self.db["users"]
+        
+        with open("./data/chocofactory.json", "r") as f:
+            self.chocofactory = json.load(f)
 
         for filename in os.listdir("commands"):
             if filename.endswith(".py"):
@@ -170,7 +173,7 @@ class Bot(commands.Bot):
 
     def run(self):
         self.loop.create_task(self.start(self.token))
-        self.loop.create_task(app.run_task("0.0.0.0", port=3016))
+        #self.loop.create_task(app.run_task("0.0.0.0", port=3016))
         self.loop.run_forever()
 
 

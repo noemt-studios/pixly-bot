@@ -7,6 +7,7 @@ from skyblockparser.constants import pet_levels, rarity_offset
 from skyblockparser.levels import revenant, spider, sven, enderman, blaze, vampire
 
 from numerize.numerize import numerize
+from datetime import datetime
 
 from util.profile_autocomplete import gamemode_to_emoji, gamemode_to_gamemode, gamemode_to_emoji_autocomplete
 from .embed import generate_embed_networth_field
@@ -28,7 +29,7 @@ from constants import (HOTM_TREE_MAPPING, HOTM_TREE_EMOJIS,
 
 
 class NetworthProfileSelector(View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -38,6 +39,7 @@ class NetworthProfileSelector(View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -206,7 +208,11 @@ class NetworthProfileSelector(View):
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
 
     @select(
@@ -221,6 +227,10 @@ class NetworthProfileSelector(View):
         placeholder="Select the Type of Items to Display.",
     )
     async def switch_item_type(self, select: discord.ui.Select, interaction: discord.Interaction):
+
+        if not self.user_id == interaction.user.id:
+            return await interaction.response.defer()
+        
         if select.values[0] == "soulbound":
             self.soulbound = True
 
@@ -436,7 +446,7 @@ class TypeSwitcherView(View):
     @select(
         custom_id="category_switcher",
         options=[
-            discord.SelectOption(label="Armor", value="armor", emoji="<:armor:1236756110531104839>"),
+            discord.SelectOption(label="Armor", value="armor", emoji="<:armor:1238171181249466398>"),
             discord.SelectOption(label="Items", value="items",
                                  emoji="<:chest:1236755795505451059>"),
             discord.SelectOption(label="Pets", value="pets",
@@ -487,7 +497,7 @@ class TypeSwitcherView(View):
 
 
 class ProfileCommandProfileSelector(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -497,6 +507,7 @@ class ProfileCommandProfileSelector(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -679,7 +690,11 @@ Co-op: {coops_string}"""
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
     @select(
         row=1,
@@ -700,32 +715,32 @@ Co-op: {coops_string}"""
         message = await interaction.response.send_message(content="\u200b", ephemeral=True)
 
         if value == "mining":
-            view = HotmProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = HotmProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         elif value == "farming":
-            view = FarmingProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = FarmingProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         elif value == "skills":
-            view = SkillsView(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = SkillsView(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         elif value == "pets":
-            view = PetsProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = PetsProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         elif value == "rift":
-            view = RiftProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = RiftProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         elif value == "networth":
-            view = NetworthProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = NetworthProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         elif value == "slayers":
-            view = SlayersView(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = SlayersView(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         embed = await view.create_embed()
         await message.edit_original_response(embed=embed, view=view)
 
 
 class HotmProfileSelector(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -735,6 +750,7 @@ class HotmProfileSelector(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -864,11 +880,14 @@ class HotmProfileSelector(discord.ui.View):
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
-
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
 class SkillsView(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -878,6 +897,7 @@ class SkillsView(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -991,8 +1011,11 @@ class SkillsView(discord.ui.View):
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
-
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
     @select(
         row=1,
@@ -1008,20 +1031,17 @@ class SkillsView(discord.ui.View):
         message = await interaction.response.send_message(content="\u200b", ephemeral=True)
 
         if value == "mining":
-            view = HotmProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = HotmProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
 
         elif value == "farming":
-            view = FarmingProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
-
-        else:
-            view = PetsProfileSelector(self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            view = FarmingProfileSelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         embed = await view.create_embed()
         await message.edit_original_response(embed=embed, view=view)
 
 class FarmingProfileSelector(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -1031,6 +1051,7 @@ class FarmingProfileSelector(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -1315,7 +1336,11 @@ class FarmingProfileSelector(discord.ui.View):
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
     @button(row=1, label="Best Contests", style=discord.ButtonStyle.secondary)
     async def best_contests(self, button: discord.ui.Button, interaction: discord.Interaction):
@@ -1324,8 +1349,9 @@ class FarmingProfileSelector(discord.ui.View):
         embed = await self.create_embed_contest_display()
         await interaction.followup.send(embed=embed, ephemeral=True)
 
+
 class PetsProfileSelector(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -1335,6 +1361,7 @@ class PetsProfileSelector(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -1551,7 +1578,11 @@ class PetsProfileSelector(discord.ui.View):
         self.embed_cutename = select.values[0]
         self.page = 0
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
     @select(row=2, placeholder="Select a Pet to View.")
     async def select_pet(self, select:discord.ui.Select, interaction: discord.Interaction):
@@ -1687,7 +1718,10 @@ Skin: {pet_skin}
 Current XP: **{format(int(pet.exp - pet_xp_sum_lower), ',d')}** / {format(int(next_xp), ',d')} (**{current_xp_percentage}%**)
 Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**{round((pet.exp / pet.max_xp) * 100, 2)}%**)"""
         
-        await interaction.response.edit_message(embed=embed)
+        if self.user_id == interaction.user.id:
+            await interaction.response.edit_message(embed=embed)
+        else:
+            await interaction.followup.send(embed=embed, ephemeral=True, view=self)
         
     async def update_paginator_button(self):
         if self.page_count == 1:
@@ -1742,7 +1776,7 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
         await interaction.response.edit_message(embed=embed, view=self)
 
 class RiftProfileSelector(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -1752,6 +1786,7 @@ class RiftProfileSelector(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -1876,12 +1911,15 @@ class RiftProfileSelector(discord.ui.View):
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
-
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
 
 
 class LeaderboardView(discord.ui.View):
-    def __init__(self, bot, stat, pretty_stat, *args, **kwargs):
+    def __init__(self, user_id, bot, stat, pretty_stat, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.stat = stat
@@ -1898,6 +1936,7 @@ class LeaderboardView(discord.ui.View):
             self.children[-1].disabled=True
 
         self.pretty_statistic = pretty_stat
+        self.user_id = user_id
 
 
     @tasks.loop(seconds=180)
@@ -2010,7 +2049,7 @@ class LeaderboardView(discord.ui.View):
         cute_name = profile_data.cute_name
 
         interaction = await interaction.followup.send("\u200b", ephemeral=True)
-        view = ProfileCommandProfileSelector(username, self.bot, parser, cute_name, interaction)
+        view = ProfileCommandProfileSelector(self.user_id, username, self.bot, parser, cute_name, interaction)
         embed = await view.create_embed()
         await interaction.edit(embed=embed, view=view)
 
@@ -2021,6 +2060,10 @@ class LeaderboardView(discord.ui.View):
         disabled=True
     )
     async def previous_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+
+        if not self.user_id == interaction.user.id:
+            return await interaction.response.defer()
+        
         self.page -= 1
         if self.page == 0:
             button.disabled = True
@@ -2037,6 +2080,10 @@ class LeaderboardView(discord.ui.View):
         row=1
     )
     async def next_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+
+        if not self.user_id == interaction.user.id:
+            return await interaction.response.defer()
+        
         self.page += 1
         if self.page != 0:
             self.children[-2].disabled = False
@@ -2049,7 +2096,7 @@ class LeaderboardView(discord.ui.View):
 
 
 class SlayersView(discord.ui.View):
-    def __init__(self, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.parser = parser
         self.bot = bot
@@ -2059,6 +2106,7 @@ class SlayersView(discord.ui.View):
         self.emojis = bot.emojis
         self.selected_cutename = selected_profile_cutename
         self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
 
         options = []
         for profile in self.profiles:
@@ -2179,8 +2227,11 @@ Total XP: **{numerize(total_xp)}**
 
         self.embed_cutename = select.values[0]
         embed = await self.create_embed()
-        await interaction.edit_original_response(embed=embed, view=self)
-
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
     
     @select(row=1, placeholder="Select a Slayer to View.",
             options=[
@@ -2298,4 +2349,251 @@ Progress to Max Level ({numerize(max_xp)}):
             value=boss_kills_field
         )
 
-        await interaction.response.edit_message(embed=embed)
+        if self.user_id == interaction.user.id:
+            await interaction.response.edit_message(embed=embed)
+
+        else:
+            await interaction.followup.send(embed=embed, ephemeral=True, view=self)
+
+
+class ChocoFactorySelector(discord.ui.View):
+    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.parser = parser
+        self.bot = bot
+        self.interaction = interaction
+
+        self.profiles = parser.get_profiles()
+        self.emojis = bot.emojis
+        self.selected_cutename = selected_profile_cutename
+        self.embed_cutename = selected_profile_cutename
+        self.user_id = user_id
+
+        options = []
+        for profile in self.profiles:
+            _profile = parser.select_profile(profile)
+            profile_type = _profile.profile_type
+
+            emoji = getattr(self.emojis, profile.lower())
+            if profile == selected_profile_cutename:
+                options.append(discord.SelectOption(
+                    label=profile, value=profile, emoji=emoji, default=True, description=gamemode_to_gamemode(profile_type)))
+                continue
+
+            options.append(discord.SelectOption(
+                label=profile, value=profile, emoji=emoji, description=gamemode_to_gamemode(profile_type)))
+
+        self.children[0].options = options
+
+        self.counter = 0
+        self.trigger_timeout.start()
+        self.username = username
+        self.soulbound = None
+
+    @tasks.loop(seconds=180)
+    async def trigger_timeout(self):
+        await timeout_view(self)
+
+    async def create_embed(self):
+
+        profile_data = await get_data_from_cache(self)
+
+        embed = discord.Embed(color=discord.Color.blue(), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
+
+        profile_type = profile_data.profile_type
+        profile_type = gamemode_to_emoji(profile_type)
+        cute_name = profile_data.cute_name
+
+        suffix = " "
+        if profile_type != " ":
+            suffix = f" {profile_type}"
+
+        formatted_username = f"{self.username}'s"
+        if self.username.endswith("s"):
+            formatted_username = f"{self.username}'"
+
+        embed.title = f"{formatted_username} Chocolate Factory on {cute_name}{suffix}{getattr(self.emojis, cute_name.lower())}"
+
+        event_data = profile_data.events
+        easter_event = event_data.get("easter", {})
+
+        chocolate_amount = easter_event.get("chocolate", 0)
+        since_prestige = easter_event.get("chocolate_since_prestige", 0)
+        total_chocolate = easter_event.get("total_chocolate", 0)
+
+        employee_data = easter_event.get("employees", {})
+
+        rabbit_order = ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father", "rabbit_grandma"]
+
+        try:
+            employee_data = {k: employee_data[k] for k in rabbit_order}
+        except:
+            embed.description = "This user doesn't have a chocolate factory."
+            return embed
+
+        employee_names = {
+            "rabbit_bro": "Rabbit Bro",
+            "rabbit_sis": "Rabbit Sis",
+            "rabbit_father": "Rabbit Daddy",
+            "rabbit_grandma": "Rabbit Granny",
+            "rabbit_cousin": "Rabbit Cousin",
+        }
+
+        rabbit_data:dict = easter_event.get("rabbits", {})
+        rabbit_data.pop("collected_eggs", None)
+
+        unique_rabbits = len(rabbit_data)
+        prestige_level = easter_event.get("chocolate_level", 0)
+        rbcl = easter_event.get("rabbit_barn_capacity_level", 0)
+
+        time_tower_data = easter_event.get("time_tower", {})
+
+        time_tower_level = time_tower_data.get("level", 0)
+        time_tower_charges = time_tower_data.get("charges", 0)
+        last_charge_time = time_tower_data.get("last_charge_time", 0)
+        activation_time = time_tower_data.get("activation_time", 0)
+
+        active = ""
+        if activation_time > datetime.now().timestamp()*1000-3600000:
+            active = " (**ACTIVE**)"
+        
+
+        if time_tower_charges != 0:
+            timestamp = "next charge: **READY**"
+        else:
+            timestamp = f"next charge: **<t:{last_charge_time//1000+28800}:R>**"
+
+
+        shrine_level = easter_event.get("rabbit_rarity_upgrades", 0)
+        click_level = easter_event.get("click_upgrades", 0)+1
+        jackrabbit = easter_event.get("chocolate_multiplier_upgrades", 0)
+
+
+        factory_emojis = {
+            "rabbit_bro": "<:rabbit_bro:1238171792774791168>",
+            "rabbit_sis": "<:rabbit_sis:1238171789146718331>",
+            "rabbit_cousin": "<:rabbit_cousin:1238171791084621905>",
+            "rabbit_father": "<:rabbit_daddy:1238171786579804212>",
+            "rabbit_grandma": "<:rabbit_granny:1238171784889634888>",
+            "time_tower": "<:clock:1238167916688445511>",
+            "time_tower": "<:clock:1238167916688445511>",
+            "shrine_l": "<:Oe4fpme34QtzjRKV:1236464631741157477>",
+            "rabbit_click": "<:3TN2zsLY0DkjcLm9:1236447255045738600>",
+            "barn_c": "<:QVTSEwIiILaYH4Aq:1236464687475068979>",
+            "choc": "<:cocoa_beans:1236753057375588442>",
+            "u_rab": "<:k3lRCZru6q8xcTvc:1236489557411631125>",
+            "fac_lvl": "<:o52WYARvMZ2BAad5:1236435448767709245>",
+            "charge": "<:c05DPj7786irRKw7:1236487569739612291>",
+            "best": "<:up_arrow:1238191665345331300>",
+            "JackRabbitUpgrade": "<:JackRabbitUpgrade:1238197548540366918>"
+        }
+
+        embed.description = f"""
+{factory_emojis['choc']} Chocolate: **{numerize(chocolate_amount)}** (**{numerize(since_prestige)}** since Prestige)
+{factory_emojis['choc']} Lifetime Chocolate: **{numerize(total_chocolate)}**
+{factory_emojis['u_rab']} Unique Rabbits: **{unique_rabbits}**
+{factory_emojis['fac_lvl']} Factory Level: **{prestige_level}**"""
+        
+        cookie_per_second_data = {}
+        cookies_per_second_employees = {
+            "rabbit_bro": 1,
+            "rabbit_cousin": 2,
+            "rabbit_sis": 3,
+            "rabbit_father": 4,
+            "rabbit_grandma": 5,
+        }
+
+        cost_data = {}
+
+        for employee in employee_data:
+            level = employee_data[employee]
+            
+            if level+1 > 120+(prestige_level-1)*20:
+                next_level_cost = 0
+
+            else:
+                next_level_cost = self.bot.chocofactory[employee]["factory_"+str(prestige_level)][level+1]
+
+            cost_data[employee] = next_level_cost
+
+            if next_level_cost > 0:
+                cookie_per_second_data[employee] = next_level_cost/cookies_per_second_employees[employee]
+
+        best_employee = None
+        if len(cookie_per_second_data) == 0:
+            pass
+
+        else:
+            for employee in cookie_per_second_data:
+                if best_employee is None:
+                    best_employee = employee
+
+                elif cookie_per_second_data[employee] < cookie_per_second_data[best_employee]:
+                    best_employee = employee        
+
+        upgrades_string = ""
+        for employee in employee_data:
+            emoji = factory_emojis[employee]
+            addition = ""
+            if best_employee == employee:
+                addition = f" {factory_emojis['best']}"
+
+            cost = cost_data[employee]
+            if cost == 0:
+                cost_string = "**MAXED**"
+            
+            else:
+                cost_string = f"Next Level: **{numerize(cost)}**"
+
+            upgrades_string += f"\n{emoji} {employee_names[employee]}: **{employee_data[employee]}**/{120+(prestige_level-1)*20} ({cost_string}){addition}"
+
+
+        upgrades_string += f"\n\n{factory_emojis['barn_c']} Barn Capacity level: **{rbcl}** ({unique_rabbits}/**{18+(2*rbcl)}**)"
+        upgrades_string += f"\n{factory_emojis['rabbit_click']} Chocolate Per Click: **{click_level}**/10"
+
+        if prestige_level >= 2:
+            upgrades_string += f"\n{factory_emojis['shrine_l']} Shrine level: **{shrine_level}**/20 (**{shrine_level}%** increased chance)"
+
+        if prestige_level >= 3:
+            upgrades_string += f"\n{factory_emojis['JackRabbitUpgrade']} Coach Jackrabbit: **{jackrabbit}**/20 (**{round(jackrabbit*0.1, 1)}x multiplier)"
+
+        embed.add_field(
+            name="Upgrades",
+            value=upgrades_string,
+            inline=False
+        )
+
+        if prestige_level >= 1:
+            time_tower_string = ""        
+            time_tower_string += f"\n{factory_emojis['time_tower']} Level: **{time_tower_level}**/15 (+{round(0.1*time_tower_level, 1)}x multiplier)"
+            time_tower_string += f"\n{factory_emojis['charge']} Charges: **{time_tower_charges}**/3 ({timestamp}){active}"
+
+            embed.add_field(
+                name="Time Tower",
+                value=time_tower_string,
+                inline=False
+            )
+
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+    
+        return embed
+    
+    
+    @select(row=0)
+    async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
+        await interaction.response.defer()
+
+        for option in self.children[0].options:
+            option.default = False
+            if option.value == select.values[0]:
+                option.default = True
+
+        self.embed_cutename = select.values[0]
+        embed = await self.create_embed()
+        
+        if interaction.user.id != self.user_id:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+        else:
+            await interaction.edit_original_response(embed=embed, view=self)
