@@ -2448,7 +2448,7 @@ class ChocoFactorySelector(discord.ui.View):
 
         time_tower_data = easter_event.get("time_tower", {})
 
-        time_tower_level = time_tower_data.get("level", 0)
+        time_tower_level = time_tower_data.get("level", 0)+1
         time_tower_charges = time_tower_data.get("charges", 0)
         last_charge_time = time_tower_data.get("last_charge_time", 0)
         activation_time = time_tower_data.get("activation_time", 0)
@@ -2491,6 +2491,8 @@ class ChocoFactorySelector(discord.ui.View):
         embed.description = f"""
 {factory_emojis['choc']} Chocolate: **{numerize(chocolate_amount)}** (**{numerize(since_prestige)}** since Prestige)
 {factory_emojis['choc']} Lifetime Chocolate: **{numerize(total_chocolate)}**
+Chocolate Per Second: <:hamper:1238204047727525888>
+
 {factory_emojis['u_rab']} Unique Rabbits: **{unique_rabbits}**
 {factory_emojis['fac_lvl']} Factory Level: **{prestige_level}**"""
         
@@ -2551,11 +2553,11 @@ class ChocoFactorySelector(discord.ui.View):
         upgrades_string += f"\n\n{factory_emojis['barn_c']} Barn Capacity level: **{rbcl}** ({unique_rabbits}/**{18+(2*rbcl)}**)"
         upgrades_string += f"\n{factory_emojis['rabbit_click']} Chocolate Per Click: **{click_level}**/10"
 
-        if prestige_level >= 2:
+        if prestige_level >= 3:
             upgrades_string += f"\n{factory_emojis['shrine_l']} Shrine level: **{shrine_level}**/20 (**{shrine_level}%** increased chance)"
 
-        if prestige_level >= 3:
-            upgrades_string += f"\n{factory_emojis['JackRabbitUpgrade']} Coach Jackrabbit: **{jackrabbit}**/20 (**{round(jackrabbit*0.1, 1)}x multiplier)"
+        if prestige_level >= 4:
+            upgrades_string += f"\n{factory_emojis['JackRabbitUpgrade']} Coach Jackrabbit: **{jackrabbit}**/20 (+**{round(jackrabbit*0.1, 1)}x** multiplier)"
 
         embed.add_field(
             name="Upgrades",
@@ -2563,9 +2565,9 @@ class ChocoFactorySelector(discord.ui.View):
             inline=False
         )
 
-        if prestige_level >= 1:
+        if prestige_level >= 2:
             time_tower_string = ""        
-            time_tower_string += f"\n{factory_emojis['time_tower']} Level: **{time_tower_level}**/15 (+{round(0.1*time_tower_level, 1)}x multiplier)"
+            time_tower_string += f"\n{factory_emojis['time_tower']} Level: **{time_tower_level}**/15 (+**{round(0.1*time_tower_level, 1)}x** multiplier)"
             time_tower_string += f"\n{factory_emojis['charge']} Charges: **{time_tower_charges}**/3 ({timestamp}){active}"
 
             embed.add_field(
