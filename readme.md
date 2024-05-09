@@ -13,7 +13,7 @@
 if you want to add a new package please include it in the requirements.txt.
 
 ### Usage
-- update your constants in constants.example.py (bot token etc.) and rename it to constants.py
+- update your constants in constants.py.example (bot token etc.) and rename it to constants.py
 # DO NOT CHANGE THE .gitignore under any circumstance.
 
 ### Coding
