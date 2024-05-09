@@ -1,7 +1,7 @@
 import discord
 from discord import slash_command, option
 from util.cog import Cog
-from util.profile_autocomplete import get_profiles, get_uuid, get_usernames
+from util.profile_autocomplete import get_profiles, get_uuid, get_usernames, get_username
 from skyblockparser.profile import SkyblockParser
 from util.views import RiftProfileSelector
 from util.embed import get_embed
@@ -19,7 +19,7 @@ class Rift(Cog):
     @option(
         name="name",
         description="The player to get the rift stats of",
-        required=True,
+        required=False,
         type=str,
         autocomplete=get_usernames
     )
@@ -33,16 +33,26 @@ class Rift(Cog):
     async def rift(self, ctx:discord.ApplicationContext, name: str, profile: str = "selected"):
         await ctx.defer()
 
-        while True:
-            _uuid = await get_uuid(self.bot.session, name, True)
-            if _uuid == "Invalid username.":
-                return await ctx.respond(embed=get_embed("Invalid username.", self.bot))
+        if not name:
+            uuid = self.bot.get_linked_account(ctx.author.id)
+            if uuid is None:
+                return await ctx.respond(embed=get_embed("You don't have a linked account.", self.bot))
             
-            elif _uuid is not None:
-                break
-            
-        uuid = _uuid["id"]
-        username = _uuid["name"]
+            username = await get_username(self.bot.session, uuid)
+            if not username:
+                return await ctx.respond(embed=get_embed("Failed to parse your username.", self.bot))
+        
+        else:
+            while True:
+                _uuid = await get_uuid(self.bot.session, name, True)
+                if _uuid == "Invalid username.":
+                    return await ctx.respond(embed=get_embed("Invalid username.", self.bot))
+                
+                elif _uuid is not None:
+                    break
+
+            uuid = _uuid["id"]
+            username = _uuid["name"]
 
         cached_data = self.bot.cache.get(uuid, {})
 

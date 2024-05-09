@@ -8,6 +8,8 @@ from pymongo import MongoClient
 from skyblockparser.profile import Profile
 from datetime import datetime
 
+from api import app
+
 def traverse_and_add_options(data_dict, path=""):
 
     options = {}
@@ -57,16 +59,26 @@ class Bot(commands.Bot):
         self.bazaar = self.db["bazaar"]
         self.items = self.db["items"]
         self.user_configs = self.db["user-configs"]
+        self.prices = self.db["prices"]
+
+        self.hypixel_guilds = self.db["guilds"]
+        self.verified = self.db["users"]
 
         for filename in os.listdir("commands"):
             if filename.endswith(".py"):
                 self.load_extension(f"commands.{filename[:-3]}")
 
 
-    def get_data(self, uuid, cute_name):
+    def get_data(self, uuid: str, cute_name: str):
         return self.collection.find_one({"string": f"{uuid}-{cute_name}"})
     
-
+    def get_linked_account(self, discord_id: int):
+        query = self.verified.find_one({"discord": discord_id})
+        if query is None:
+            return None
+        
+        return query["uuid"]
+    
     async def handle_data(self, uuid: str, profile_data: Profile, username: str):
         data = self.get_data(uuid, profile_data.cute_name)
         if data is None:
@@ -88,7 +100,7 @@ class Bot(commands.Bot):
         return leaderboard
 
 
-    def embed(self, description):
+    def embed(self, description: str):
         embed=discord.Embed(description=description, color=discord.Color.blue())
         embed.set_author(name=self.user.name, icon_url=self.user.avatar.url if self.user.avatar else self.user.default_avatar.url)
         return embed
@@ -141,6 +153,10 @@ class Bot(commands.Bot):
             data = await resp.json()
             items = data["items"]
 
+        async with self.session.get("https://raw.githubusercontent.com/SkyHelperBot/Prices/main/prices.json") as resp:
+            response_text = await resp.text()
+            prices = json.loads(response_text)
+
         self.auctionable = []
 
         for item in items:
@@ -150,10 +166,11 @@ class Bot(commands.Bot):
         self.update = datetime.now().timestamp()
         self.items.update_one({"_id": 1}, {"$set": {"data": items}}, upsert=True)
         self.bazaar.update_one({"_id": 1}, {"$set": {"data": bazaar, "timestamp": self.update}}, upsert=True)
-        
+        self.prices.update_one({"_id": 1}, {"$set": {"data": prices}}, upsert=True)
 
     def run(self):
         self.loop.create_task(self.start(self.token))
+        self.loop.create_task(app.run_task("0.0.0.0", port=3016))
         self.loop.run_forever()
 
 

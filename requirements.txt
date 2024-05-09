@@ -3,3 +3,5 @@ pymongo
 aiohttp
 numerize
 Pillow==9.3.0
+quart
+quart_cors

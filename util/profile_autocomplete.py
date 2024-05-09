@@ -71,8 +71,16 @@ async def get_uuid(session, username, username_too=False):
             
             data = await resp.json()
             return data["id"]
+        
+async def get_username(session, uuid):
+    async with session.get(f"https://sessionserver.mojang.com/session/minecraft/profile/{uuid}") as resp:
+        if resp.status in [204, 404]:
+            return None
+        
+        elif resp.status == 200:
+            data = await resp.json()
+            return data["name"]
 
-    
 
 async def get_profiles(ctx: discord.AutocompleteContext):
 
