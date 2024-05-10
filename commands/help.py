@@ -73,18 +73,6 @@ class HelpCommand(commands.Cog):
     )
     @commands.is_owner()
     async def upload_emojis_to_servers(self, ctx:discord.ApplicationContext):
-        await ctx.respond("Retrying this whole goofy bullshit... (EST: 10 Hours)")
-
-        for guild in EMOJI_SERVERS:
-            guild = self.bot.get_guild(guild)
-
-            for emoji in guild.emojis:
-                await emoji.delete()
-
-                await asyncio.sleep(3)
-
-        await ctx.send("finished deleting the old emojis that were 90% duplicates. :sob:")
-
         available_slots = {}
 
         for server in EMOJI_SERVERS:
@@ -110,7 +98,7 @@ class HelpCommand(commands.Cog):
             mappings:dict = json.load(file)
 
 
-        """need_uploading = []
+        need_uploading = []
 
         for item in item_hashes:
             item_hash = item_hashes[item]
@@ -122,43 +110,18 @@ class HelpCommand(commands.Cog):
             if not my_emoji:
                 need_uploading.append(item)
 
+
         if len(need_uploading) > sum(available_slots.values()):
-            return await ctx.respond("Not enough emoji slots available please add the bot to more emoji servers.")"""
-        
-        uploaded = {}
+            return await ctx.respond("Not enough emoji slots available please add the bot to more emoji servers.")
 
         session = aiohttp.ClientSession()
+        await ctx.defer()
         
-        for item in item_hashes:
+        for item in need_uploading:
             item_hash = item_hashes[item]
-
-            if item_hash in uploaded:
-                data = uploaded[item_hash]
-                mappings[item] = data
-
-                continue
-
-
             emoji_data = new_emojis[item_hash]
 
             emoji_data_normal_name = emoji_data["normal"]["name"]
-            for server in EMOJI_SERVERS:
-                guild:discord.Guild = self.bot.get_guild(server)
-                for emoji in guild.emojis:
-                    if emoji.name == emoji_data_normal_name:
-                        mappings[item] = {
-                            "name": emoji.name,
-                            "url": emoji.url,
-                            "id": emoji.id
-                        }
-                        uploaded[item_hash] = {
-                            "name": emoji.name,
-                            "url": emoji.url,
-                            "id": emoji.id
-                        }
-                        break
-
-
             emoji_data_normal_id = emoji_data["normal"]["id"]
             animated = emoji_data["normal"]["animated"]
 
@@ -176,35 +139,23 @@ class HelpCommand(commands.Cog):
                 if emoji_amount >= 50:
                     continue
 
-                try:
-                    emoji = await guild.create_custom_emoji(name=emoji_data_normal_name, image=emoji_data)
-                    mappings[item] = {
-                        "name": emoji.name,
-                        "url": emoji.url,
-                        "id": emoji.id
-                    }
-
-                    uploaded[item_hash] = {
-                        "name": emoji.name,
-                        "url": emoji.url,
-                        "id": emoji.id
-                    }
-
-                except:
-                    print(emoji_data_normal_name)
-
+                emoji = await guild.create_custom_emoji(name=emoji_data_normal_name, image=emoji_data)
+                mappings[item] = {
+                    "name": emoji.name,
+                    "url": emoji.url,
+                    "id": emoji.id
+                }
 
                 break
 
             await asyncio.sleep(3)
 
-
         with open("./data/mappings.json", "w") as file:
             json.dump(mappings, file, indent=4)
 
         await session.close()
-        embed = self.bot.embed(f"Finished uploading {len(uploaded)} emojis.")
-        await ctx.send(embed=embed)
+        embed = self.bot.embed(f"Finished uploading {len(need_uploading)} emojis.")
+        await ctx.respond(embed=embed)
 
     @commands.slash_command(
         name="info",

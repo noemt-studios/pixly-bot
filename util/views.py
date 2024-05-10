@@ -201,7 +201,7 @@ class NetworthProfileSelector(View):
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -487,7 +487,7 @@ class TypeSwitcherView(View):
         else:
             self.soulbound = None
 
-        for option in self.children[1].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -683,7 +683,7 @@ Co-op: {coops_string}"""
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -873,7 +873,7 @@ class HotmProfileSelector(discord.ui.View):
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -1004,7 +1004,7 @@ class SkillsView(discord.ui.View):
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -1329,7 +1329,7 @@ class FarmingProfileSelector(discord.ui.View):
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -1571,7 +1571,7 @@ class PetsProfileSelector(discord.ui.View):
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -1594,7 +1594,7 @@ class PetsProfileSelector(discord.ui.View):
         
         pet_index = int(value)
 
-        for option in self.children[1].options:
+        for option in select.options:
             option.default = False
             if option.value == value:
                 option.default = True
@@ -1904,7 +1904,7 @@ class RiftProfileSelector(discord.ui.View):
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -2220,7 +2220,7 @@ Total XP: **{numerize(total_xp)}**
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -2389,6 +2389,7 @@ class ChocoFactorySelector(discord.ui.View):
         self.trigger_timeout.start()
         self.username = username
         self.soulbound = None
+        self.cookie = True
 
     @tasks.loop(seconds=180)
     async def trigger_timeout(self):
@@ -2397,6 +2398,7 @@ class ChocoFactorySelector(discord.ui.View):
     async def create_embed(self):
 
         profile_data = await get_data_from_cache(self)
+        profile_data.get_items()
 
         embed = discord.Embed(color=discord.Color.blue(), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
 
@@ -2439,35 +2441,146 @@ class ChocoFactorySelector(discord.ui.View):
             "rabbit_cousin": "Rabbit Cousin",
         }
 
+        chocolate_per_second = 0
+        chocolate_per_second_multiplier = 0
+
+        talisman_adders = {
+            "NIBBLE_CHOCOLATE_STICK": 10,
+            "SMOOTH_CHOCOLATE_BAR": 20,
+            "RICH_CHOCOLATE_CHUNK": 30,
+            "GANACHE_CHOCOLATE_SLAB": 40,
+            "PRESTIGE_CHOCOLATE_REALM": 50,
+            "": 0
+        }
+
+        rabbit_tiers = {
+            "MYTHIC": 0.05
+        }
+
+        best = ""
+        for item in profile_data.talisman_bag:
+            if item._id in talisman_adders:
+                if best == "":
+                    best = item._id
+                                                           
+                if talisman_adders[item._id] > talisman_adders[best]:
+                    best = item._id
+            
+        chocolate_per_second = talisman_adders[best]
+
+        mythic_rabbit = False
+        for pet in profile_data.pets:
+            if pet.type == "RABBIT":
+                adder = rabbit_tiers.get(pet.tier, 0)
+                if adder != 0:
+                    chocolate_per_second_multiplier += adder
+                    rabbit = True
+                    break
+
+        rarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
+        rarity_increases = {
+            "COMMON": {
+                "cps": 1,
+                "cpsm": 0.002
+            },
+            "UNCOMMON": {
+                "cps": 2,
+                "cpsm": 0.003
+            },
+            "RARE": {
+                "cps": 4,
+                "cpsm": 0.004
+            },
+            "EPIC": {
+                "cps": 10,
+                "cpsm": 0.005
+            },
+            "LEGENDARY": {
+                "cps": 0,
+                "cpsm": 0.02
+            },
+            "MYTHIC": {
+                "cps": 0,
+                "cpsm": 0
+            }
+        }
+
+        time_tower_cooldown = 28800000
+
         rabbit_data:dict = easter_event.get("rabbits", {})
         rabbit_data.pop("collected_eggs", None)
 
         unique_rabbits = len(rabbit_data)
+        rabbit_rarities_count = {}
+
+        for rabbit in set(rabbit_data):
+            rabbit_name = rabbit.replace("_", " ").title()
+            for rarity in rarities:
+                rarity_rabbits = self.bot.chocofactory["rarities"][rarity]
+
+                if rabbit_name in rarity_rabbits:
+                    chocolate_per_second += rarity_increases[rarity]["cps"]
+                    chocolate_per_second_multiplier += rarity_increases[rarity]["cpsm"]
+                    if rarity not in rabbit_rarities_count:
+                        rabbit_rarities_count[rarity] = 0
+
+                    rabbit_rarities_count[rarity] += 1
+
+                    if rarity == "MYTHIC":
+                        if rabbit_name == "Dante":
+                            chocolate_per_second += 50
+                        
+                        elif rabbit_name == "Einstein":
+                            time_tower_cooldown = 3600*7
+
+                        elif rabbit_name == "Galaxy":
+                            chocolate_per_second_multiplier += 0.05
+
+                        elif rabbit_name == "Zest Zephyr":
+                            chocolate_per_second_multiplier += 0.03
+                            chocolate_per_second += 30
+
+                    break
+
+        rabbit_rarities_count = {k: rabbit_rarities_count[k] for k in rarities if k in rabbit_rarities_count}
+            
         prestige_level = easter_event.get("chocolate_level", 0)
         rbcl = easter_event.get("rabbit_barn_capacity_level", 0)
 
         time_tower_data = easter_event.get("time_tower", {})
+        activation_time = time_tower_data.get("activation_time", 0)
+        
+        last_viewed_chocolate_factory = easter_event.get("last_viewed_chocolate_factory", 0)
+        remaining_seconds_time_tower = datetime.now().timestamp()*1000-3600000-activation_time
 
-        time_tower_level = time_tower_data.get("level", 0)+1
+        seconds_since_last_view = (datetime.now().timestamp()*1000-last_viewed_chocolate_factory)//1000
+
+        if remaining_seconds_time_tower < 0:
+            seconds_time_tower = 0
+
+        else:
+            seconds_time_tower = remaining_seconds_time_tower//1000
+
+
+        time_tower_level = time_tower_data.get("level", 0)
         time_tower_charges = time_tower_data.get("charges", 0)
         last_charge_time = time_tower_data.get("last_charge_time", 0)
-        activation_time = time_tower_data.get("activation_time", 0)
 
         active = ""
         if activation_time > datetime.now().timestamp()*1000-3600000:
             active = " (**ACTIVE**)"
         
-
         if time_tower_charges != 0:
             timestamp = "next charge: **READY**"
         else:
-            timestamp = f"next charge: **<t:{last_charge_time//1000+28800}:R>**"
+            timestamp = f"next charge: **<t:{last_charge_time//1000+time_tower_cooldown/1000}:R>**"
 
 
         shrine_level = easter_event.get("rabbit_rarity_upgrades", 0)
         click_level = easter_event.get("click_upgrades", 0)+1
         jackrabbit = easter_event.get("chocolate_multiplier_upgrades", 0)
 
+        jackrabbit_multi = round(jackrabbit*0.1, 1)
 
         factory_emojis = {
             "rabbit_bro": "<:rabbit_bro:1238171792774791168>",
@@ -2488,15 +2601,7 @@ class ChocoFactorySelector(discord.ui.View):
             "JackRabbitUpgrade": "<:JackRabbitUpgrade:1238197548540366918>"
         }
 
-        embed.description = f"""
-{factory_emojis['choc']} Chocolate: **{numerize(chocolate_amount)}** (**{numerize(since_prestige)}** since Prestige)
-{factory_emojis['choc']} Lifetime Chocolate: **{numerize(total_chocolate)}**
-Chocolate Per Second: <:hamper:1238204047727525888>
-
-{factory_emojis['u_rab']} Unique Rabbits: **{unique_rabbits}**
-{factory_emojis['fac_lvl']} Factory Level: **{prestige_level}**"""
-        
-        cookie_per_second_data = {}
+        cps_data = {}
         cookies_per_second_employees = {
             "rabbit_bro": 1,
             "rabbit_cousin": 2,
@@ -2519,18 +2624,19 @@ Chocolate Per Second: <:hamper:1238204047727525888>
             cost_data[employee] = next_level_cost
 
             if next_level_cost > 0:
-                cookie_per_second_data[employee] = next_level_cost/cookies_per_second_employees[employee]
+                cps_data[employee] = next_level_cost/(cookies_per_second_employees[employee])
+
 
         best_employee = None
-        if len(cookie_per_second_data) == 0:
+        if len(cps_data) == 0:
             pass
 
         else:
-            for employee in cookie_per_second_data:
+            for employee in cps_data:
                 if best_employee is None:
                     best_employee = employee
 
-                elif cookie_per_second_data[employee] < cookie_per_second_data[best_employee]:
+                elif cps_data[employee] < cps_data[best_employee]:
                     best_employee = employee        
 
         upgrades_string = ""
@@ -2546,6 +2652,8 @@ Chocolate Per Second: <:hamper:1238204047727525888>
             
             else:
                 cost_string = f"Next Level: **{numerize(cost)}**"
+
+            chocolate_per_second += employee_data[employee]*cookies_per_second_employees[employee]
 
             upgrades_string += f"\n{emoji} {employee_names[employee]}: **{employee_data[employee]}**/{120+(prestige_level-1)*20} ({cost_string}){addition}"
 
@@ -2565,6 +2673,38 @@ Chocolate Per Second: <:hamper:1238204047727525888>
             inline=False
         )
 
+        factory_level_multis = {
+            1: 0,
+            2: 0.1,
+            3: 0.25,
+            4: 0.5,
+            5: 1
+        }
+
+        cookie_mult = 0
+        if self.cookie:
+            cookie_mult = .25
+
+        tt_string = ""
+        time_tower_multiplier = 0
+        if len(active) != 0:
+            time_tower_multiplier = 0.1*time_tower_level
+            tt_string = " (**TIME TOWER ACTIVE**)"
+
+
+        _chocolate_per_second_no_time_tower = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+jackrabbit_multi))
+        _chocolate_per_second = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+time_tower_multiplier+jackrabbit_multi))
+
+        chocolate_since_view = _chocolate_per_second_no_time_tower*(seconds_since_last_view-seconds_time_tower) + _chocolate_per_second*(seconds_time_tower)
+
+        embed.description = f"""
+{factory_emojis['choc']} Chocolate: **{numerize(chocolate_amount+chocolate_since_view)}** (**{numerize(since_prestige+chocolate_since_view)}** since Prestige)
+{factory_emojis['choc']} Lifetime Chocolate: **{numerize(total_chocolate+chocolate_since_view)}**
+{factory_emojis['choc']} Chocolate per Second: **{format(int(_chocolate_per_second), ',d')}**{tt_string}
+
+{factory_emojis['u_rab']} Unique Rabbits: **{unique_rabbits}**
+{factory_emojis['fac_lvl']} Factory Level: **{prestige_level}**"""
+
         if prestige_level >= 2:
             time_tower_string = ""        
             time_tower_string += f"\n{factory_emojis['time_tower']} Level: **{time_tower_level}**/15 (+**{round(0.1*time_tower_level, 1)}x** multiplier)"
@@ -2575,6 +2715,37 @@ Chocolate Per Second: <:hamper:1238204047727525888>
                 value=time_tower_string,
                 inline=False
             )
+
+        unique_rabbits_string = ""
+        for rarity in rarities:
+            if rarity in rabbit_rarities_count:
+                unique_rabbits_string += f"{RARITY_EMOJIS[rarity]} {rarity.title()}: **{rabbit_rarities_count[rarity]}**\n"
+
+        if len(unique_rabbits_string) == 0:
+            unique_rabbits_string = "No Rabbits :("
+
+        embed.add_field(
+            name="Rabbit Rarities",
+            value=unique_rabbits_string
+        )
+
+        talisman_emojis = {
+            "NIBBLE_CHOCOLATE_STICK": "<:GOD01z5DTzXeSh3r:1236497543714570301>",
+            "SMOOTH_CHOCOLATE_BAR": "<:UmtTOHUyHYPXChQu:1236497557765619783>",
+            "RICH_CHOCOLATE_CHUNK": "<:TRWzhgUu87k49LkV:1238415489621819425>",
+            "GANACHE_CHOCOLATE_SLAB": "<:e8t8PaUlLFJZS07z:1236428501813297255>",
+            "PRESTIGE_CHOCOLATE_REALM": "<:e8t8PaUlLFJZS07z:1236428501813297255>"
+        }
+
+        items_string = f"""
+<:e8t8PaUlLFJZS07z:1236428501813297255> Mythic Rabbit: **{mythic_rabbit}**
+{talisman_emojis[best]} Best Talisman: **{best.replace('_', ' ').title()}**"""
+        
+        embed.add_field(
+            name="Items",
+            value=items_string,
+            inline=False
+        )
 
         embed.set_footer(
             text=get_footer("nom")
@@ -2587,7 +2758,7 @@ Chocolate Per Second: <:hamper:1238204047727525888>
     async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
         await interaction.response.defer()
 
-        for option in self.children[0].options:
+        for option in select.options:
             option.default = False
             if option.value == select.values[0]:
                 option.default = True
@@ -2599,3 +2770,16 @@ Chocolate Per Second: <:hamper:1238204047727525888>
             await interaction.followup.send(embed=embed, view=self, ephemeral=True)
         else:
             await interaction.edit_original_response(embed=embed, view=self)
+
+    @button(row=1, label="Cookie", style=discord.ButtonStyle.green, emoji="<a:DhsMMKZnFqaFsCVk:1236445806870007910>")
+    async def toggle_cookie(self, button: discord.ui.Button, interaction: discord.Interaction):
+        self.cookie = not self.cookie
+        embed = await self.create_embed()
+
+        button.style = discord.ButtonStyle.red if not self.cookie else discord.ButtonStyle.green
+
+        if interaction.user.id == self.user_id:
+            await interaction.response.edit_message(embed=embed, view=self)
+
+        else:
+            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
