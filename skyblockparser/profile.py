@@ -348,6 +348,7 @@ class Profile:
                 items = decode_item(nbt)[""]["i"]
             except:
                 setattr(self, _type, [])
+                return
 
             for item in items:
                 if item.get("tag", {}).get("ExtraAttributes", {}).get("id", "") == "PET":

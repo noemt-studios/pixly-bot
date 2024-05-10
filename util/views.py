@@ -2468,11 +2468,11 @@ class ChocoFactorySelector(discord.ui.View):
 
         rabbit_order = ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father", "rabbit_grandma"]
 
-        try:
-            employee_data = {k: employee_data[k] for k in rabbit_order}
-        except:
-            embed.description = "This user doesn't have a chocolate factory."
-            return embed
+        _employee_data = {}
+        for employee in rabbit_order:
+            _employee_data[employee] = employee_data.get(employee, 0)
+
+        employee_data = _employee_data
 
         employee_names = {
             "rabbit_bro": "Rabbit Bro",
@@ -2510,13 +2510,18 @@ class ChocoFactorySelector(discord.ui.View):
         chocolate_per_second = talisman_adders[best]
 
         mythic_rabbit = False
+        equipped = False
         for pet in profile_data.pets:
             if pet.type == "RABBIT":
                 adder = rabbit_tiers.get(pet.tier, 0)
                 if adder != 0:
-                    chocolate_per_second_multiplier += adder
                     rabbit = True
-                    break
+                    if pet.active:
+                        equipped = True
+                        chocolate_per_second_multiplier += adder
+                        break
+
+                    
 
         rarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
         rarity_increases = {
@@ -2775,11 +2780,19 @@ class ChocoFactorySelector(discord.ui.View):
             "SMOOTH_CHOCOLATE_BAR": "<:UmtTOHUyHYPXChQu:1236497557765619783>",
             "RICH_CHOCOLATE_CHUNK": "<:TRWzhgUu87k49LkV:1238415489621819425>",
             "GANACHE_CHOCOLATE_SLAB": "<:e8t8PaUlLFJZS07z:1236428501813297255>",
-            "PRESTIGE_CHOCOLATE_REALM": "<:e8t8PaUlLFJZS07z:1236428501813297255>"
+            "PRESTIGE_CHOCOLATE_REALM": "<:e8t8PaUlLFJZS07z:1236428501813297255>",
+            "None": "<:empty:1236755746335621181>"
         }
 
+        if best == "":
+            best = "None"
+
+        equipped_string = ""
+        if not equipped and mythic_rabbit:
+            equipped_string = " (**Not Active**)"
+
         items_string = f"""
-<:e8t8PaUlLFJZS07z:1236428501813297255> Mythic Rabbit: **{mythic_rabbit}**
+<:e8t8PaUlLFJZS07z:1236428501813297255> Mythic Rabbit: **{"Yes" if mythic_rabbit else "No"}**{equipped_string}
 {talisman_emojis[best]} Best Talisman: **{best.replace('_', ' ').title()}**"""
         
         embed.add_field(
