@@ -7,6 +7,7 @@ app = cors(app, allow_origin="*")
 
 db = MongoClient("mongodb://127.0.0.1:27017/")["pixly"]
 discord_links = db["users"]
+profiles = db["profiles"]
 
 def parse_data(data: dict):
     parsed = {}
@@ -35,3 +36,8 @@ async def user_data(discord_id: str):
     
 
     return {"status": "success", "data": parse_data(user_data)}
+
+@app.route('/get-cached-players-count')
+async def get_cached_players_count():
+    count = profiles.count_documents({})
+    return {"status": "success", "count": count}
