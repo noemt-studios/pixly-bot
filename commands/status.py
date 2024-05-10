@@ -29,7 +29,11 @@ class Status(Cog):
             async with session.get(f"https://api.mojang.com/users/profiles/minecraft/{name}") as request:
                 if request.status == 204:
                     embed = get_embed("Invalid username.", self.bot)
-                    return await ctx.followup.send(embed=embed)
+                    return await ctx.respond(embed=embed)
+                
+                elif request.status != 200:
+                    embed = get_embed("An issue with Mojang's API occured.", self.bot)
+                    return await ctx.respond(embed=embed)
                 
                 data = await request.json()
                 uuid = data["id"]
@@ -46,7 +50,16 @@ class Status(Cog):
                             embed = get_embed("Something went wrong.", self.bot)
                             return await ctx.respond(embed=embed)
                         
-                        last_login = _data["player"]["lastLogin"]//1000
+                        try:
+                            last_login = _data["player"]["lastLogin"]//1000
+                        except KeyError:
+                            embed = discord.Embed(
+                                title=f"Online Status for {username}",
+                                url=f"https://plancke.io/hypixel/player/stats/{username}",
+                                description=f"Couldn't parse last login for {username}.",
+                            color=discord.Color.blue()).set_thumbnail(url=f"https://mc-heads.net/body/{uuid}/left")
+
+                            return await ctx.respond(embed=embed)
                         last_logout = _data["player"]["lastLogout"]//1000
                     
                     if data["session"]["online"] is False:
@@ -71,13 +84,13 @@ Last login: **<t:{last_login}:R>**""",
                         ).set_thumbnail(url=f"https://mc-heads.net/body/{uuid}/left")
                         embed.add_field(
                             name="Game",
-                            value=data["session"]["gameType"].title(),
+                            value=data["session"]["gameType"].replace("_", " ").title(),
                         )
                         mode = data["session"].get("mode")
                         if mode:
                             embed.add_field(
                                 name="Gamemode",
-                                value=mode.title(),
+                                value=mode.replace("_", " ").title(),
                             )
                         
                         return await ctx.respond(embed=embed)

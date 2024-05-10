@@ -210,7 +210,10 @@ class NetworthProfileSelector(View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
+            view = NetworthProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            embed = await view.create_embed()
             await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
@@ -478,6 +481,7 @@ class TypeSwitcherView(View):
         placeholder="Select the Type of Items to Display.",
     )
     async def switch_item_type(self, select: discord.ui.Select, interaction: discord.Interaction):
+
         if select.values[0] == "soulbound":
             self.soulbound = True
 
@@ -692,7 +696,10 @@ Co-op: {coops_string}"""
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
+            view = ProfileCommandProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            embed = await view.create_embed()
             await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
@@ -705,8 +712,8 @@ Co-op: {coops_string}"""
             discord.SelectOption(label="Skills", value="skills", emoji="<:skills:1236755374254850099>"),
             discord.SelectOption(label="Pets", value="pets", emoji="<:taming:1236755128871161989>"),
             discord.SelectOption(label="Rift", value="rift", emoji="<a:mirrorverse_timecharm:1236747535582756894>"),
-            discord.SelectOption(label="Slayers", value="slayers", emoji="<:revenant_horror:1236755427165999186>"), 
-
+            discord.SelectOption(label="Slayers", value="slayers", emoji="<:revenant_horror:1236755427165999186>"),
+            discord.SelectOption(label="Chocolate Factory", value="choccy", emoji="<a:DhsMMKZnFqaFsCVk:1236445806870007910>")
         ],
         placeholder="Select a Statistic to View."
     )
@@ -734,6 +741,9 @@ Co-op: {coops_string}"""
 
         elif value == "slayers":
             view = SlayersView(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+
+        elif value == "choccy":
+            view = ChocoFactorySelector(self.user_id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
 
         embed = await view.create_embed()
         await message.edit_original_response(embed=embed, view=view)
@@ -882,7 +892,10 @@ class HotmProfileSelector(discord.ui.View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = HotmProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
@@ -1013,7 +1026,10 @@ class SkillsView(discord.ui.View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = SkillsView(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
@@ -1338,7 +1354,10 @@ class FarmingProfileSelector(discord.ui.View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = FarmingProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+            
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
@@ -1586,10 +1605,17 @@ class PetsProfileSelector(discord.ui.View):
 
     @select(row=2, placeholder="Select a Pet to View.")
     async def select_pet(self, select:discord.ui.Select, interaction: discord.Interaction):
+        await interaction.response.defer()
+
+        if self.user_id != interaction.user.id:
+            view = PetsProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
+            embed = await view.create_embed()
+            return await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+        
         value = select.values[0]
         if value == "back":
             embed = await self.create_embed()
-            await interaction.response.edit_message(embed=embed)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed)
             return
         
         pet_index = int(value)
@@ -1719,7 +1745,7 @@ Current XP: **{format(int(pet.exp - pet_xp_sum_lower), ',d')}** / {format(int(ne
 Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**{round((pet.exp / pet.max_xp) * 100, 2)}%**)"""
         
         if self.user_id == interaction.user.id:
-            await interaction.response.edit_message(embed=embed)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed)
         else:
             await interaction.followup.send(embed=embed, ephemeral=True, view=self)
         
@@ -1749,6 +1775,9 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
         disabled=True
     )
     async def previous_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if self.user_id != interaction.user.id:
+            return await interaction.response.defer()
+        
         self.page -= 1
         if self.page == 0:
             button.disabled = True
@@ -1765,6 +1794,9 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
         row=3
     )
     async def next_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+        if self.user_id != interaction.user.id:
+            return await interaction.response.defer()
+        
         self.page += 1
         if self.page != 0:
             self.children[-2].disabled = False
@@ -1913,7 +1945,10 @@ class RiftProfileSelector(discord.ui.View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = RiftProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+            
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
@@ -2229,7 +2264,10 @@ Total XP: **{numerize(total_xp)}**
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = SlayersView(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
         else:
             await interaction.edit_original_response(embed=embed, view=self)
     
@@ -2245,6 +2283,12 @@ Total XP: **{numerize(total_xp)}**
             ])
     
     async def select_slayer(self, select:discord.ui.Select, interaction: discord.Interaction):
+
+        if not self.user_id == interaction.user.id:
+            view = SlayersView(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, ephemeral=True, view=view)
+            return
 
         value = select.values[0]
         if value == "back":
@@ -2349,11 +2393,8 @@ Progress to Max Level ({numerize(max_xp)}):
             value=boss_kills_field
         )
 
-        if self.user_id == interaction.user.id:
-            await interaction.response.edit_message(embed=embed)
+        await interaction.response.edit_message(embed=embed)
 
-        else:
-            await interaction.followup.send(embed=embed, ephemeral=True, view=self)
 
 
 class ChocoFactorySelector(discord.ui.View):
@@ -2573,7 +2614,7 @@ class ChocoFactorySelector(discord.ui.View):
         if time_tower_charges != 0:
             timestamp = "next charge: **READY**"
         else:
-            timestamp = f"next charge: **<t:{last_charge_time//1000+time_tower_cooldown/1000}:R>**"
+            timestamp = f"next charge: **<t:{int(last_charge_time//1000+time_tower_cooldown/1000)}:R>**"
 
 
         shrine_level = easter_event.get("rabbit_rarity_upgrades", 0)
@@ -2767,19 +2808,32 @@ class ChocoFactorySelector(discord.ui.View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = ChocoFactorySelector(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+            
         else:
             await interaction.edit_original_response(embed=embed, view=self)
 
     @button(row=1, label="Cookie", style=discord.ButtonStyle.green, emoji="<a:DhsMMKZnFqaFsCVk:1236445806870007910>")
     async def toggle_cookie(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
+
         self.cookie = not self.cookie
         embed = await self.create_embed()
-
         button.style = discord.ButtonStyle.red if not self.cookie else discord.ButtonStyle.green
 
         if interaction.user.id == self.user_id:
-            await interaction.response.edit_message(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
         else:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = ChocoFactorySelector(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
+            view.cookie = self.cookie
+
+            self.cookie = not self.cookie
+            view.children[1].style = button.style
+
+            button.style = discord.ButtonStyle.red if not self.cookie else discord.ButtonStyle.green
+
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
