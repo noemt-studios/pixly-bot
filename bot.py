@@ -7,6 +7,7 @@ from util.context import PixlyContext
 from pymongo import MongoClient
 from skyblockparser.profile import Profile
 from datetime import datetime
+from util.pixlyguild import VerificationView
 
 from api import app
 
@@ -124,6 +125,7 @@ class Bot(commands.Bot):
         self.clear_cache.start()
         self.session = aiohttp.ClientSession()
         self.update_skyblock_data.start()
+        self.add_view(VerificationView(self))
 
         with open("./data/mappings.json") as f:
             self.item_emojis = json.load(f)
