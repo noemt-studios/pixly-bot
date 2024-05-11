@@ -230,6 +230,7 @@ class NetworthProfileSelector(View):
         placeholder="Select the Type of Items to Display.",
     )
     async def switch_item_type(self, select: discord.ui.Select, interaction: discord.Interaction):
+        await interaction.response.defer()
 
         if not self.user_id == interaction.user.id:
             return await interaction.response.defer()
@@ -244,7 +245,7 @@ class NetworthProfileSelector(View):
             self.soulbound = None
 
         embed = await self.create_embed()
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.followup.edit_message(interaction.message.id, embed=embed)
         
 
     @button(label="View Breakdown", style=discord.ButtonStyle.grey)
@@ -462,10 +463,11 @@ class TypeSwitcherView(View):
         placeholder="Select the Category of Items to Display.",
     )
     async def switch_category(self, select: discord.ui.Select, interaction: discord.Interaction):
+        await interaction.response.defer()
         self.category = select.values[0]
 
         embed = await self.create_embed()
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.followup.edit_message(interaction.message.id, embed=embed)
 
     @select(
         custom_id="item_type_switcher",
@@ -481,6 +483,7 @@ class TypeSwitcherView(View):
         placeholder="Select the Type of Items to Display.",
     )
     async def switch_item_type(self, select: discord.ui.Select, interaction: discord.Interaction):
+        await interaction.response.defer()
 
         if select.values[0] == "soulbound":
             self.soulbound = True
@@ -497,7 +500,7 @@ class TypeSwitcherView(View):
                 option.default = True
 
         embed = await self.create_embed()
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.followup.edit_message(interaction.message.id, embed=embed)
 
 
 class ProfileCommandProfileSelector(discord.ui.View):
@@ -1775,6 +1778,7 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
         disabled=True
     )
     async def previous_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
         if self.user_id != interaction.user.id:
             return await interaction.response.defer()
         
@@ -1786,7 +1790,7 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
             self.children[-1].disabled = False
 
         embed = await self.create_embed()
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
     @button(
         label=">",
@@ -1794,6 +1798,7 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
         row=3
     )
     async def next_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
         if self.user_id != interaction.user.id:
             return await interaction.response.defer()
         
@@ -1805,7 +1810,7 @@ Total XP: **{format(int(pet.exp), ',d')}** / {format(int(pet.max_xp), ',d')} (**
             button.disabled = True
 
         embed = await self.create_embed()
-        await interaction.response.edit_message(embed=embed, view=self)
+        await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
 class RiftProfileSelector(discord.ui.View):
     def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
@@ -2283,6 +2288,7 @@ Total XP: **{numerize(total_xp)}**
             ])
     
     async def select_slayer(self, select:discord.ui.Select, interaction: discord.Interaction):
+        await interaction.response.defer()
 
         if not self.user_id == interaction.user.id:
             view = SlayersView(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
@@ -2293,7 +2299,7 @@ Total XP: **{numerize(total_xp)}**
         value = select.values[0]
         if value == "back":
             embed = await self.create_embed()
-            await interaction.response.edit_message(embed=embed)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed)
             return
         
         for option in select.options:
@@ -2393,7 +2399,7 @@ Progress to Max Level ({numerize(max_xp)}):
             value=boss_kills_field
         )
 
-        await interaction.response.edit_message(embed=embed)
+        await interaction.followup.edit_message(interaction.message.id, embed=embed)
 
 
 
@@ -2499,27 +2505,35 @@ class ChocoFactorySelector(discord.ui.View):
         }
 
         best = ""
-        for item in profile_data.talisman_bag:
-            if item._id in talisman_adders:
-                if best == "":
-                    best = item._id
-                                                           
-                if talisman_adders[item._id] > talisman_adders[best]:
-                    best = item._id
-            
-        chocolate_per_second = talisman_adders[best]
+
+        try:
+            for item in profile_data.talisman_bag:
+                if item._id in talisman_adders:
+                    if best == "":
+                        best = item._id
+                                                            
+                    if talisman_adders[item._id] > talisman_adders[best]:
+                        best = item._id
+                
+            chocolate_per_second = talisman_adders[best]
+        except:
+            pass
 
         mythic_rabbit = False
         equipped = False
-        for pet in profile_data.pets:
-            if pet.type == "RABBIT":
-                adder = rabbit_tiers.get(pet.tier, 0)
-                if adder != 0:
-                    rabbit = True
-                    if pet.active:
-                        equipped = True
-                        chocolate_per_second_multiplier += adder
-                        break
+
+        try:
+            for pet in profile_data.pets:
+                if pet.type == "RABBIT":
+                    adder = rabbit_tiers.get(pet.tier, 0)
+                    if adder != 0:
+                        rabbit = True
+                        if pet.active:
+                            equipped = True
+                            chocolate_per_second_multiplier += adder
+                            break
+        except:
+            pass
 
                     
 
@@ -2591,6 +2605,13 @@ class ChocoFactorySelector(discord.ui.View):
         rabbit_rarities_count = {k: rabbit_rarities_count[k] for k in rarities if k in rabbit_rarities_count}
             
         prestige_level = easter_event.get("chocolate_level", 0)
+        if prestige_level == 0:
+            embed.description = "This player has no Chocolate factory."
+            embed.set_footer(
+                text=get_footer("nom")
+            )
+            return embed
+        
         rbcl = easter_event.get("rabbit_barn_capacity_level", 0)
 
         time_tower_data = easter_event.get("time_tower", {})
@@ -2626,7 +2647,7 @@ class ChocoFactorySelector(discord.ui.View):
         click_level = easter_event.get("click_upgrades", 0)+1
         jackrabbit = easter_event.get("chocolate_multiplier_upgrades", 0)
 
-        jackrabbit_multi = round(jackrabbit*0.1, 1)
+        jackrabbit_multi = round(jackrabbit*0.01, 2)
 
         factory_emojis = {
             "rabbit_bro": "<:rabbit_bro:1238171792774791168>",
@@ -2711,7 +2732,7 @@ class ChocoFactorySelector(discord.ui.View):
             upgrades_string += f"\n{factory_emojis['shrine_l']} Shrine level: **{shrine_level}**/20 (**{shrine_level}%** increased chance)"
 
         if prestige_level >= 4:
-            upgrades_string += f"\n{factory_emojis['JackRabbitUpgrade']} Coach Jackrabbit: **{jackrabbit}**/20 (+**{round(jackrabbit*0.1, 1)}x** multiplier)"
+            upgrades_string += f"\n{factory_emojis['JackRabbitUpgrade']} Coach Jackrabbit: **{jackrabbit}**/20 (+**{round(jackrabbit*0.01, 2)}x** multiplier)"
 
         embed.add_field(
             name="Upgrades",
@@ -2737,10 +2758,11 @@ class ChocoFactorySelector(discord.ui.View):
             time_tower_multiplier = 0.1*time_tower_level
             tt_string = " (**TIME TOWER ACTIVE**)"
 
+        if equipped:
+            chocolate_per_second_multiplier += 0.05
 
         _chocolate_per_second_no_time_tower = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+jackrabbit_multi))
         _chocolate_per_second = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+time_tower_multiplier+jackrabbit_multi))
-
         chocolate_since_view = _chocolate_per_second_no_time_tower*(seconds_since_last_view-seconds_time_tower) + _chocolate_per_second*(seconds_time_tower)
 
         embed.description = f"""
@@ -2802,7 +2824,7 @@ class ChocoFactorySelector(discord.ui.View):
         )
 
         embed.set_footer(
-            text=get_footer("nom")
+            text="Calculation based on the last time you opened the GUI | Made by nom"
         )
     
         return embed
