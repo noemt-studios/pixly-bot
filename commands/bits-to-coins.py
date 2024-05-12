@@ -69,7 +69,6 @@ class Bits(Cog):
                     emoji = "❔"
 
                 fbp = format(item_data['price'], ',d')
-                fiv = numerize(item_data["value"])
                 fperb = round(item_data["per_bit"], 2)
                 item_position = item_index+1+(20*index)
 
