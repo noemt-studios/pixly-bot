@@ -16,7 +16,7 @@ def get_accessory(accessories, accessory):
     return next((a for a in accessories if a['id'] == accessory), None)
 
 def get_missing(accessories):
-    ACCESSORIES = constants.get_all_accessories()
+    ACCESSORIES = constants.getAllAccessories()
     unique = [{'id': a['id'], 'rarity': a['tier']} for a in ACCESSORIES]
 
     for u in unique:
