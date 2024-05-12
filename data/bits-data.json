@@ -1,0 +1,198 @@
+{
+    "TALISMAN_ENRICHMENT_SWAPPER": {
+        "name": "Accessory Enrichment Swapper", 
+        "price": 200
+    },
+    "TALISMAN_ENRICHMENT_ATTACK_SPEED": {
+        "name": "Attack Speed Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_CRITICAL_DAMAGE": {
+        "name": "Critical Damage Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_CRITICAL_CHANCE": {
+        "name": "Critical Chance Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_DEFENSE": {
+        "name": "Defence Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_FEROCITY": {
+        "name": "Ferocity Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_HEALTH": {
+        "name": "Health Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_INTELLIGENCE": {
+        "name": "Intelligence Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_MAGIC_FIND": {
+        "name": "Magic Find Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_STRENGTH": {
+        "name": "Strength Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_WALK_SPEED": {
+        "name": "Speed Enrichment", 
+        "price": 5000
+    },
+    "TALISMAN_ENRICHMENT_SEA_CREATURE_CHANCE": {
+        "name": "Sea Creature Chance Enrichment", 
+        "price": 5000
+    },
+    "ENCHANTMENT_HECATOMB_1": {
+        "name": "Hecatomb I", 
+        "price": 6000,
+        "texture": "ENCHANTED_BOOK"
+    },
+    "ENCHANTMENT_CHAMPION_1": {
+        "name": "Champion I", 
+        "price": 6000,
+        "texture": "ENCHANTED_BOOK"
+    },
+    "ENCHANTMENT_CULTIVATING_1": {
+        "name": "Cultivating I", 
+        "price": 6000,
+        "texture": "ENCHANTED_BOOK"
+    },
+    "ENCHANTMENT_EXPERTISE_1": {
+        "name": "Expertise I", 
+        "price": 6000,
+        "texture": "ENCHANTED_BOOK"
+    },
+    "ENCHANTMENT_COMPACT_1": {
+        "name": "Compact I", 
+        "price": 6000,
+        "texture": "ENCHANTED_BOOK"
+    },
+    "INFERNO_FUEL_BLOCK": {
+        "name": "Inferno Fuel Block", 
+        "price": 75
+    },
+    "64_INFERNO_FUEL_BLOCK": {
+        "name": "Inferno Fuel Block x64", 
+        "price": 3600,
+        "texture": "INFERNO_FUEL_BLOCK"
+    },
+    "DYE_PURE_BLACK": {
+        "name": "Pure Black Dye", 
+        "price": 250000,
+        "texture": "INK_SACK"
+    },
+    "DYE_PURE_WHITE": {
+        "name": "Pure White Dye", 
+        "price": 250000,
+        "texture": "INK_SACK:15"
+    },
+    "AUTOPET_RULES_2": {
+        "name": "Autopet Rules 2-Pack",
+        "price": 21000
+    },
+    "TRIO_CONTACTS_ADDON": {
+        "name": "Abiphone Contacts Trio",
+        "price": 6450
+    },
+    "ABICASE_SUMSUNG_1": {
+        "name": "Sumsung© G3 Abicase",
+        "price": 15000
+    },
+    "ABICASE_SUMSUNG_2": {
+        "name": "Sumsung© GG Abicase",
+        "price": 25000
+    },
+    "ABICASE_REZAR": {
+        "name": "Rezar® Abicase",
+        "price": 26000
+    },
+    "ABICASE_BLUE_RED": {
+        "name": "Blue™ but Red Abicase",
+        "price": 17000
+    },
+    "ABICASE_BLUE_BLUE": {
+        "name": "Actually Blue™ Abicase",
+        "price": 17000
+    },
+    "ABICASE_BLUE_GREEN": {
+        "name": "Blue™ but Green Abicase",
+        "price": 17000
+    },
+    "ABICASE_BLUE_YELLOW": {
+        "name": "Blue™ but Yellow Abicase",
+        "price": 17000
+    },
+    "ABICASE_BLUE_AQUA": {
+        "name": "Lighter Blue™ Abicase",
+        "price": 17000
+    },
+    "PORTALIZER": {
+        "name": "Portalizer",
+        "price": 4800
+    },
+    "POCKET_SACK_IN_A_SACK": {
+        "name": "Pocket Sack-in-a-Sack",
+        "price": 8000
+    },
+    "BITS_TALISMAN": {
+        "name": "Bits Talisman",
+        "price": 15000
+    },
+    "BLOCK_ZAPPER": {
+        "name": "Block Zapper",
+        "price": 5000
+    },
+    "BUILDERS_WAND": {
+        "name": "Builder's Wand",
+        "price": 12000
+    },
+    "MATRIARCH_PARFUM": {
+        "name": "Matriarch's Perfume",
+        "price": 1200
+    },
+    "MINION_STORAGE_EXPANDER": {
+        "name": "Minion Storage X-pender",
+        "price": 1500
+    },
+    "JUMBO_BACKPACK_UPGRADE": {
+        "name": "Jumbo Backpack Upgrade",
+        "price": 4000
+    },
+    "COLOSSAL_EXP_BOTTLE_UPGRADE": {
+        "name": "Colossal Experience Bottle Upgrade",
+        "price": 1200
+    },
+    "ULTIMATE_CARROT_CANDY_UPGRADE": {
+        "name": "Ultimate Carrot Candy Upgrade",
+        "price": 8000
+    },
+    "HYPER_CATALYST_UPGRADE": {
+        "name": "Hyper Catalyst Upgrade",
+        "price": 300
+    },
+    "HEAT_CORE": {
+        "name": "Heat Core",
+        "price": 3000
+    },
+    "KAT_FLOWER": {
+        "name": "Kat Flower",
+        "price": 500
+    },
+    "KAT_BOUQUET": {
+        "name": "Kat Bouquet",
+        "price": 2500
+    },
+    "KISMET_FEATHER": {
+        "name": "Kismet Feather",
+        "price": 1350
+    },
+    "GOD_POTION_2": {
+        "name": "God Potion",
+        "price": 1500
+    }
+}

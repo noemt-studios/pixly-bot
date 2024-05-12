@@ -68,6 +68,9 @@ class Bot(commands.Bot):
         with open("./data/chocofactory.json", "r") as f:
             self.chocofactory = json.load(f)
 
+        with open("./data/bits-data.json", "r") as f:
+            self.bits_data = json.load(f)
+
         for filename in os.listdir("commands"):
             if filename.endswith(".py"):
                 self.load_extension(f"commands.{filename[:-3]}")
@@ -171,11 +174,13 @@ class Bot(commands.Bot):
         self.update = datetime.now().timestamp()
         self.items.update_one({"_id": 1}, {"$set": {"data": items}}, upsert=True)
         self.bazaar.update_one({"_id": 1}, {"$set": {"data": bazaar, "timestamp": self.update}}, upsert=True)
-        self.prices.update_one({"_id": 1}, {"$set": {"data": prices}}, upsert=True)
+        
+        for item in prices:
+            self.prices.update_one({"item": item}, {"$set": {"price": prices[item]}}, upsert=True)
 
     def run(self):
         self.loop.create_task(self.start(self.token))
-        self.loop.create_task(app.run_task("0.0.0.0", port=3016))
+        #self.loop.create_task(app.run_task("0.0.0.0", port=3016))
         self.loop.run_forever()
 
 

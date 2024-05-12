@@ -2875,3 +2875,53 @@ class ChocoFactorySelector(discord.ui.View):
 
             embed = await view.create_embed()
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
+class BasePaginator(View):
+    def __init__(self, embeds, user_id, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.embeds = embeds
+        self.user_id = user_id
+        self.page = 0
+
+    async def create_embed(self):
+        return self.embeds[self.page]
+    
+    @button(label="<", style=discord.ButtonStyle.blurple, row=1, disabled=True)
+    async def previous_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
+
+        if not self.user_id == interaction.user.id:
+            view = BasePaginator(self.embeds, interaction.user.id)
+            view.page = self.page-1
+            embed = await view.create_embed()
+            return await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
+        self.page -= 1
+        if self.page == 0:
+            button.disabled = True
+
+        if self.page != len(self.embeds)-1:
+            self.children[-1].disabled = False
+
+        embed = await self.create_embed()
+        await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
+
+    @button(label=">", style=discord.ButtonStyle.blurple, row=1)
+    async def next_page(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
+
+        if not self.user_id == interaction.user.id:
+            view = BasePaginator(self.embeds, interaction.user.id)
+            view.page = self.page+1
+            embed = await view.create_embed()
+            return await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
+        self.page += 1
+        if self.page != 0:
+            self.children[-2].disabled = False
+
+        if self.page == len(self.embeds)-1:
+            button.disabled = True
+
+        embed = await self.create_embed()
+        await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)

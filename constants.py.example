@@ -49,12 +49,12 @@ HOTM_TREE_MAPPING = [
 	[
 		{
 			"type":"gemstone_infusion",
-			"maxLevel": 1,
+			"maxLevel": 3,
 			"name": "Gemstone Infusion"
 		},
 		{
 			"type":"gifts_from_the_departed",
-			"maxLevel": 1,
+			"maxLevel": 100,
 			"name": "Gifts From The Departed"
 		},
 		{
@@ -75,11 +75,11 @@ HOTM_TREE_MAPPING = [
 		{
 			"type":"rags_of_riches",
 			"maxLevel": 50,
-			"name": "Rags Of Riches"
+			"name": "Rags to Riches"
 		},
 		{
 			"type":"hazardous_miner",
-			"maxLevel": 1,
+			"maxLevel": 3,
 			"name": "Hazardous Miner"
 		}
 	],
