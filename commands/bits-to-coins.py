@@ -17,7 +17,7 @@ class Bits(Cog):
     async def bits(self, ctx: discord.ApplicationContext):
         await ctx.defer()
 
-        price_database = self.bot.prices
+        item_prices = self.bot.prices.find_one({"_id": 1})["data"]
         bits_data:dict = self.bot.bits_data
 
         bits_prices = {}
@@ -26,15 +26,10 @@ class Bits(Cog):
             item_data = bits_data[item]
 
             price = item_data["price"]
-            coin_value = price_database.find_one({"item": item.lower()})
-
-            try:
-                coin_value = coin_value["price"]
-            except:
-                continue
+            coin_value = item_prices[item.lower()]
 
             if item == "64_INFERNO_FUEL_BLOCK":
-                coin_value = price_database.find_one({"item": "INFERNO_FUEL_BLOCK"})["price"]*64
+                coin_value = item_prices["inferno_fuel_block"]*64
 
             bits_prices[item] = {**item_data, "per_bit": coin_value/price, "value": coin_value}
 
@@ -75,10 +70,10 @@ class Bits(Cog):
 
                 fbp = format(item_data['price'], ',d')
                 fiv = numerize(item_data["value"])
-                fperb = round(["per_bit"], 2)
+                fperb = round(item_data["per_bit"], 2)
                 item_position = item_index+1+(20*index)
 
-                desc_text += f"`{item_position}.` {emoji} **{item_data['name']}**: **{fperb}** coins/bit ({fbp} bits, {fiv})\n"
+                desc_text += f"**{item_position}.** {emoji} **{item_data['name']}**: `{fperb}` coins/bit ({fbp} bits)\n"
 
             embed.description = desc_text
             embeds.append(embed)
