@@ -233,7 +233,7 @@ class NetworthProfileSelector(View):
         await interaction.response.defer()
 
         if not self.user_id == interaction.user.id:
-            return await interaction.response.defer()
+            return
         
         if select.values[0] == "soulbound":
             self.soulbound = True
@@ -250,7 +250,6 @@ class NetworthProfileSelector(View):
 
     @button(label="View Breakdown", style=discord.ButtonStyle.grey)
     async def view_breakdown(self, button: discord.ui.Button, interaction: discord.Interaction):
-        await interaction.response.defer()
         profile_data = await get_data_from_cache(self)
 
         interaction = await interaction.response.send_message(content="\u200b", ephemeral=True)
@@ -259,7 +258,7 @@ class NetworthProfileSelector(View):
         
         embed = await view.create_embed()
 
-        await interaction.followup.edit_message(interaction.message.id, content=None, embed=embed, view=view)
+        await interaction.edit_original_response(content=None, embed=embed, view=view)
 
 class TypeSwitcherView(View):
     def __init__(self, bot, profile: Profile, username, soulbound, interaction, *args, **kwargs):

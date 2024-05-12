@@ -77,6 +77,8 @@ class HelpCommand(commands.Cog):
 
         for server in EMOJI_SERVERS:
             guild:discord.Guild = self.bot.get_guild(server)
+            if not guild:
+                continue
             emoji_amount = len(guild.emojis)
             if emoji_amount >= 50:
                 continue
