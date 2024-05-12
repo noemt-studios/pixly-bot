@@ -215,7 +215,7 @@ class NetworthProfileSelector(View):
             await interaction.followup.send(embed=embed, view=self, ephemeral=True)
             
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
 
     @select(
@@ -250,6 +250,7 @@ class NetworthProfileSelector(View):
 
     @button(label="View Breakdown", style=discord.ButtonStyle.grey)
     async def view_breakdown(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
         profile_data = await get_data_from_cache(self)
 
         interaction = await interaction.response.send_message(content="\u200b", ephemeral=True)
@@ -258,7 +259,7 @@ class NetworthProfileSelector(View):
         
         embed = await view.create_embed()
 
-        await interaction.edit_original_response(content=None, embed=embed, view=view)
+        await interaction.followup.edit_message(interaction.message.id, content=None, embed=embed, view=view)
 
 class TypeSwitcherView(View):
     def __init__(self, bot, profile: Profile, username, soulbound, interaction, *args, **kwargs):
@@ -701,10 +702,10 @@ Co-op: {coops_string}"""
         if interaction.user.id != self.user_id:
             view = ProfileCommandProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
             embed = await view.create_embed()
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
 
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=view)
 
     @select(
         row=1,
@@ -1034,7 +1035,7 @@ class SkillsView(discord.ui.View):
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
 
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
     @select(
         row=1,
@@ -1362,7 +1363,7 @@ class FarmingProfileSelector(discord.ui.View):
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
             
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
     @button(row=1, label="Best Contests", style=discord.ButtonStyle.secondary)
     async def best_contests(self, button: discord.ui.Button, interaction: discord.Interaction):
@@ -1602,9 +1603,11 @@ class PetsProfileSelector(discord.ui.View):
         embed = await self.create_embed()
         
         if interaction.user.id != self.user_id:
-            await interaction.followup.send(embed=embed, view=self, ephemeral=True)
+            view = PetsProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.selected_cutename, interaction)
+            embed = await view.create_embed()
+            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
     @select(row=2, placeholder="Select a Pet to View.")
     async def select_pet(self, select:discord.ui.Select, interaction: discord.Interaction):
@@ -1955,7 +1958,7 @@ class RiftProfileSelector(discord.ui.View):
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
             
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
 
 class LeaderboardView(discord.ui.View):
@@ -2274,7 +2277,7 @@ Total XP: **{numerize(total_xp)}**
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
 
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
     
     @select(row=1, placeholder="Select a Slayer to View.",
             options=[
@@ -2848,7 +2851,7 @@ class ChocoFactorySelector(discord.ui.View):
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
             
         else:
-            await interaction.edit_original_response(embed=embed, view=self)
+            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
 
     @button(row=1, label="Cookie", style=discord.ButtonStyle.green, emoji="<a:DhsMMKZnFqaFsCVk:1236445806870007910>")
     async def toggle_cookie(self, button: discord.ui.Button, interaction: discord.Interaction):
