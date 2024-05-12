@@ -2773,8 +2773,8 @@ class ChocoFactorySelector(discord.ui.View):
             prestige_string = "**MAXED**"
 
         else:
-            prestige_cost = prestige_costs[prestige_level-1]
-            missing = prestige_cost-(chocolate_amount+chocolate_since_view)
+            prestige_cost = prestige_costs[prestige_level]
+            missing = prestige_cost-(since_prestige+chocolate_since_view)
 
             if missing <= 0:
                 prestige_string = "**READY**"
@@ -2787,7 +2787,7 @@ class ChocoFactorySelector(discord.ui.View):
                     missing -= seconds_time_tower*_chocolate_per_second
                     seconds = missing/_chocolate_per_second_no_time_tower + seconds_time_tower
 
-                prestige_timestamp = f"<t:{int(datetime.now().timestamp()+seconds)}:R>"
+                prestige_string = f"<t:{int(datetime.now().timestamp()+seconds)}:R>"
 
 
 
@@ -2796,7 +2796,7 @@ class ChocoFactorySelector(discord.ui.View):
 {factory_emojis['choc']} Chocolate: **{numerize(chocolate_amount+chocolate_since_view)}** (**{numerize(since_prestige+chocolate_since_view)}** since Prestige)
 {factory_emojis['choc']} Lifetime Chocolate: **{numerize(total_chocolate+chocolate_since_view)}**
 {factory_emojis['choc']} Chocolate per Second: **{format(int(_chocolate_per_second), ',d')}**{tt_string}
-<:up_arrow:1238191665345331300> Prestige Timer: **{prestige_timestamp}**
+<:up_arrow:1238191665345331300> Prestige Timer: **{prestige_string}**
 
 {factory_emojis['u_rab']} Unique Rabbits: **{unique_rabbits}**
 {factory_emojis['fac_lvl']} Factory Level: **{prestige_level}**"""
