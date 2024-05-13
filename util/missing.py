@@ -5,19 +5,20 @@ def has_accessory(accessories, accessory, options=None):
     if options is None:
         options = {'ignoreRarity': False}
 
+
     id = accessory['id'] if isinstance(accessory, dict) else accessory
 
     if not options['ignoreRarity']:
-        return any(a['id'] == id and constants.RARITIES.index(a['rarity']) >= constants.RARITIES.index(accessory['rarity']) for a in accessories)
+        return any(a.get('id') == id and constants.RARITIES.index(a['rarity']) >= constants.RARITIES.index(accessory['rarity']) for a in accessories)
     else:
-        return any(a['id'] == id for a in accessories)
+        return any(a.get('id') == id for a in accessories)
 
 def get_accessory(accessories, accessory):
     return next((a for a in accessories if a['id'] == accessory), None)
 
 def get_missing(accessories):
     ACCESSORIES = constants.getAllAccessories()
-    unique = [{'id': a['id'], 'rarity': a['tier']} for a in ACCESSORIES]
+    unique = [{'id': a['id'], 'rarity': a.get('tier', "admin")} for a in ACCESSORIES]
 
     for u in unique:
         id = u['id']
@@ -44,18 +45,22 @@ def get_missing(accessories):
     for m in missing:
         id = m['id']
         rarity = m['rarity']
-        ACCESSORY = next((a for a in ACCESSORIES if a['id'] == id and a['tier'] == rarity), None)
+        ACCESSORY = next((a for a in ACCESSORIES if a['id'] == id and a.get('tier') == rarity), None)
 
-        object = {
-            **ACCESSORY,
-            'display_name': ACCESSORY.get('name', None),
-            'rarity': rarity,
-        }
+        if ACCESSORY:
+            object = {
+                **ACCESSORY,
+                'display_name': ACCESSORY.get('name', None),
+                'rarity': rarity,
+            }
 
-        if (constants.get_upgrade_list(id) and constants.get_upgrade_list(id)[0] != id) or 'rarities' in ACCESSORY:
-            upgrades.append(object)
-        else:
-            other.append(object)
+            if object.get('category', "") != "accessory":
+                continue 
+
+            if (constants.get_upgrade_list(id) and constants.get_upgrade_list(id)[0] != id):
+                upgrades.append(object)
+            else:
+                other.append(object)
 
     return {
         'missing': other,

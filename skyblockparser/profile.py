@@ -357,6 +357,7 @@ class Profile:
                     continue
 
             setattr(self, _type, [Item(item) for item in items if item])
+            setattr(self, f"{_type}_raw", items)
 
     async def get_museum(self):
         url = f"https://api.hypixel.net/v2/skyblock/museum?key={self.api_key}&profile={self.profile_id}"

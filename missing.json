@@ -1,0 +1,3646 @@
+{
+    "missing": [
+        {
+            "id": "ARCHAEOLOGIST_COMPASS",
+            "name": "Archaeologist's Compass",
+            "item_id": 345,
+            "material": "COMPASS",
+            "npc_sell_price": 1000,
+            "soulbound": "SOLO",
+            "has_uuid": true,
+            "tier": "common",
+            "category": "accessory",
+            "display_name": "Archaeologist's Compass",
+            "rarity": "common"
+        },
+        {
+            "id": "ANITA_TALISMAN",
+            "name": "Anita's Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "bb8ec57b37fdf093fe66efe2ac070a8f5181949970a4458d56ec9701eded8cff",
+            "display_name": "Anita's Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "PESTHUNTER_BADGE",
+            "name": "Pesthunter Badge",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "stats": {
+                "bonus_pest_chance": 20
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b4f1f0cf3adb4adc6b996ff9cb4e6d9d8912e0a5ab851c366c8bfbdaf8b2ef04",
+            "display_name": "Pesthunter Badge",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PARTY_HAT_CRAB",
+            "name": "Crab Hat of Celebration",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "magic_find": 1
+            },
+            "museum": true,
+            "tier": "special",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "eb6c628a48f64160991544d2a784ec2ca09563e8d6da4919158273ababb91",
+            "display_name": "Crab Hat of Celebration",
+            "rarity": "special"
+        },
+        {
+            "id": "CENTURY_TALISMAN",
+            "name": "Talisman of the Century",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "description": "What's better than a party? A party with free goodies!",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "720b77eaa6bc4a183a6888ba52df48417a6e385c3b463ac49b40a3b96e0a5b75",
+            "display_name": "Talisman of the Century",
+            "rarity": "common"
+        },
+        {
+            "id": "NIBBLE_CHOCOLATE_STICK",
+            "name": "Nibble Chocolate Stick",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "description": "%%dark_gray%%%%italic%%A delightful treat from the Factory. Its crisp taste sparks joy with every bite.",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "888188d62908af6e114f73a109e15ac7f1faded39abd6a2054034ec5cc70c727",
+            "display_name": "Nibble Chocolate Stick",
+            "rarity": "common"
+        },
+        {
+            "id": "GREAT_SPOOK_TALISMAN",
+            "name": "Great Spook Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 0,
+            "museum": true,
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b83adf648d4e97de3b928a4e82d1169c1978d71e18757cbaee36627b9b0d3f2e",
+            "display_name": "Great Spook Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "BITS_TALISMAN",
+            "name": "Bits Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2ebadb1725aa85bb2810d0b73bf7cd74db3d9d8fc61c4cf9e543dbcc199187cc",
+            "display_name": "Bits Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "ABICASE",
+            "name": "Abicase",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b2128f48d997186563fbc5b47a88c0d0aac92fa2c285cd1fae420c34fa8f2010",
+            "display_name": "Abicase",
+            "rarity": "rare"
+        },
+        {
+            "id": "MINERAL_TALISMAN",
+            "name": "Mineral Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "MINING_FORTUNE": 3
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3cbd70f73e2e09566ef914c697b13f48b97bfd6c11c83e540a15ff4d736b9c16",
+            "display_name": "Mineral Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "JERRY_TALISMAN_GREEN",
+            "name": "Green Jerry Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "INTELLIGENCE": -1
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2567251d71b6f3a4dc03fa01e441de7edf9354794e74aec16c04f141ddf31c70",
+            "display_name": "Green Jerry Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "HEGEMONY_ARTIFACT",
+            "name": "Hegemony Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "313384a293cfbba3489b483ebc1de7584ca2726d7f5c3a620513474925e87b97",
+            "display_name": "Hegemony Artifact",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BINGO_TALISMAN",
+            "name": "Bingo Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "museum": true,
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2f25944b7465ff4586a341f881f488b6f9d4b3ffc100f50a77087075b3ceb1b",
+            "display_name": "Bingo Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "ODGERS_BRONZE_TOOTH",
+            "name": "Odger's Bronze Tooth",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "SEA_CREATURE_CHANCE": 0.5
+            },
+            "soulbound": "SOLO",
+            "requirements": [
+                {
+                    "type": "TROPHY_FISHING",
+                    "reward": "BRONZE"
+                }
+            ],
+            "description": "%%gray%%%%italic%%A perfectly fine tooth, besides some wear and tear...",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "accc4432efe08c88530ac084fea6526641a207d78e637e41f7a4e5dcfdaaa162",
+            "display_name": "Odger's Bronze Tooth",
+            "rarity": "common"
+        },
+        {
+            "id": "FISH_AFFINITY_TALISMAN",
+            "name": "Fish Affinity Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "stats": {
+                "fishing_speed": 10
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "46a27ec5ed3f01e301677f88fdbdd962c08368600907eec37a2d4dd8c7f835fc",
+            "display_name": "Fish Affinity Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "WOLF_PAW",
+            "name": "Wolf Paw",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 1
+            },
+            "soulbound": "SOLO",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "7afd22704eeb5c67be649ddfe1da0c658158a7058d01739de31c94f6b9808869",
+            "display_name": "Wolf Paw",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PERSONAL_DELETOR_4000",
+            "name": "Personal Deletor 4000",
+            "item_id": 23,
+            "material": "DISPENSER",
+            "glowing": true,
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "uncommon",
+            "category": "accessory",
+            "display_name": "Personal Deletor 4000",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "LAVA_TALISMAN",
+            "name": "Lava Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 5800,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c078f3f24b1760f9d4abb0851eb8f6c7dfff8855708e6049d15dc02042ba8436",
+            "display_name": "Lava Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "NEW_YEAR_CAKE_BAG",
+            "name": "New Year Cake Bag",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a4573d6546ba71eff3b67e5116b0d75e29adf67135e95338dca83eec288f27",
+            "display_name": "New Year Cake Bag",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "WOOD_TALISMAN",
+            "name": "Wood Affinity Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 160,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "219ad5215ba6c7e4e4d0668f02d3a9c937ac536acc75ac49e7bd7b1c8ccf80",
+            "display_name": "Wood Affinity Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "FROZEN_CHICKEN",
+            "name": "Frozen Chicken",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "npc_sell_price": 1,
+            "stats": {
+                "WALK_SPEED": 1
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d61c33024246ed219a1317e2459130f2aed227655e85cf01fc513481236d8dd1",
+            "display_name": "Frozen Chicken",
+            "rarity": "rare"
+        },
+        {
+            "id": "SHADY_RING",
+            "name": "Shady Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "da8524274a65d8a80a0f44e103e2021e27c8916e965aa11f665ac0c49be40ec6",
+            "display_name": "Shady Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "TITANIUM_TALISMAN",
+            "name": "Titanium Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "MINING_SPEED": 15
+            },
+            "npc_sell_price": 51200,
+            "requirements": [
+                {
+                    "type": "HEART_OF_THE_MOUNTAIN",
+                    "tier": 2
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "10feda53576c8a6e57466f5dbdb99ea480ed122a09fdd850ed8c2e755f55cac2",
+            "display_name": "Titanium Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "HASTE_RING",
+            "name": "Haste Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 20500,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3c26a1ec929d4b144266c56af11d9abaf93f6b274872c96d3e34cb7c7965",
+            "display_name": "Haste Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "FARMER_ORB",
+            "name": "Farmer Orb",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1900,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "73b172a979eff9bf5bfb80eb8515d93e4888cc41cd806473f2a9a0d8bd29e3",
+            "display_name": "Farmer Orb",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PERSONAL_COMPACTOR_4000",
+            "name": "Personal Compactor 4000",
+            "item_id": 158,
+            "material": "DROPPER",
+            "glowing": true,
+            "unstackable": true,
+            "tier": "uncommon",
+            "category": "accessory",
+            "display_name": "Personal Compactor 4000",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "LUCKY_HOOF",
+            "name": "Lucky Hoof",
+            "item_id": 417,
+            "material": "IRON_BARDING",
+            "tier": "uncommon",
+            "category": "accessory",
+            "display_name": "Lucky Hoof",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "GRAVITY_TALISMAN",
+            "name": "Gravity Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 864,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ba52632a9c8f7bde94719064234920ded48614e2bd8bc91afe7ffc2cd8a46f19",
+            "display_name": "Gravity Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BAIT_RING",
+            "name": "Bait Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 23000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5a316d585b789b582f2d99e8e6cb2d70433e8996fab024a74bc790e22aedcdeb",
+            "display_name": "Bait Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "JACOBUS_REGISTER",
+            "name": "Jacobus Register",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "stats": {
+                "HEALTH": 10,
+                "PET_LUCK": 1
+            },
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3b648b9a44e280bcdf25f4a66a97bd5c33542e5e82415e15b475c6b999b8d635",
+            "display_name": "Jacobus Register",
+            "rarity": "legendary"
+        },
+        {
+            "id": "CATACOMBS_EXPERT_RING",
+            "name": "Catacombs Expert Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "dungeon_item": true,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c078c68f6f9669370ea39be72945a3a8688e0e024e5d6158fd854fb2b80fb",
+            "display_name": "Catacombs Expert Ring",
+            "rarity": "epic"
+        },
+        {
+            "id": "SCARF_STUDIES",
+            "name": "Scarf's Studies",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "rift_transferrable": true,
+            "stats": {
+                "rift_Time": 10
+            },
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "WITHER",
+                    "amount": 15
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "6de4ab129e137f9f4cbf7060318ee1748dc39da9b5d129a8da0e614e2337693",
+            "display_name": "Scarf's Studies",
+            "rarity": "rare"
+        },
+        {
+            "id": "PIGS_FOOT",
+            "name": "Pig's Foot",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 1
+            },
+            "soulbound": "SOLO",
+            "npc_sell_price": 1000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "604faebefd0a8f721403e3142efecb83fbf4b7d1f705d0c9b44d91f0bf40127b",
+            "display_name": "Pig's Foot",
+            "rarity": "rare"
+        },
+        {
+            "id": "DAY_CRYSTAL",
+            "name": "Day Crystal",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 52000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a51e52b1de97b534358b53cd2c9c45526086d2a6f0e0ae65e4ba2ff5c6290ec",
+            "display_name": "Day Crystal",
+            "rarity": "rare"
+        },
+        {
+            "id": "WITHER_ARTIFACT",
+            "name": "Wither Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "964e1c3e315c8d8fffc37985b6681c5bd16a6f97ffd07199e8a05efbef103793",
+            "display_name": "Wither Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "AUTO_RECOMBOBULATOR",
+            "name": "Auto Recombobulator",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5dff8dbbab15bfbb11e23b1f50b34ef548ad9832c0bd7f5a13791adad0057e1b",
+            "display_name": "Auto Recombobulator",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BURNING_KUUDRA_CORE",
+            "name": "Burning Kuudra Core",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "368743497820c08627d2cc5e891c0f9fc3793f75b6e41e140ac9b007d3b505a5",
+            "display_name": "Burning Kuudra Core",
+            "rarity": "rare"
+        },
+        {
+            "id": "EMERALD_RING",
+            "name": "Emerald Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 7600,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f36b821c1afdd5a5d14e3b3bd0a32263c8df5df5db6e1e88bf65e97b27a8530",
+            "display_name": "Emerald Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "NETHER_ARTIFACT",
+            "name": "Nether Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 2000,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d83571ff589f1a59bb02b80800fc736116e27c3dcf9efebede8cf1fdde",
+            "display_name": "Nether Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "NIGHT_CRYSTAL",
+            "name": "Night Crystal",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 52000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8c46578ad58e976fa05478510889a58735a67c4dd022d398c04d56676f0dc171",
+            "display_name": "Night Crystal",
+            "rarity": "rare"
+        },
+        {
+            "id": "SHENS_REGALIA",
+            "name": "Shen's Regalia",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9c7fb6f414ff0eb6bf5797acb3b3af354ca3af95ceb8f3418125f6b805419f39",
+            "display_name": "Shen's Regalia",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BAT_TALISMAN",
+            "name": "Bat Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 1,
+                "HEALTH": 1,
+                "INTELLIGENCE": 1
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9e99deef919db66ac2bd28d6302756ccd57c7f8b12b9dca8f41c3e0a04ac1cc",
+            "display_name": "Bat Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "MAGNETIC_TALISMAN",
+            "name": "Magnetic Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 400,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "6b9c49ffdf4ce4c6f5f049efc8ca0e08b9b5bbf3c6a8783dfaaccad77dfc997a",
+            "display_name": "Magnetic Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PANDORAS_BOX",
+            "name": "Pandora's Box",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "has_uuid": true,
+            "can_recombobulate": false,
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fe246925cbd4c05279b9c8dcf7c2fdfc9baf9b1424aa35e501533ebb98e00522",
+            "display_name": "Pandora's Box",
+            "rarity": "common"
+        },
+        {
+            "id": "PANDORAS_BOX",
+            "name": "Pandora's Box",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "has_uuid": true,
+            "can_recombobulate": false,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fe246925cbd4c05279b9c8dcf7c2fdfc9baf9b1424aa35e501533ebb98e00522",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Pandora's Box",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PANDORAS_BOX",
+            "name": "Pandora's Box",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "has_uuid": true,
+            "can_recombobulate": false,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fe246925cbd4c05279b9c8dcf7c2fdfc9baf9b1424aa35e501533ebb98e00522",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Pandora's Box",
+            "rarity": "rare"
+        },
+        {
+            "id": "PANDORAS_BOX",
+            "name": "Pandora's Box",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "has_uuid": true,
+            "can_recombobulate": false,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fe246925cbd4c05279b9c8dcf7c2fdfc9baf9b1424aa35e501533ebb98e00522",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Pandora's Box",
+            "rarity": "epic"
+        },
+        {
+            "id": "PANDORAS_BOX",
+            "name": "Pandora's Box",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "has_uuid": true,
+            "can_recombobulate": false,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fe246925cbd4c05279b9c8dcf7c2fdfc9baf9b1424aa35e501533ebb98e00522",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Pandora's Box",
+            "rarity": "legendary"
+        },
+        {
+            "id": "PANDORAS_BOX",
+            "name": "Pandora's Box",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "has_uuid": true,
+            "can_recombobulate": false,
+            "tier": "mythic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fe246925cbd4c05279b9c8dcf7c2fdfc9baf9b1424aa35e501533ebb98e00522",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Pandora's Box",
+            "rarity": "mythic"
+        },
+        {
+            "id": "TREASURE_TALISMAN",
+            "name": "Treasure Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "GOLD",
+                    "amount": 15
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "31f320025142596396032cc0088e2ac36489f24cfa5e9dda13e081cf69f77f4d",
+            "display_name": "Treasure Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "ARTIFACT_OF_CONTROL",
+            "name": "Artifact of Control",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "31f748a43f3b3ada04f44d5d290a8b9bf583d93e1c83ab93c60c4dec1fde1c5c",
+            "display_name": "Artifact of Control",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BROKEN_PIGGY_BANK",
+            "name": "Broken Piggy Bank",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 16000,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b590207aeea2d8fc80194f2a109f5b1999c91ebd377dff01b9e7ebe091a3a419",
+            "display_name": "Broken Piggy Bank",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "SPIDER_TALISMAN",
+            "name": "Spider Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 50,
+            "rarity_salvageable": true,
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "SPIDER",
+                    "amount": 10
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9d7e3b19ac4f3dee9c5677c135333b9d35a7f568b63d1ef4ada4b068b5a25",
+            "display_name": "Spider Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "JUNGLE_AMULET",
+            "name": "Jungle Amulet",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "1bff65479fb7029decfe6779382762a08fc7c8eceff5448de263d9d375066f7a",
+            "display_name": "Jungle Amulet",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "CAT_TALISMAN",
+            "name": "Cat Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 1
+            },
+            "soulbound": "SOLO",
+            "npc_sell_price": 1000,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3a12188258601bcb7f76e3e2489555a26c0d76e6efec2fd966ca372b6dde00",
+            "display_name": "Cat Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "MELODY_HAIR",
+            "name": "\u00a7dMelody's Hair",
+            "item_id": 287,
+            "material": "STRING",
+            "glowing": true,
+            "stats": {
+                "INTELLIGENCE": 6
+            },
+            "soulbound": "SOLO",
+            "requirements": [
+                {
+                    "type": "MELODY_HAIR"
+                }
+            ],
+            "can_auction": false,
+            "tier": "epic",
+            "category": "accessory",
+            "display_name": "\u00a7dMelody's Hair",
+            "rarity": "epic"
+        },
+        {
+            "id": "EXPERIENCE_ARTIFACT",
+            "name": "Experience Artifact",
+            "item_id": 403,
+            "material": "ENCHANTED_BOOK",
+            "npc_sell_price": 115000,
+            "tier": "epic",
+            "category": "accessory",
+            "display_name": "Experience Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "CANDY_TALISMAN",
+            "name": "Candy Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2c42b95ee1a78b08b8f9e7acfedf33ad6e4ecd081912518ba99f041a7ef21f1b",
+            "display_name": "Candy Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BOOK_OF_PROGRESSION",
+            "name": "Book of Progression",
+            "item_id": 340,
+            "material": "BOOK",
+            "can_recombobulate": false,
+            "tier": "common",
+            "category": "accessory",
+            "display_name": "Book of Progression",
+            "rarity": "common"
+        },
+        {
+            "id": "BOOK_OF_PROGRESSION",
+            "name": "Book of Progression",
+            "item_id": 340,
+            "material": "BOOK",
+            "can_recombobulate": false,
+            "tier": "uncommon",
+            "category": "accessory",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Book of Progression",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BOOK_OF_PROGRESSION",
+            "name": "Book of Progression",
+            "item_id": 340,
+            "material": "BOOK",
+            "can_recombobulate": false,
+            "tier": "rare",
+            "category": "accessory",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Book of Progression",
+            "rarity": "rare"
+        },
+        {
+            "id": "BOOK_OF_PROGRESSION",
+            "name": "Book of Progression",
+            "item_id": 340,
+            "material": "BOOK",
+            "can_recombobulate": false,
+            "tier": "epic",
+            "category": "accessory",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Book of Progression",
+            "rarity": "epic"
+        },
+        {
+            "id": "BOOK_OF_PROGRESSION",
+            "name": "Book of Progression",
+            "item_id": 340,
+            "material": "BOOK",
+            "can_recombobulate": false,
+            "tier": "legendary",
+            "category": "accessory",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Book of Progression",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BOOK_OF_PROGRESSION",
+            "name": "Book of Progression",
+            "item_id": 340,
+            "material": "BOOK",
+            "can_recombobulate": false,
+            "tier": "mythic",
+            "category": "accessory",
+            "allowsRecomb": false,
+            "rarities": [
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic"
+            ],
+            "customPrice": true,
+            "display_name": "Book of Progression",
+            "rarity": "mythic"
+        },
+        {
+            "id": "BLAZE_TALISMAN",
+            "name": "Blaze Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "soulbound": "COOP",
+            "stats": {
+                "TRUE_DEFENSE": 3
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9de3a407d2be387b45bebdd52d3d4d75a6a1b479e2b8c03267d021d4af31e072",
+            "display_name": "Blaze Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "BURSTSTOPPER_TALISMAN",
+            "name": "Burststopper Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "TRUE_DEFENSE": 2,
+                "STRENGTH": 1
+            },
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "blaze",
+                    "level": 3
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5b68ad1a3ac2444d7bddc22eefecd5d61b4d326871179119c52a7740b4d83cc7",
+            "display_name": "Burststopper Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "SOULFLOW_PILE",
+            "name": "Soulflow Pile",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 160,
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "enderman",
+                    "level": 2
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "468c1fa4a21ba4f27dcb30ab3bfab0dc22a1e4fcf9ed12c1d7a70feb07f8d7ae",
+            "display_name": "Soulflow Pile",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "TARANTULA_TALISMAN",
+            "name": "Tarantula Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "SPIDER",
+                    "amount": 50
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "442cf8ce487b78fa203d56cf01491434b4c33e5d236802c6d69146a51435b03d",
+            "display_name": "Tarantula Talisman",
+            "rarity": "epic"
+        },
+        {
+            "id": "SURVIVOR_CUBE",
+            "name": "Survivor Cube",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "stats": {
+                "vitality": 5
+            },
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "spider",
+                    "level": 7
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "da812852cf07459cf82a14002fb569782e6d7540f8884c02bf7d67743a649b70",
+            "display_name": "Survivor Cube",
+            "rarity": "rare"
+        },
+        {
+            "id": "REAPER_ORB",
+            "name": "Reaper Orb",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "zombie",
+                    "level": 8
+                }
+            ],
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3a7cda9004fc197d66afbc2b003a5b9ef13cf4600b1fc7490067590f047181e",
+            "display_name": "Reaper Orb",
+            "rarity": "legendary"
+        },
+        {
+            "id": "DEVOUR_RING",
+            "name": "Devour Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "zombie",
+                    "level": 5
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8a7d1a52e8c8ddaaf0c428e1fe4901ef33eff251f289de2716395cad20bf309b",
+            "display_name": "Devour Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "HUNTER_TALISMAN",
+            "name": "Hunter Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "wolf",
+                    "level": 7
+                }
+            ],
+            "stats": {
+                "combat_wisdom": 2
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5c577e7d31e5e04c2ce71e13e3962192d80bd54b55efaacaaea12966fe27bf9",
+            "display_name": "Hunter Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "RED_CLAW_TALISMAN",
+            "name": "Red Claw Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "CRITICAL_DAMAGE": 1
+            },
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "wolf",
+                    "level": 1
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "317b51e086f201448a4b45b0b91e97faf4d1739071480be6d5cab0a054512164",
+            "display_name": "Red Claw Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "DWARVEN_METAL",
+            "name": "Dwarven Metal Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "HEART_OF_THE_MOUNTAIN",
+                    "tier": 8
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "4c01d99cfddc874cbf68c6af7cc599de04ec10f1e3dd5ea779795cfce77c7e23",
+            "display_name": "Dwarven Metal Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "CROPIE_TALISMAN",
+            "name": "Cropie Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "wheat_fortune": 10,
+                "carrot_fortune": 10,
+                "potato_fortune": 10
+            },
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ac7d5520a73e1d6d785496b5f5af8c9e14b40d6f6ebd629231ddbce27d422214",
+            "display_name": "Cropie Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "ATMOSPHERIC_FILTER",
+            "name": "Atmospheric Filter",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "has_uuid": true,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d3cf5cd92c1ba0a7d7bb1f872ccdb951ca897d340040457a324271606c5bbc56",
+            "display_name": "Atmospheric Filter",
+            "rarity": "rare"
+        },
+        {
+            "id": "JAKE_PLUSHIE",
+            "name": "Jake's Plushie",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "stats": {
+                "HEALTH": 2
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "adece28fa6dec14386791d6fc1ec1f5cad87ad198a6ac754967f961d123288fc",
+            "display_name": "Jake's Plushie",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "WHITE_GIFT_TALISMAN",
+            "name": "White Gift Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e47b37e67a89159bf4acc4a44d4328f4efc0181605142288e5eed1ab8aed913c",
+            "display_name": "White Gift Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "GLACIAL_TALISMAN",
+            "name": "Glacial Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "ICE",
+                    "amount": 15
+                }
+            ],
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b20b62faf12b91f4a8e149a2f9cb5f8d17443f51ec4d7d58f5967ecbbb2958",
+            "display_name": "Glacial Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "FUTURE_CALORIES",
+            "name": "Future Calories Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "rift_transferrable": true,
+            "unstackable": true,
+            "stats": {
+                "fishing_wisdom": 1,
+                "rift_time": 21
+            },
+            "soulbound": "SOLO",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "eae9540c5690d545434d66ac9a20b12ad020d5e3f0fb5272b2397bbaed6961e0",
+            "display_name": "Future Calories Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "RIFT_PRISM",
+            "name": "Rift Prism",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "rift_transferrable": true,
+            "origin": "RIFT",
+            "can_recombobulate": false,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "7caa5bf1bede9a27a0d0b985f77e8b9730d5db3eda952dfe3f1a31b87d5efec8",
+            "display_name": "Rift Prism",
+            "rarity": "rare"
+        },
+        {
+            "id": "BLUETOOTH_RING",
+            "name": "Bluetooth Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "rift_transferrable": true,
+            "origin": "RIFT",
+            "stats": {
+                "rift_time": 30,
+                "intelligence": -1,
+                "walk_speed": -2
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "efffdb4f75e1678ecfaa5f42a32f11e1cc087946f4857463ae6647cc3e0079e2",
+            "display_name": "Bluetooth Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "LUSH_TALISMAN",
+            "name": "Lush Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "health": 1
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "63ba48448189bef4fd3b3e56ee6f9f5c17f1ed9648da955451ef1fe65601b",
+            "display_name": "Lush Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "AGARIMOO_TALISMAN",
+            "name": "Agarimoo Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "fishing_speed": 1
+            },
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3d597f77cde32c9ac9b06f82fcf7c9cb500facc14bff166222b24be39962f0ef",
+            "display_name": "Agarimoo Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "HOCUS_POCUS_CIPHER",
+            "name": "Hocus-Pocus Cipher",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "rift_transferrable": true,
+            "cannot_reforge": true,
+            "item_specific": {
+                "stats_on_rift": {
+                    "rift_time": 65,
+                    "rift_intelligence": 5,
+                    "rift_mana_regen": 5
+                }
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "db6975af70724d6a44fd5946e60b2717737dfdb545b4dab1893351a9c9dd183c",
+            "display_name": "Hocus-Pocus Cipher",
+            "rarity": "epic"
+        },
+        {
+            "id": "TINY_DANCER",
+            "name": "Tiny Dancer",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "origin": "RIFT",
+            "soulbound": "SOLO",
+            "rift_transferrable": true,
+            "stats": {
+                "CRITICAL_DAMAGE": 1
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "511f693f7fbac57eca8a311933b7ded17561695d7ffb8e9a62f04b924a4d52df",
+            "display_name": "Tiny Dancer",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "TEST_BUCKET_PLEASE_IGNORE",
+            "name": "Test Bucket Please Ignore",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "origin": "RIFT",
+            "soulbound": "SOLO",
+            "rift_transferrable": true,
+            "description": "Was it all a test?",
+            "stats": {
+                "TRUE_DEFENSE": 0.5
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "6fb4c46d2d3666127d622ac5198717ba1663b7c147bc10fd3716d7ae7ccc29",
+            "display_name": "Test Bucket Please Ignore",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BIG_BRAIN_TALISMAN",
+            "name": "Big Brain Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "origin": "RIFT",
+            "soulbound": "SOLO",
+            "rift_transferrable": true,
+            "stats": {
+                "intelligence": 1
+            },
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "70ea5a46c0986cde38e9691a3b7b7190ca28e88c03ca4e7b65b2eb3d431c1e3a",
+            "display_name": "Big Brain Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "MINIATURIZED_TUBULATOR",
+            "name": "Miniaturized Tubulator",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "origin": "RIFT",
+            "soulbound": "SOLO",
+            "rift_transferrable": true,
+            "description": "Don't hate the player, hate the game. - Ice T",
+            "stats": {
+                "HEALTH": 1
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "bdc7913229cb2e898071b0c2bc8f13bd8dba69dbdccaf4d1da643ab726b925af",
+            "display_name": "Miniaturized Tubulator",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BLOOD_DONOR_TALISMAN",
+            "name": "Blood Donor Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 800,
+            "description": "Do your part bro.",
+            "rift_transferrable": true,
+            "origin": "RIFT",
+            "stats": {
+                "health_regeneration": 1,
+                "rift_time": 5
+            },
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f432371bcee81f2c8f39bd859296aeb23333143da9795d1f8bac5d0b0acc",
+            "display_name": "Blood Donor Talisman",
+            "rarity": "common"
+        },
+        {
+            "id": "VAMPIRE_DENTIST_RELIC",
+            "name": "Vampire Dentist Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "origin": "RIFT",
+            "npc_sell_price": 80000,
+            "rift_transferrable": true,
+            "stats": {
+                "health_regeneration": 10,
+                "vitality": 1,
+                "rift_time": 30,
+                "rift_health": 1
+            },
+            "item_specific": {
+                "cooldown_seconds": 1,
+                "bonus_heal": 1
+            },
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9d06d9a04a5a7720614e934c75c6b651f0ebabea3a7461f1c74105c7a2a0e672",
+            "display_name": "Vampire Dentist Relic",
+            "rarity": "legendary"
+        },
+        {
+            "id": "ENDER_ARTIFACT",
+            "name": "Ender Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "969da4e7b8d558af02e80e2e1669ceb6084898db55907ef3e66d9a329329e941",
+            "display_name": "Ender Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "DRACONIC_TALISMAN",
+            "name": "Draconic Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "health": 1
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "11c51b946cb484b9c76b2c5bf5eab0c74c9ced95f35aa81e699bd5d9b57e20f",
+            "display_name": "Draconic Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "CHUMMING_TALISMAN",
+            "name": "Chumming Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "fishing_speed": 1,
+                "fishing_wisdom": 1
+            },
+            "description": "Listen, it's for real chums of Moby, ok?",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9b688545e326e4f1fd1c405873d9c5b8bbe69dd26889ce3dea10b4d9e3d7b4db",
+            "display_name": "Chumming Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "TRAPPER_CREST",
+            "name": "Trapper Crest",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3ae0da20c8598e91f322b6e8a7b0ee2c81f1b61e74386c437e75f446ffccc5e",
+            "display_name": "Trapper Crest",
+            "rarity": "common"
+        },
+        {
+            "id": "TRAPPER_CREST",
+            "name": "Trapper Crest",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "3ae0da20c8598e91f322b6e8a7b0ee2c81f1b61e74386c437e75f446ffccc5e",
+            "rarities": [
+                "uncommon"
+            ],
+            "customPrice": true,
+            "display_name": "Trapper Crest",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PULSE_RING",
+            "name": "Pulse Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 8000,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e5ebf6f14301d3ebd14533587d2a2d48234433b17c9d2f13934b7cab458ee267",
+            "display_name": "Pulse Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PULSE_RING",
+            "name": "Pulse Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 8000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e5ebf6f14301d3ebd14533587d2a2d48234433b17c9d2f13934b7cab458ee267",
+            "rarities": [
+                "rare",
+                "epic",
+                "legendary"
+            ],
+            "customPrice": true,
+            "upgrade": {
+                "item": "THUNDER_IN_A_BOTTLE",
+                "cost": {
+                    "rare": 3,
+                    "epic": 20,
+                    "legendary": 100
+                }
+            },
+            "display_name": "Pulse Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "PULSE_RING",
+            "name": "Pulse Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 8000,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e5ebf6f14301d3ebd14533587d2a2d48234433b17c9d2f13934b7cab458ee267",
+            "rarities": [
+                "rare",
+                "epic",
+                "legendary"
+            ],
+            "customPrice": true,
+            "upgrade": {
+                "item": "THUNDER_IN_A_BOTTLE",
+                "cost": {
+                    "rare": 3,
+                    "epic": 20,
+                    "legendary": 100
+                }
+            },
+            "display_name": "Pulse Ring",
+            "rarity": "epic"
+        },
+        {
+            "id": "PULSE_RING",
+            "name": "Pulse Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 8000,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e5ebf6f14301d3ebd14533587d2a2d48234433b17c9d2f13934b7cab458ee267",
+            "rarities": [
+                "rare",
+                "epic",
+                "legendary"
+            ],
+            "customPrice": true,
+            "upgrade": {
+                "item": "THUNDER_IN_A_BOTTLE",
+                "cost": {
+                    "rare": 3,
+                    "epic": 20,
+                    "legendary": 100
+                }
+            },
+            "display_name": "Pulse Ring",
+            "rarity": "legendary"
+        },
+        {
+            "id": "NETHERRACK_LOOKING_SUNSHADE",
+            "name": "Netherrack-Looking Sunshade",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "npc_sell_price": 10000,
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "CRIMSON",
+                    "amount": 15
+                }
+            ],
+            "tier": "common",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "556ca5c679336dd4f3262f4fbc23c1a2ee0d82a7fd81e6e62337e5fd5c7",
+            "display_name": "Netherrack-Looking Sunshade",
+            "rarity": "common"
+        },
+        {
+            "id": "KUUDRA_FOLLOWER_ARTIFACT",
+            "name": "Kuudra Follower Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "soulbound": "SOLO",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "772011280b5b9ab18c55703943e7f11a19717974bb9541ca4b2723f7a5fab236",
+            "display_name": "Kuudra Follower Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "MAGIC_8_BALL",
+            "name": "Magic 8 Ball",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "df2412d63dd2e0e232230abd04a8f726e51c93a72686c7dae1722c4677f9f548",
+            "display_name": "Magic 8 Ball",
+            "rarity": "epic"
+        }
+    ],
+    "upgrades": [
+        {
+            "id": "PESTHUNTER_RING",
+            "name": "Pesthunter Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "stats": {
+                "bonus_pest_chance": 40
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "1d06b74d6bd02b795f7bcbf17ac3b77d3bc57b695a8d54a1770c76e84896c8f8",
+            "display_name": "Pesthunter Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "ANITA_ARTIFACT",
+            "name": "Anita's Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8feabdadd5f593771fa23c94fc6816091917371fd5a1c74723e716210d6e6efb",
+            "display_name": "Anita's Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "ANITA_RING",
+            "name": "Anita's Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "59a1035bc6f00fddc8e0291c38319408babc84ae10648cb5258ed8b55d60e0c3",
+            "display_name": "Anita's Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PESTHUNTER_ARTIFACT",
+            "name": "Pesthunter Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "stats": {
+                "bonus_pest_chance": 60
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b3aefd8bca236d315920d53bea1fe4892c8f1f308d6d57630677f059a3b0293f",
+            "display_name": "Pesthunter Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "PRESTIGE_CHOCOLATE_REALM",
+            "name": "Prestige Chocolate Realm",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "description": "%%dark_gray%%%%italic%%The Factory's pinnacle creation - its epic taste shatters expectations, offering a taste of utopia.",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "af19ceeabf2ecb020610b8aabc9299264fa670048c010c9699ce687fc9bf351e",
+            "display_name": "Prestige Chocolate Realm",
+            "rarity": "legendary"
+        },
+        {
+            "id": "RICH_CHOCOLATE_CHUNK",
+            "name": "Rich Chocolate Chunk",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "description": "%%dark_gray%%%%italic%%From the Factory's secret reserves, its rich flavor is a deep dive into indulgence.",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "6f942717364c0fecf7ad11bac8cd98dd7ad4dbd72e3d3ce2b57eb48713824ff",
+            "display_name": "Rich Chocolate Chunk",
+            "rarity": "rare"
+        },
+        {
+            "id": "GANACHE_CHOCOLATE_SLAB",
+            "name": "Ganache Chocolate Slab",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "description": "%%dark_gray%%%%italic%%A Factory masterpiece - its divine taste transcends reality, offering a heavenly escape.",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f89512331edfdc27cb7d4e80f3e0db460d05caf66c7c1c42e0e712130a9b690",
+            "display_name": "Ganache Chocolate Slab",
+            "rarity": "epic"
+        },
+        {
+            "id": "SMOOTH_CHOCOLATE_BAR",
+            "name": "Smooth Chocolate Bar",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "description": "%%dark_gray%%%%italic%%Crafted in the Factory, its smoothness melts hearts and tastes like a sweet escape.",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a9372efd2ca1a6c6dfc066f1ec83f9456575c3850a0e7d01109c4f1af300ba8",
+            "display_name": "Smooth Chocolate Bar",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "GREAT_SPOOK_ARTIFACT",
+            "name": "Great Spook Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 0,
+            "museum": true,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a89cc1ede755709debb7d1fe7ab8129ac8901788d8d8613b03eac157c23cc49c",
+            "display_name": "Great Spook Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "GREAT_SPOOK_RING",
+            "name": "Great Spook Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 0,
+            "museum": true,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8566b0b75f9a173e8155007bdc3a3499874b17327d98645cde6d11a2255750c",
+            "display_name": "Great Spook Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BEASTMASTER_CREST_LEGENDARY",
+            "name": "Beastmaster Crest",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee",
+            "display_name": "Beastmaster Crest",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BEASTMASTER_CREST_EPIC",
+            "name": "Beastmaster Crest",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee",
+            "display_name": "Beastmaster Crest",
+            "rarity": "epic"
+        },
+        {
+            "id": "BEASTMASTER_CREST_UNCOMMON",
+            "name": "Beastmaster Crest",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee",
+            "display_name": "Beastmaster Crest",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BEASTMASTER_CREST_RARE",
+            "name": "Beastmaster Crest",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee",
+            "display_name": "Beastmaster Crest",
+            "rarity": "rare"
+        },
+        {
+            "id": "JERRY_TALISMAN_BLUE",
+            "name": "Blue Jerry Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "INTELLIGENCE": -2
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d3b919f040922eb17733b42d216b7cdefeaea366be14c1ae6993ca7e5909e0f0",
+            "display_name": "Blue Jerry Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "JERRY_TALISMAN_GOLDEN",
+            "name": "Golden Jerry Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "INTELLIGENCE": -4
+            },
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "29251e18657e7304eaceac5f8d446d248ea46af2eab145f8185cece779f1648",
+            "display_name": "Golden Jerry Artifact",
+            "rarity": "legendary"
+        },
+        {
+            "id": "JERRY_TALISMAN_PURPLE",
+            "name": "Purple Jerry Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "INTELLIGENCE": -3
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ff8bd61b60a425d2e0deb1df9665327750ceba822a0be85e2f4a3a722e20f7d6",
+            "display_name": "Purple Jerry Talisman",
+            "rarity": "epic"
+        },
+        {
+            "id": "DULL_SHARK_TOOTH_NECKLACE",
+            "name": "Dull Shark Tooth Necklace",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "STRENGTH": 4
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f3ab3aa1ade74915dacd298613904361c18877eebfa81d9f936309f271e1389a",
+            "display_name": "Dull Shark Tooth Necklace",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "HONED_SHARK_TOOTH_NECKLACE",
+            "name": "Honed Shark Tooth Necklace",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "STRENGTH": 6
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e6b120938d83bf49ddab3a78666a0bf37a3de7b46b9d97b984da3be62ce3e5e3",
+            "display_name": "Honed Shark Tooth Necklace",
+            "rarity": "rare"
+        },
+        {
+            "id": "SHARP_SHARK_TOOTH_NECKLACE",
+            "name": "Sharp Shark Tooth Necklace",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "STRENGTH": 8
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "228e3fb6bd9887d60434ccd279ec3e59227826c9a2f8dd9ce9899ea6683d4ee8",
+            "display_name": "Sharp Shark Tooth Necklace",
+            "rarity": "epic"
+        },
+        {
+            "id": "RAZOR_SHARP_SHARK_TOOTH_NECKLACE",
+            "name": "Razor-sharp Shark Tooth Necklace",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "STRENGTH": 10
+            },
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "7792676664ac711488641f72b25961835613da9ffd43ea3bdd163cb365343a6",
+            "display_name": "Razor-sharp Shark Tooth Necklace",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BINGO_RELIC",
+            "name": "Bingo Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "museum": true,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c515acf4a6ac698736e54def0bc78143c14449978e750afbb8d7ade0adf0ef00",
+            "display_name": "Bingo Relic",
+            "rarity": "epic"
+        },
+        {
+            "id": "BINGO_RING",
+            "name": "Bingo Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "museum": true,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "22f2499ab4cfc97e65f0fa9fe63cc606707a4ae96af407846b1b5354f3fad99",
+            "display_name": "Bingo Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BINGO_ARTIFACT",
+            "name": "Bingo Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "museum": true,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d2dad868f8d865baa32d6158672d1b134db61ea56d33efa0c09f6ba6f276ff2",
+            "display_name": "Bingo Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "INTIMIDATION_ARTIFACT",
+            "name": "Intimidation Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "96e977ae2f796dce6c80cb6bed9294e9ed4b11b88f9fde6c31f435dfd0382529",
+            "display_name": "Intimidation Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "SCARF_THESIS",
+            "name": "Scarf's Thesis",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "rift_transferrable": true,
+            "stats": {
+                "rift_Time": 11
+            },
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "WITHER",
+                    "amount": 60
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8ce4c87eb4dde27459e3e7f85921e7e57b11199260caa5ce63f139ee3d188c",
+            "display_name": "Scarf's Thesis",
+            "rarity": "epic"
+        },
+        {
+            "id": "POWER_ARTIFACT",
+            "name": "Artifact of Power",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "gemstone_slots": [
+                {
+                    "slot_type": "JADE"
+                },
+                {
+                    "slot_type": "AMBER"
+                },
+                {
+                    "slot_type": "TOPAZ"
+                },
+                {
+                    "slot_type": "SAPPHIRE"
+                },
+                {
+                    "slot_type": "AMETHYST"
+                },
+                {
+                    "slot_type": "JASPER"
+                },
+                {
+                    "slot_type": "RUBY"
+                }
+            ],
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2b15c8645bbabc42352350b1c9d84af71966c4c56a86d03acd079ed57f3ead3f",
+            "display_name": "Artifact of Power",
+            "rarity": "rare"
+        },
+        {
+            "id": "BAT_PERSON_ARTIFACT",
+            "name": "Bat Person Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c4444c3982720b30938f504c4374232b11a4f6f56cd57c973d8abb07fd0dcff7",
+            "display_name": "Bat Person Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "FEATHER_ARTIFACT",
+            "name": "Feather Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 32000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "6164cc76081599a20a6896a3818322a0cdc08069ff960bbd79ff54fc45e35ee6",
+            "display_name": "Feather Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "MASTER_SKULL_TIER_4",
+            "name": "Master Skull - Tier 4",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "dungeon_item": true,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ba153afeda1f80cb382b5cc317175102a1d9fbd1d6c26c925433979a63565014",
+            "display_name": "Master Skull - Tier 4",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "INTIMIDATION_RING",
+            "name": "Intimidation Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "41fbc5010e8047ebc0bfd5b7635ab54772d8fd5a28099aeebc8ae2407f026b08",
+            "display_name": "Intimidation Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "HEALING_RING",
+            "name": "Healing Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 17000,
+            "stats": {
+                "vitality": 10
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "879fe7543ca1d5855e961514cff7e2728d2740ca3c33320d84dd053aea5dcb7d",
+            "display_name": "Healing Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BAT_ARTIFACT",
+            "name": "Bat Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 3,
+                "HEALTH": 5,
+                "INTELLIGENCE": 3
+            },
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "382fc3f71b41769376a9e92fe3adbaac3772b999b219c9d6b4680ba9983e527",
+            "display_name": "Bat Artifact",
+            "rarity": "legendary"
+        },
+        {
+            "id": "ODGERS_GOLD_TOOTH",
+            "name": "Odger's Gold Tooth",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "SEA_CREATURE_CHANCE": 1.5
+            },
+            "soulbound": "SOLO",
+            "requirements": [
+                {
+                    "type": "TROPHY_FISHING",
+                    "reward": "GOLD"
+                }
+            ],
+            "description": "%%gray%%%%italic%%A perfectly fine tooth, besides its weight...",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "42024901024636f1c074e6562285f4cc9fd3da2885d4010cee52cc0696d2f96a",
+            "display_name": "Odger's Gold Tooth",
+            "rarity": "rare"
+        },
+        {
+            "id": "TITANIUM_RELIC",
+            "name": "Titanium Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "MINING_SPEED": 60
+            },
+            "npc_sell_price": 10000,
+            "requirements": [
+                {
+                    "type": "HEART_OF_THE_MOUNTAIN",
+                    "tier": 5
+                }
+            ],
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d2f2405a7b8defddb0b8268bea8f2e12fc09bbc7de12981f85db2a7001ac81eb",
+            "display_name": "Titanium Relic",
+            "rarity": "legendary"
+        },
+        {
+            "id": "TITANIUM_ARTIFACT",
+            "name": "Titanium Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "MINING_SPEED": 45
+            },
+            "npc_sell_price": 5000,
+            "requirements": [
+                {
+                    "type": "HEART_OF_THE_MOUNTAIN",
+                    "tier": 4
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "98ec21d20f1aaf5635f48beda88626403c6385b81673fb7cfa7ff82179c63e39",
+            "display_name": "Titanium Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "CRACKED_PIGGY_BANK",
+            "name": "Cracked Piggy Bank",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 16000,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "14a7aac08593a1a0bc6666fe0aeedfb195d413fc9cf87c73f4a8c04da6418857",
+            "display_name": "Cracked Piggy Bank",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "TITANIUM_RING",
+            "name": "Titanium Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "MINING_SPEED": 30
+            },
+            "npc_sell_price": 2000,
+            "requirements": [
+                {
+                    "type": "HEART_OF_THE_MOUNTAIN",
+                    "tier": 3
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2c3edd919c0cc6d9668ffd210e46d2c07fe088c44d85f47d251b4f87481174f5",
+            "display_name": "Titanium Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "VACCINE_RING",
+            "name": "Vaccine Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 100,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e48ee92b9ef1dd9f6083dab113fe1708fde4f4039ad2f85f06f317cefe49f3ad",
+            "display_name": "Vaccine Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "SEA_CREATURE_RING",
+            "name": "Sea Creature Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "eaf892574f948d5f840879325570e6beb511945766f2054a3c9a3609712dee77",
+            "display_name": "Sea Creature Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PERSONAL_COMPACTOR_6000",
+            "name": "Personal Compactor 6000",
+            "item_id": 158,
+            "material": "DROPPER",
+            "glowing": true,
+            "unstackable": true,
+            "tier": "epic",
+            "category": "accessory",
+            "display_name": "Personal Compactor 6000",
+            "rarity": "epic"
+        },
+        {
+            "id": "CHEETAH_TALISMAN",
+            "name": "Cheetah Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 3
+            },
+            "soulbound": "SOLO",
+            "npc_sell_price": 1000,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "1553f8856dd46de7e05d46f5fc2fb58eafba6829b11b160a1545622e89caaa33",
+            "display_name": "Cheetah Talisman",
+            "rarity": "epic"
+        },
+        {
+            "id": "ODGERS_DIAMOND_TOOTH",
+            "name": "Odger's Diamond Tooth",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "SEA_CREATURE_CHANCE": 2
+            },
+            "soulbound": "SOLO",
+            "requirements": [
+                {
+                    "type": "TROPHY_FISHING",
+                    "reward": "DIAMOND"
+                }
+            ],
+            "description": "%%gray%%%%italic%%A perfectly fine tooth, besides its radiant brightness...",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a2680a28962e9ad2d4872d06fba2cc60824fbb2d0824e42d958575b7563884aa",
+            "display_name": "Odger's Diamond Tooth",
+            "rarity": "epic"
+        },
+        {
+            "id": "CANDY_RELIC",
+            "name": "Candy Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "39668767f1141835e2c49ad2b415598f1b166be9173902a0257e77704f913e1f",
+            "display_name": "Candy Relic",
+            "rarity": "legendary"
+        },
+        {
+            "id": "MASTER_SKULL_TIER_5",
+            "name": "Master Skull - Tier 5",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "dungeon_item": true,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "910f9f1085d407141eb77617a4abdaaa08d8af33b960200fe8c126c1d1445682",
+            "display_name": "Master Skull - Tier 5",
+            "rarity": "rare"
+        },
+        {
+            "id": "PERSONAL_DELETOR_7000",
+            "name": "Personal Deletor 7000",
+            "item_id": 23,
+            "material": "DISPENSER",
+            "glowing": true,
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "legendary",
+            "category": "accessory",
+            "display_name": "Personal Deletor 7000",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BAT_PERSON_RING",
+            "name": "Bat Person Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "b4451ecf2584a36de4297031c6d852977d3e249e85a3f0add967fcd7d6bde953",
+            "display_name": "Bat Person Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "SPIKED_ATROCITY",
+            "name": "Spiked Atrocity",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "df4eeca825dddb7f861352ecb0be2df4615728b63894b7c54418af0105a39172",
+            "display_name": "Spiked Atrocity",
+            "rarity": "epic"
+        },
+        {
+            "id": "SPEED_RING",
+            "name": "Speed Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 18000,
+            "stats": {
+                "WALK_SPEED": 3
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c2da40a91f8fa7e1cbdd934da92a7668dc95d75b57c9c80a381c5e178cee6ba7",
+            "display_name": "Speed Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "SEAL_OF_THE_FAMILY",
+            "name": "Seal of the Family",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "7ab83858ebc8ee85c3e54ab13aabfcc1ef2ad446d6a900e471c3f33b78906a5b",
+            "display_name": "Seal of the Family",
+            "rarity": "epic"
+        },
+        {
+            "id": "SPEED_ARTIFACT",
+            "name": "Speed Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1400000,
+            "stats": {
+                "WALK_SPEED": 5
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f06706eecb2d558ace27abda0b0b7b801d36d17dd7a890a9520dbe522374f8a6",
+            "display_name": "Speed Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "WITHER_RELIC",
+            "name": "Wither Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "964e1c3e315c8d8fffc37985b6681c5bd16a6f97ffd07199e8a05efbef103793",
+            "display_name": "Wither Relic",
+            "rarity": "legendary"
+        },
+        {
+            "id": "FIERY_KUUDRA_CORE",
+            "name": "Fiery Kuudra Core",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "200c16738c372484628ca15cf7b0731b810bd3142e07c1053b5e3da6b6e523ca",
+            "display_name": "Fiery Kuudra Core",
+            "rarity": "epic"
+        },
+        {
+            "id": "ARTIFACT_POTION_AFFINITY",
+            "name": "Potion Affinity Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 64000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "372466603bae9063ce7d94351103469beca3c5fe2b1e977e6427def37699ec9",
+            "display_name": "Potion Affinity Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "VACCINE_ARTIFACT",
+            "name": "Vaccine Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 500,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c4332067f9fa1695c3d577c3ef264355bee161b5e3a301906a4f443b002b92fa",
+            "display_name": "Vaccine Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "PERSONAL_DELETOR_6000",
+            "name": "Personal Deletor 6000",
+            "item_id": 23,
+            "material": "DISPENSER",
+            "glowing": true,
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "epic",
+            "category": "accessory",
+            "display_name": "Personal Deletor 6000",
+            "rarity": "epic"
+        },
+        {
+            "id": "MASTER_SKULL_TIER_7",
+            "name": "Master Skull - Tier 7",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "dungeon_item": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a04e47c43576f8d72ebabb458764affb588fc018262732e85149df9bbaab7767",
+            "display_name": "Master Skull - Tier 7",
+            "rarity": "legendary"
+        },
+        {
+            "id": "TREASURE_RING",
+            "name": "Treasure Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "GOLD",
+                    "amount": 120
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "6a1cc5525a217a399b5b86c32f0f22dd91378874b5f44d5a383e18bc0f3bc301",
+            "display_name": "Treasure Ring",
+            "rarity": "epic"
+        },
+        {
+            "id": "PIGGY_BANK",
+            "name": "Piggy Bank",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 16000,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "198df42f477f213ff5e9d7fa5a4cc4a69f20d9cef2b90c4ae4f29bd17287b5",
+            "display_name": "Piggy Bank",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PERSONAL_DELETOR_5000",
+            "name": "Personal Deletor 5000",
+            "item_id": 23,
+            "material": "DISPENSER",
+            "glowing": true,
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "rare",
+            "category": "accessory",
+            "display_name": "Personal Deletor 5000",
+            "rarity": "rare"
+        },
+        {
+            "id": "KUUDRA_FOLLOWER_RELIC",
+            "name": "Kuudra Follower Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "unstackable": true,
+            "soulbound": "SOLO",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "772011280b5b9ab18c55703943e7f11a19717974bb9541ca4b2723f7a5fab236",
+            "display_name": "Kuudra Follower Relic",
+            "rarity": "legendary"
+        },
+        {
+            "id": "ETERNAL_HOOF",
+            "name": "Eternal Hoof",
+            "item_id": 418,
+            "material": "GOLD_BARDING",
+            "tier": "rare",
+            "category": "accessory",
+            "display_name": "Eternal Hoof",
+            "rarity": "rare"
+        },
+        {
+            "id": "INTIMIDATION_RELIC",
+            "name": "Intimidation Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c066fd07683989e66bf752398c4861c71ae6fe228a493f2fdf427381650a1280",
+            "display_name": "Intimidation Relic",
+            "rarity": "epic"
+        },
+        {
+            "id": "ODGERS_SILVER_TOOTH",
+            "name": "Odger's Silver Tooth",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "SEA_CREATURE_CHANCE": 1
+            },
+            "soulbound": "SOLO",
+            "requirements": [
+                {
+                    "type": "TROPHY_FISHING",
+                    "reward": "SILVER"
+                }
+            ],
+            "description": "%%gray%%%%italic%%A perfectly fine tooth, besides a broken chunk...",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c2d41b2279abce5fd626923b61e3ab98dce4972417289ee2b73214c0aaba841e",
+            "display_name": "Odger's Silver Tooth",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "WOLF_RING",
+            "name": "Wolf Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 100,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f83a2aa9d3734b919ac24c9659e5e0f86ecafbf64d4788cfa433bbec189e8",
+            "display_name": "Wolf Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "SCARF_GRIMOIRE",
+            "name": "Scarf's Grimoire",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "rift_transferrable": true,
+            "stats": {
+                "rift_Time": 12
+            },
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "WITHER",
+                    "amount": 240
+                }
+            ],
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "bafb195cc75f31b619a077b7853653254ac18f220dc32d1412982ff437b4d57a",
+            "display_name": "Scarf's Grimoire",
+            "rarity": "legendary"
+        },
+        {
+            "id": "LYNX_TALISMAN",
+            "name": "Lynx Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 2
+            },
+            "soulbound": "SOLO",
+            "npc_sell_price": 1000,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "12b84e9c79815a39b7be8ce6e91248d71f760f42b5a4de5e266b44b87a952229",
+            "display_name": "Lynx Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "CANDY_ARTIFACT",
+            "name": "Candy Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "4eb46bbca3812363b59676ff629dc3698257fd178d394fadffda7143422e2f10",
+            "display_name": "Candy Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "CANDY_RING",
+            "name": "Candy Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "2670c37a2f177e8afe29627adfb692bab30ba679736ccccc826148987f9bcf27",
+            "display_name": "Candy Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "CROOKED_ARTIFACT",
+            "name": "Crooked Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "SOLO",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5b7ff88d154d04a8a26995c99f64e53b574c7b82ec21a12a9e448bca1e70f461",
+            "display_name": "Crooked Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "PERSONAL_COMPACTOR_7000",
+            "name": "Personal Compactor 7000",
+            "item_id": 158,
+            "material": "DROPPER",
+            "glowing": true,
+            "unstackable": true,
+            "tier": "legendary",
+            "category": "accessory",
+            "display_name": "Personal Compactor 7000",
+            "rarity": "legendary"
+        },
+        {
+            "id": "FEATHER_RING",
+            "name": "Feather Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1800,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ed7ad1b1db2b323f013b775a8f9481f1cd292bf9a58dd2905e3e1929d13bac",
+            "display_name": "Feather Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "PERSONAL_COMPACTOR_5000",
+            "name": "Personal Compactor 5000",
+            "item_id": 158,
+            "material": "DROPPER",
+            "glowing": true,
+            "unstackable": true,
+            "tier": "rare",
+            "category": "accessory",
+            "display_name": "Personal Compactor 5000",
+            "rarity": "rare"
+        },
+        {
+            "id": "MASTER_SKULL_TIER_3",
+            "name": "Master Skull - Tier 3",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "dungeon_item": true,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ba153afeda1f80cb382b5cc317175102a1d9fbd1d6c26c925433979a63565014",
+            "display_name": "Master Skull - Tier 3",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BAT_RING",
+            "name": "Bat Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "WALK_SPEED": 2,
+                "HEALTH": 3,
+                "INTELLIGENCE": 2
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b",
+            "display_name": "Bat Ring",
+            "rarity": "epic"
+        },
+        {
+            "id": "MASTER_SKULL_TIER_6",
+            "name": "Master Skull - Tier 6",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "dungeon_item": true,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a1ab5e3f875b101e929e88956d01835682d39db56780adeea37014d8ee476a65",
+            "display_name": "Master Skull - Tier 6",
+            "rarity": "epic"
+        },
+        {
+            "id": "SEA_CREATURE_ARTIFACT",
+            "name": "Sea Creature Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 25000,
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "70a010791cb1c8902c6223207aa44fe9d1f84f3bc8ffb1b4cc3cf5573e056e71",
+            "display_name": "Sea Creature Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "RING_POTION_AFFINITY",
+            "name": "Potion Affinity Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 2100,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "72a7dcbf7eca6b6f6386591d237991ca1b888a4f0c753ff9a3202cf0e92229e3",
+            "display_name": "Potion Affinity Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "INFERNAL_KUUDRA_CORE",
+            "name": "Infernal Kuudra Core",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1,
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ece252963a5188cef8ede9d8523bd91d284a785b418b39eec29a91aea07c61e2",
+            "display_name": "Infernal Kuudra Core",
+            "rarity": "legendary"
+        },
+        {
+            "id": "POWER_RING",
+            "name": "Ring of Power",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "gemstone_slots": [
+                {
+                    "slot_type": "RUBY"
+                },
+                {
+                    "slot_type": "AMETHYST"
+                },
+                {
+                    "slot_type": "JADE"
+                },
+                {
+                    "slot_type": "AMBER"
+                }
+            ],
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "4528fe5dbe02e1d8d12186e2af98be1334ca7d596b7021ef7f978c7088b235fc",
+            "display_name": "Ring of Power",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "TREASURE_ARTIFACT",
+            "name": "Treasure Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 1000,
+            "dungeon_item": true,
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "GOLD",
+                    "amount": 1080
+                }
+            ],
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e10f20a55b6e188ebe7578459b64a6fbd825067bc497b925ca43c2643d059025",
+            "display_name": "Treasure Artifact",
+            "rarity": "legendary"
+        },
+        {
+            "id": "BURSTSTOPPER_ARTIFACT",
+            "name": "Burststopper Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "TRUE_DEFENSE": 3,
+                "STRENGTH": 2
+            },
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "blaze",
+                    "level": 7
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "89cbbbe7ed0356d5846596c4ad1cfa9fa719db1c4568f3f7f0c7979e7a401208",
+            "display_name": "Burststopper Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "SOULFLOW_SUPERCELL",
+            "name": "Soulflow Supercell",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "enderman",
+                    "level": 7
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "468c1fa4a21ba4f27dcb30ab3bfab0dc22a1e4fcf9ed12c1d7a70feb07f8d7ae",
+            "display_name": "Soulflow Supercell",
+            "rarity": "epic"
+        },
+        {
+            "id": "ENDER_RELIC",
+            "name": "Ender Relic",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "enderman",
+                    "level": 7
+                }
+            ],
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "969da4e7b8d558af02e80e2e1669ceb6084898db55907ef3e66d9a329329e941",
+            "display_name": "Ender Relic",
+            "rarity": "legendary"
+        },
+        {
+            "id": "SOULFLOW_BATTERY",
+            "name": "Soulflow Battery",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "enderman",
+                    "level": 5
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "468c1fa4a21ba4f27dcb30ab3bfab0dc22a1e4fcf9ed12c1d7a70feb07f8d7ae",
+            "display_name": "Soulflow Battery",
+            "rarity": "rare"
+        },
+        {
+            "id": "SPIDER_ARTIFACT",
+            "name": "Spider Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "spider",
+                    "level": 7
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8300986ed0a04ea79904f6ae53f49ed3a0ff5b1df62bba622ecbd3777f156df8",
+            "display_name": "Spider Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "SPIDER_RING",
+            "name": "Spider Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "spider",
+                    "level": 1
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "7652bd7617e56c756514f83c28dd1d96a7e5e167bf7fb593693fc65046f799",
+            "display_name": "Spider Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "ZOMBIE_RING",
+            "name": "Zombie Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "zombie",
+                    "level": 2
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "55d996cb5a8e5a71a274275f46944b944eeeacd2e1cadef918b05b879a03336f",
+            "display_name": "Zombie Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "ZOMBIE_ARTIFACT",
+            "name": "Zombie Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "zombie",
+                    "level": 7
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "c3fb4e5db97f479c66a42bbd8a7d781daf201a8ddaf77afcf4aef87779aa8b4",
+            "display_name": "Zombie Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "HUNTER_RING",
+            "name": "Hunter Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "wolf",
+                    "level": 7
+                }
+            ],
+            "stats": {
+                "combat_wisdom": 5
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5c577e7d31e5e04c2ce71e13e3962192d80bd54b55efaacaaea12966fe27bf9",
+            "display_name": "Hunter Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "RED_CLAW_RING",
+            "name": "Red Claw Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "CRITICAL_DAMAGE": 3
+            },
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "wolf",
+                    "level": 5
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "59d9b327ff82f6e109b8746c48bfb7f641e1552855493dd4118be24d5b02bc0a",
+            "display_name": "Red Claw Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "RED_CLAW_ARTIFACT",
+            "name": "Red Claw Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "CRITICAL_DAMAGE": 5
+            },
+            "requirements": [
+                {
+                    "type": "SLAYER",
+                    "slayer_boss_type": "wolf",
+                    "level": 5
+                }
+            ],
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "caf59b8aa0f83546ef0d178ccf87e7ed88cf7858caae79b3633cbd75b650525f",
+            "display_name": "Red Claw Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "POWER_RELIC",
+            "name": "Relic of Power",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "gemstone_slots": [
+                {
+                    "slot_type": "JADE"
+                },
+                {
+                    "slot_type": "AMBER"
+                },
+                {
+                    "slot_type": "TOPAZ"
+                },
+                {
+                    "slot_type": "SAPPHIRE"
+                },
+                {
+                    "slot_type": "AMETHYST"
+                },
+                {
+                    "slot_type": "JASPER"
+                },
+                {
+                    "slot_type": "RUBY"
+                },
+                {
+                    "slot_type": "OPAL"
+                },
+                {
+                    "slot_type": "ONYX"
+                },
+                {
+                    "slot_type": "PERIDOT"
+                },
+                {
+                    "slot_type": "CITRINE"
+                },
+                {
+                    "slot_type": "AQUAMARINE"
+                }
+            ],
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d8fdc87023cff26356477f2e097a2de83b550d88a6f1a877da4f95c4db11567f",
+            "display_name": "Relic of Power",
+            "rarity": "epic"
+        },
+        {
+            "id": "POWER_RELIC",
+            "name": "Relic of Power",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "gemstone_slots": [
+                {
+                    "slot_type": "JADE"
+                },
+                {
+                    "slot_type": "AMBER"
+                },
+                {
+                    "slot_type": "TOPAZ"
+                },
+                {
+                    "slot_type": "SAPPHIRE"
+                },
+                {
+                    "slot_type": "AMETHYST"
+                },
+                {
+                    "slot_type": "JASPER"
+                },
+                {
+                    "slot_type": "RUBY"
+                },
+                {
+                    "slot_type": "OPAL"
+                },
+                {
+                    "slot_type": "ONYX"
+                },
+                {
+                    "slot_type": "PERIDOT"
+                },
+                {
+                    "slot_type": "CITRINE"
+                },
+                {
+                    "slot_type": "AQUAMARINE"
+                }
+            ],
+            "unstackable": true,
+            "can_auction": false,
+            "can_trade": false,
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d8fdc87023cff26356477f2e097a2de83b550d88a6f1a877da4f95c4db11567f",
+            "display_name": "Relic of Power",
+            "rarity": "epic"
+        },
+        {
+            "id": "SQUASH_RING",
+            "name": "Squash Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "wheat_fortune": 20,
+                "carrot_fortune": 20,
+                "potato_fortune": 20,
+                "melon_fortune": 20,
+                "pumpkin_fortune": 20,
+                "cocoa_beans_fortune": 20
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "f881a38800a1c867d2a1a8a10c8543ae8a3b8a9a87c1ac58ba1e283bb0dc3d68",
+            "display_name": "Squash Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "FERMENTO_ARTIFACT",
+            "name": "Fermento Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "farming_fortune": 30
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e1add7231c97e77a169be764a41f981cc9f542aa8c6a1336d8be2d817211bbfd",
+            "display_name": "Fermento Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "BLUE_GIFT_TALISMAN",
+            "name": "Blue Gift Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "5b85e29f29ec9a90e482ea5b8391bcb4560bbae0dcd15d7ce1d86016b4356e98",
+            "display_name": "Blue Gift Talisman",
+            "rarity": "rare"
+        },
+        {
+            "id": "PURPLE_GIFT_TALISMAN",
+            "name": "Purple Gift Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e9e39d91c04c30cc1f530fee798eed279dde60f95c2e1d155c0fdd361d0962ed",
+            "display_name": "Purple Gift Talisman",
+            "rarity": "epic"
+        },
+        {
+            "id": "GOLD_GIFT_TALISMAN",
+            "name": "Gold Gift Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "abd98792dd92d9719894341ac9012a584c4428558fd2c712f78e5f0d4da85470",
+            "display_name": "Gold Gift Talisman",
+            "rarity": "legendary"
+        },
+        {
+            "id": "GREEN_GIFT_TALISMAN",
+            "name": "Green Gift Talisman",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "28dc3c84491c4ff103de6ea01880e2d83432cd4878b84d6b43253cc51fd978e7",
+            "display_name": "Green Gift Talisman",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "GLACIAL_RING",
+            "name": "Glacial Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "ICE",
+                    "amount": 15
+                }
+            ],
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "9ce1ebc6c31efe5621142779a6c669221a271bae3b3115175bf03c976691",
+            "display_name": "Glacial Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "GLACIAL_ARTIFACT",
+            "name": "Glacial Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "salvages": [
+                {
+                    "type": "ESSENCE",
+                    "essence_type": "ICE",
+                    "amount": 15
+                }
+            ],
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "92c1a6b294aed49dbf11c589520886b9f5d53b32a8955adcd57e2de3b629a31",
+            "display_name": "Glacial Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "LUSH_RING",
+            "name": "Lush Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "health": 3
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "bf9c71af3f7e819ec3c4496f291567aefb98f5584517da266ba0a6eccaa9a6e3",
+            "display_name": "Lush Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "LUSH_ARTIFACT",
+            "name": "Lush Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "health": 5,
+                "health_regeneration": 1
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "39a9ce70dc163f3f069fc895860234cc9371ed693cbfa6e0eb4b48a9fe588c19",
+            "display_name": "Lush Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "AGARIMOO_RING",
+            "name": "Agarimoo Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "fishing_wisdom": 1,
+                "fishing_speed": 2
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "d3ebf38b4a708eb00745d1fb87a53cb81a7af6cc178d9a2c1116c2cbcff94fea",
+            "display_name": "Agarimoo Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "AGARIMOO_ARTIFACT",
+            "name": "Agarimoo Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "fishing_wisdom": 1,
+                "farming_wisdom": 1,
+                "fishing_speed": 3
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "7f3130468ac480a427db13ad13e8ca8526b538ab7ad7d69fc9952f3c53aea8d1",
+            "display_name": "Agarimoo Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "BLOOD_DONOR_RING",
+            "name": "Blood Donor Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 2000,
+            "description": "There's like 5 liters in you.",
+            "rift_transferrable": true,
+            "origin": "RIFT",
+            "stats": {
+                "health_regeneration": 2,
+                "rift_time": 10,
+                "rift_mana_regen": 5
+            },
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "e3e95c83f54e2662f0b0df287afb5c48d9cad2eac46cb80c8cb4c4f468e13c33",
+            "display_name": "Blood Donor Ring",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "BLOOD_DONOR_ARTIFACT",
+            "name": "Blood Donor Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "npc_sell_price": 10000,
+            "description": "The human body produces 2-3 million red blood cells per SECOND.",
+            "rift_transferrable": true,
+            "origin": "RIFT",
+            "stats": {
+                "health_regeneration": 3,
+                "rift_time": 15,
+                "rift_mana_regen": 10
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ff7bb97480c10fdfeb8fae93929e5eeb4f0491d8cca70ed00b45e3fb2b74f6c5",
+            "display_name": "Blood Donor Artifact",
+            "rarity": "rare"
+        },
+        {
+            "id": "DRACONIC_ARTIFACT",
+            "name": "Draconic Artifact",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "health": 3
+            },
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "ead7dcbe93401b3d3b4e5222ef8097aef4431f48064d0a0531fa0952c211e0e6",
+            "display_name": "Draconic Artifact",
+            "rarity": "epic"
+        },
+        {
+            "id": "DRACONIC_RING",
+            "name": "Draconic Ring",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "stats": {
+                "health": 2
+            },
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "fee1e74047277a70661a8eaf9c4c6ebf83554b275a16816ec79bba1bce320434",
+            "display_name": "Draconic Ring",
+            "rarity": "rare"
+        },
+        {
+            "id": "CAMPFIRE_TALISMAN_8",
+            "name": "Campfire Cultist Badge",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a3cfd94e925eab4330a768afcae6c128b0a28e23149eee41c9c6df894c24f3de",
+            "display_name": "Campfire Cultist Badge",
+            "rarity": "rare"
+        },
+        {
+            "id": "CAMPFIRE_TALISMAN_21",
+            "name": "Campfire God Badge",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "4080bbefca87dc0f36536b6508425cfc4b95ba6e8f5e6a46ff9e9cb488a9ed",
+            "display_name": "Campfire God Badge",
+            "rarity": "legendary"
+        },
+        {
+            "id": "CAMPFIRE_TALISMAN_13",
+            "name": "Campfire Scion Badge",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "a3cfd94e925eab4330a768afcae6c128b0a28e23149eee41c9c6df894c24f3de",
+            "display_name": "Campfire Scion Badge",
+            "rarity": "epic"
+        },
+        {
+            "id": "CAMPFIRE_TALISMAN_4",
+            "name": "Campfire Adept Badge",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "af41cc2250d2f5cfcf4384aa0cf3e23c19767549a2a8abd7532bd52c5a1de",
+            "display_name": "Campfire Adept Badge",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "WEDDING_RING_7",
+            "name": "Exquisite Ring of Love",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "epic",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8fb265c8cc6136063b4eb15450fe1fe1ab7738b0bf54d265490e1ef49da60b7c",
+            "display_name": "Exquisite Ring of Love",
+            "rarity": "epic"
+        },
+        {
+            "id": "WEDDING_RING_4",
+            "name": "Modest Ring of Love",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "rare",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8690c18e2b8780c927fd121d5a36196a53a72c670a89d785deedee3155024b2a",
+            "display_name": "Modest Ring of Love",
+            "rarity": "rare"
+        },
+        {
+            "id": "WEDDING_RING_2",
+            "name": "Mediocre Ring of Love",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "uncommon",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8690c18e2b8780c927fd121d5a36196a53a72c670a89d785deedee3155024b2a",
+            "display_name": "Mediocre Ring of Love",
+            "rarity": "uncommon"
+        },
+        {
+            "id": "WEDDING_RING_9",
+            "name": "Legendary Ring of Love",
+            "item_id": 397,
+            "material": "SKULL_ITEM",
+            "soulbound": "COOP",
+            "tier": "legendary",
+            "category": "accessory",
+            "damage": 3,
+            "texture": "8fb265c8cc6136063b4eb15450fe1fe1ab7738b0bf54d265490e1ef49da60b7c",
+            "display_name": "Legendary Ring of Love",
+            "rarity": "legendary"
+        }
+    ]
+}

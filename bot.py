@@ -165,6 +165,9 @@ class Bot(commands.Bot):
             response_text = await resp.text()
             prices = json.loads(response_text)
 
+        async with self.session.get("https://api.slothpixel.me/api/skyblock/items") as resp:
+            sloth_items = await resp.json()
+            
         self.auctionable = []
 
         for item in items:
@@ -172,7 +175,7 @@ class Bot(commands.Bot):
                 self.auctionable.append(item)
 
         self.update = datetime.now().timestamp()
-        self.items.update_one({"_id": 1}, {"$set": {"data": items}}, upsert=True)
+        self.items.update_one({"_id": 1}, {"$set": {"data": sloth_items}}, upsert=True)
         self.bazaar.update_one({"_id": 1}, {"$set": {"data": bazaar, "timestamp": self.update}}, upsert=True)
         self.prices.update_one({"_id": 1}, {"$set": {"data": prices}}, upsert=True)
         
