@@ -9,18 +9,16 @@ from skyblockparser.levels import revenant, spider, sven, enderman, blaze, vampi
 from numerize.numerize import numerize
 from datetime import datetime
 
-import json
-
-from .profile_autocomplete import gamemode_to_emoji, gamemode_to_gamemode, gamemode_to_emoji_autocomplete, get_uuid
+from util.profile_autocomplete import gamemode_to_emoji, gamemode_to_gamemode, gamemode_to_emoji_autocomplete
 from .embed import generate_embed_networth_field
 from .formatting import count
 from .hotm import get_hotm_emojis
 from .timeout import timeout_view
 from .embed import get_embed
 from .progress import get_progress_bar
+from .profile_autocomplete import get_uuid
 from .cache_util import get_data_from_cache
 from .footer import get_footer
-from .missing import get_missing
 from constants import (HOTM_TREE_MAPPING, HOTM_TREE_EMOJIS, 
                        SPECIAL_HOTM_TYPES, RARITY_EMOJIS, 
                        RARITY_ORDER, RIFT_EMOJIS,
@@ -2766,7 +2764,8 @@ class ChocoFactorySelector(discord.ui.View):
             chocolate_per_second_multiplier += 0.05
 
         _chocolate_per_second_no_time_tower = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+jackrabbit_multi))
-        _chocolate_per_second = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+time_tower_multiplier+jackrabbit_multi))
+        real_multi = 1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+time_tower_multiplier+jackrabbit_multi)
+        _chocolate_per_second = chocolate_per_second*(real_multi)
         chocolate_since_view = _chocolate_per_second_no_time_tower*(seconds_since_last_view-seconds_time_tower) + _chocolate_per_second*(seconds_time_tower)
 
         prestige_costs = self.bot.chocofactory["prestige"]
@@ -2791,12 +2790,10 @@ class ChocoFactorySelector(discord.ui.View):
                 prestige_string = f"<t:{int(datetime.now().timestamp()+seconds)}:R>"
 
 
-
-
         embed.description = f"""
 {factory_emojis['choc']} Chocolate: **{numerize(chocolate_amount+chocolate_since_view)}** (**{numerize(since_prestige+chocolate_since_view)}** since Prestige)
 {factory_emojis['choc']} Lifetime Chocolate: **{numerize(total_chocolate+chocolate_since_view)}**
-{factory_emojis['choc']} Chocolate per Second: **{format(int(_chocolate_per_second), ',d')}**{tt_string}
+{factory_emojis['choc']} Chocolate per Second: **{format(int(_chocolate_per_second), ',d')}** (**{round(real_multi, 3)}x**){tt_string}
 <:up_arrow:1238191665345331300> Prestige Timer: **{prestige_string}**
 
 {factory_emojis['u_rab']} Unique Rabbits: **{unique_rabbits}**
@@ -2956,99 +2953,3 @@ class BasePaginator(View):
     @tasks.loop(seconds=180)
     async def trigger_timeout(self):
         await timeout_view(self)
-
-
-class MissingProfileSelector(discord.ui.View):
-    def __init__(self, user_id, username, bot, parser: SkyblockParser, selected_profile_cutename, interaction, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.parser = parser
-        self.bot = bot
-        self.interaction = interaction
-
-        self.profiles = parser.get_profiles()
-        self.emojis = bot.emojis
-        self.selected_cutename = selected_profile_cutename
-        self.embed_cutename = selected_profile_cutename
-        self.user_id = user_id
-
-        options = []
-        for profile in self.profiles:
-            _profile = parser.select_profile(profile)
-            profile_type = _profile.profile_type
-
-            emoji = getattr(self.emojis, profile.lower())
-            if profile == selected_profile_cutename:
-                options.append(discord.SelectOption(
-                    label=profile, value=profile, emoji=emoji, default=True, description=gamemode_to_gamemode(profile_type)))
-                continue
-
-            options.append(discord.SelectOption(
-                label=profile, value=profile, emoji=emoji, description=gamemode_to_gamemode(profile_type)))
-
-        self.children[0].options = options
-
-        self.counter = 0
-        self.trigger_timeout.start()
-        self.username = username
-        self.soulbound = None
-        self.cookie = True
-
-    @tasks.loop(seconds=180)
-    async def trigger_timeout(self):
-        await timeout_view(self)
-
-    async def create_embed(self):
-        profile_data = await get_data_from_cache(self)
-        profile_data.get_items()
-
-        embed = discord.Embed(color=discord.Color.blue(), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
-
-        profile_type = profile_data.profile_type
-        profile_type = gamemode_to_emoji(profile_type)
-        cute_name = profile_data.cute_name
-
-        suffix = " "
-        if profile_type != " ":
-            suffix = f" {profile_type}"
-
-        formatted_username = f"{self.username}'s"
-        if self.username.endswith("s"):
-            formatted_username = f"{self.username}'"
-
-        embed.title = f"{formatted_username} Missing Accessories on {cute_name}{suffix}{getattr(self.emojis, cute_name.lower())}"
-
-        if profile_data.talisman_bag is None:
-            embed.description = "Failed to parse talismans for this profile."
-            embed.set_footer(
-                text=get_footer("nom")
-            )
-            return embed
-
-        missing = get_missing(profile_data.talisman_bag_raw)
-        with open("missing.json", "w") as f:
-            json.dump(missing, f, indent=4)
-
-        embed.description = "Test data printed."
-
-        return embed
-    
-    @select(row=0)
-    async def select_profile(self, select: discord.ui.Select, interaction: discord.Interaction):
-        await interaction.response.defer()
-
-        for option in select.options:
-            option.default = False
-            if option.value == select.values[0]:
-                option.default = True
-
-        self.embed_cutename = select.values[0]
-        embed = await self.create_embed()
-        
-        if interaction.user.id != self.user_id:
-            view = MissingProfileSelector(interaction.user.id, self.username, self.bot, self.parser, self.embed_cutename, interaction)
-            embed = await view.create_embed()
-            await interaction.followup.send(embed=embed, view=view, ephemeral=True)
-            
-        else:
-            await interaction.followup.edit_message(interaction.message.id, embed=embed, view=self)
-                  

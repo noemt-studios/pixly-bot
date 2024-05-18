@@ -62,6 +62,7 @@ def get_missing(accessories):
             else:
                 other.append(object)
 
+
     return {
         'missing': other,
         'upgrades': upgrades,
