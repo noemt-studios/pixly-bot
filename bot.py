@@ -9,8 +9,6 @@ from skyblockparser.profile import Profile
 from datetime import datetime
 from util.pixlyguild import VerificationView
 
-from api import app
-
 def traverse_and_add_options(data_dict, path=""):
 
     options = {}
@@ -181,7 +179,7 @@ class Bot(commands.Bot):
         
     def run(self):
         self.loop.create_task(self.start(self.token))
-        # self.loop.create_task(app.run_task("0.0.0.0", port=3016))
+        self.loop.create_task(app.run_task("0.0.0.0", port=3016))
         self.loop.run_forever()
 
 
