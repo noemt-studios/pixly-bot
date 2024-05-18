@@ -566,8 +566,9 @@ SPECIAL_ACCESSORIES = {
 
 def getAllAccessories():
     output = []
-    items = db["items"].find_one({"_id": 0})["data"]
+    items = db["items"].find_one({"_id": 1})["data"]
     for item in items:
+        item = items[item]
         if item['id'] in ignoredAccessories:
             continue
 
@@ -577,7 +578,6 @@ def getAllAccessories():
         accessory = {
             **item,
             'item_id': item['item_id'],
-            'damage': item['damage'],
         }
         output.append(accessory)
 
@@ -588,7 +588,6 @@ def getAllAccessories():
                     **item,
                     **specialAccessory,
                     'tier': rarity,
-                    'texture_path': f"/head/{item['texture']}" if 'texture' in item else f"/item/{item['material']}:{item['damage']}",
                 }
                 output.append(accessory)
 
@@ -624,3 +623,17 @@ RECOMBABLE_ACCESSORIES_COUNT = len(set(item['id'] for item in get_max_accessorie
 
 def get_upgrade_list(id):
     return next((list for list in accessoryUpgrades if id in list), None)
+
+RARITIES = [
+  "common",
+  "uncommon",
+  "rare",
+  "epic",
+  "legendary",
+  "mythic",
+  "divine",
+  "supreme",
+  "special",
+  "very_special",
+  "admin",
+]
