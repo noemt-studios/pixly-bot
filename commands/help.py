@@ -168,11 +168,11 @@ class HelpCommand(commands.Cog):
 
         view = discord.ui.View()
         info = discord.ui.Button(row=1, label="Info:", disabled=True)
-        support_button = discord.ui.Button(row=1, label="Support Server", url="https://pixly.noemt.dev/support")
+        support_button = discord.ui.Button(row=1, label="Support Server", url="https://discord.gg/pixly")
         website_button = discord.ui.Button(row=1, label="Website", url="https://pixly.noemt.dev")
         legal = discord.ui.Button(row=2, label="Legal:", disabled=True)
-        tos_button = discord.ui.Button(row=2, label="Terms of Service", url="https://pixly.noemt.dev/tos")
-        privacy_button = discord.ui.Button(row=2, label="Privacy Policy", url="https://pixly.noemt.dev/privacy")
+        tos_button = discord.ui.Button(row=2, label="Terms of Service", url="https://noemt.dev/tos")
+        privacy_button = discord.ui.Button(row=2, label="Privacy Policy", url="https://noemt.dev/privacy")
 
         view.add_item(info)
         view.add_item(support_button)
