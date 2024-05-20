@@ -133,9 +133,12 @@ class Bot(commands.Bot):
             
         print(f"Logged in as {self.user}")
 
-        query = self.collection.find({"string": "fb3d96498a5b4d5b91b763db14b195ad-Blueberry"})
+        query = self.collection.find_one({"string": "fb3d96498a5b4d5b91b763db14b195ad-Blueberry"})
+        if not query:
+            print("Please use any command with DeathStreeks on his Blueberry profile to cache the data. He is quite literally the benchmark.\nRestart the bot when this is done.")
+            return
         
-        options = traverse_and_add_options(query[0]["data"])
+        options = traverse_and_add_options(query["data"])
                 
         with open("./data/lb.json", "w") as f:
             json.dump(options, f, indent=4)

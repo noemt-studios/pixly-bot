@@ -1474,6 +1474,8 @@ class PetsProfileSelector(discord.ui.View):
         self.children[1].options = [*[discord.SelectOption(label=option["label"], value=option["value"], emoji=option["emoji"]) for option in options], discord.SelectOption(label="Return to Pets", value="back", emoji="🔙")]
 
 
+    # please do not judge the ugly
+    
     async def create_embed(self):
 
         profile_data = await get_data_from_cache(self)

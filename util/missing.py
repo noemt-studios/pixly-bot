@@ -1,6 +1,8 @@
 import constants
 import asyncio
 
+# pls dont
+
 def has_accessory(accessories, accessory, options=None):
     if options is None:
         options = {'ignoreRarity': False}

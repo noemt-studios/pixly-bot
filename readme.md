@@ -1,7 +1,4 @@
-## pixly - a general purpose Skyblock Bot designed to be better than blockhelper, which was also made by me ^^
-
-### Updating
-- ensure you have the latest code. always.
+## pixly - a general purpose Skyblock Bot ^^
 
 ### Installing
 - create a virtual environment and execute the activate Script.
@@ -12,15 +9,8 @@
 
 if you want to add a new package please include it in the requirements.txt.
 
-### Usage
-- update your constants in constants.py.example (bot token etc.) and rename it to constants.py
-# DO NOT CHANGE THE .gitignore under any circumstance.
-
-### Coding
+### Contributing
 - make sure to create commands like the ones already present in `commands/{command}.py`, (the logic should be present in `./util/views.py`) if you want them to include a profile selector, otherwise feel free to do whatever.
 
 ### Emojis
-- I will be sharing an identity with which you can add your testing bot to each emoji server.
-- The emoji files get automatically updated by me on a regular basis, therefore look at step updating.
-
-### do not update emojis.
+- thats your problem now.
