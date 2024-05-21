@@ -14,3 +14,5 @@ if you want to add a new package please include it in the requirements.txt.
 
 ### Emojis
 - thats your problem now.
+
+check out our [discord](https://discord.gg/pixly)
