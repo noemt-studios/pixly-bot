@@ -73,6 +73,11 @@ class Bot(commands.Bot):
             if filename.endswith(".py"):
                 self.load_extension(f"commands.{filename[:-3]}")
 
+        if os.path.exists("./premium"):
+            for dir_name in os.listdir("./premium"):
+                for filename in os.listdir(f"./premium/{dir_name}"):
+                    if filename.endswith(".py"):
+                        self.load_extension(f"premium.{dir_name}.{filename[:-3]}")
 
     def get_data(self, uuid: str, cute_name: str):
         return self.collection.find_one({"string": f"{uuid}-{cute_name}"})
