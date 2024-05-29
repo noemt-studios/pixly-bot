@@ -314,14 +314,15 @@ HOTM_TREE_EMOJIS = {
     "locked_ability": "<:coal_block:1236755798617624576>"
 }
 
-RARITY_ORDER = ["MYTHIC", "LEGENDARY", "EPIC", "RARE", "UNCOMMON", "COMMON"]
+RARITY_ORDER = ["DIVINE", "MYTHIC", "LEGENDARY", "EPIC", "RARE", "UNCOMMON", "COMMON"]
 RARITY_EMOJIS = {
    "COMMON": "<:common:1236752835694170142>",
    "UNCOMMON": "<:uncommon:1236752379467006042>",
    "RARE": "<:rare:1236752376501633164>",
    "EPIC": "<:epic:1236752380981284925>",
    "LEGENDARY": "<:legendary:1236752373334937651>",
-   "MYTHIC": "<:mythic:1236752374908059738>"
+   "MYTHIC": "<:mythic:1236752374908059738>",
+   "DIVINE": "<:divine:1245461246237606041>"
 }
 COLOR_CODES = ["&a", "&b", "&c", "&d", "&e", "&f", "&0", "&1", "&2", "&3", "&4", "&5", "&6", "&7", "&8", "&9", "&r", "&l", "&o", "&n", "&m", "&k"]
 

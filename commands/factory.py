@@ -5,6 +5,7 @@ from util.profile_autocomplete import get_profiles, get_uuid, get_usernames, get
 from skyblockparser.profile import SkyblockParser
 from util.views import ChocoFactorySelector
 from util.embed import get_embed
+from discord.ui import View, Button
 
 class ChocolateFactory(Cog):
     def __init__(self, bot):
@@ -95,10 +96,19 @@ class ChocolateFactory(Cog):
 
         cute_name = profile_data.cute_name
 
-        interaction = await ctx.respond("\u200b")
+        interaction:discord.WebhookMessage = await ctx.respond("\u200b")
         view = ChocoFactorySelector(ctx.author.id, username, self.bot, parser, cute_name, interaction)
         embed = await view.create_embed()
         await interaction.edit(embed=embed, view=view)
+        embed = discord.Embed(
+            title="Disclaimer",
+            description="I do not have the data for **Factory Level 6**, and the 5 extra levels above that, as well as the data for **Rabbit Dog** and **Rabbit Uncle**. I will add them as soon as I get my hands on them.\nI am also missing data for new rabbits (except Mythic and Divine)\nIf you'd like to contribute, click the button below!",
+            color=discord.Color.blue()
+        )
+        view = View()
+        button = Button(label="Contribute", style=discord.ButtonStyle.link, url="https://github.com/noemtdev/pixly-bot")
+        view.add_item(button)
+        await ctx.respond(embed=embed, view=view, ephemeral=True)
 
 
 def setup(bot):

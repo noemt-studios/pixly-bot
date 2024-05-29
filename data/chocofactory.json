@@ -1009,7 +1009,8 @@
         14681048,
         15415101,
         16185855
-      ]
+      ],
+      "factory_6": []
     },
     "rabbit_cousin": {
       "factory_1": [
@@ -2021,7 +2022,8 @@
         58724193,
         61660401,
         64743422
-      ]
+      ],
+      "factory_6": []
     },
     "rabbit_sis": {
       "factory_1": [
@@ -3033,7 +3035,8 @@
         132129434,
         138735906,
         145672701
-      ]
+      ],
+      "factory_6": []
     },
     "rabbit_father": {
       "factory_1": [
@@ -4045,7 +4048,8 @@
         234896771,
         246641611,
         258973689
-      ]
+      ],
+      "factory_6": []
     },
     "rabbit_grandma": {
       "factory_1": [
@@ -5057,7 +5061,24 @@
         367026205,
         385377515,
         404646390
-      ]
+      ],
+      "factory_6": []
+    },
+    "rabbit_uncle": {
+      "factory_1": [],
+      "factory_2": [],
+      "factory_3": [],
+      "factory_4": [],
+      "factory_5": [],
+      "factory_6": []
+    },
+    "rabbit_dog": {
+      "factory_1": [],
+      "factory_2": [],
+      "factory_3": [],
+      "factory_4": [],
+      "factory_5": [],
+      "factory_6": []
     },
     "rarities": {
       "COMMON": [
@@ -5465,7 +5486,17 @@
         "King",
         "Napoleon",
         "Zest Zephyr",
-        "Zorro"
+        "Zorro",
+        "Zeta",
+        "Mu",
+        "Sigma"
+      ],
+      "DIVINE": [
+        "Aurora",
+        "Celestia",
+        "Orion",
+        "Starfire",
+        "Vega"
       ]
     },
     "upgrades": {

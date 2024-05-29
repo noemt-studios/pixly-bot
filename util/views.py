@@ -1366,10 +1366,9 @@ class FarmingProfileSelector(discord.ui.View):
 
     @button(row=1, label="Best Contests", style=discord.ButtonStyle.secondary)
     async def best_contests(self, button: discord.ui.Button, interaction: discord.Interaction):
-        await interaction.response.defer()
 
         embed = await self.create_embed_contest_display()
-        await interaction.followup.send(embed=embed, ephemeral=True)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
 class PetsProfileSelector(discord.ui.View):
@@ -2446,6 +2445,70 @@ class ChocoFactorySelector(discord.ui.View):
     async def trigger_timeout(self):
         await timeout_view(self)
 
+    async def create_embed_special_rabbits(self):
+        profile_data = await get_data_from_cache(self)
+
+        embed = discord.Embed(color=discord.Color.blue(), url=f"https://sky.noemt.dev/stats/{profile_data.uuid}/{profile_data.cute_name.replace(' ','%20')}").set_thumbnail(url=f"https://mc-heads.net/body/{profile_data.uuid}/left")
+
+        profile_type = profile_data.profile_type
+        profile_type = gamemode_to_emoji(profile_type)
+        cute_name = profile_data.cute_name
+
+        suffix = " "
+        if profile_type != " ":
+            suffix = f" {profile_type}"
+
+        formatted_username = f"{self.username}'s"
+        if self.username.endswith("s"):
+            formatted_username = f"{self.username}'"
+
+        embed.title = f"{formatted_username} Special Rabbits on {cute_name}{suffix}{getattr(self.emojis, cute_name.lower())}"
+
+        event_data = profile_data.events
+        easter_event = event_data.get("easter", {})
+                    
+        rarities = ["MYTHIC", "DIVINE"]
+
+        rabbit_data:dict = easter_event.get("rabbits", {})
+        rabbit_data.pop("collected_eggs", None)
+
+        mythic_rabbits = []
+        divine_rabbits = []
+
+        for rabbit in set(rabbit_data):
+            rabbit_name = rabbit.replace("_", " ").title()
+            for rarity in rarities:
+                rarity_rabbits = self.bot.chocofactory["rarities"][rarity]
+
+                if rabbit_name in rarity_rabbits:
+
+                    if rarity == "MYTHIC":
+                        mythic_rabbits.append(rabbit_name)
+
+                    elif rarity == "DIVINE":
+                        divine_rabbits.append(rabbit_name)
+
+                    break
+
+        
+        embed.add_field(
+            name=f"{RARITY_EMOJIS['MYTHIC']} Mythic Rabbits",
+            value="\n".join(mythic_rabbits) if mythic_rabbits else "No Mythic Rabbits",
+            inline=False
+        )
+
+        embed.add_field(
+            name=f"{RARITY_EMOJIS['DIVINE']} Divine Rabbits",
+            value="\n".join(divine_rabbits) if divine_rabbits else "No Divine Rabbits",
+            inline=False
+        )
+
+        embed.set_footer(
+            text=get_footer("nom")
+        )
+
+        return embed
+
     async def create_embed(self):
 
         profile_data = await get_data_from_cache(self)
@@ -2476,7 +2539,7 @@ class ChocoFactorySelector(discord.ui.View):
 
         employee_data = easter_event.get("employees", {})
 
-        rabbit_order = ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father", "rabbit_grandma"]
+        rabbit_order = ["rabbit_bro", "rabbit_cousin", "rabbit_sis", "rabbit_father", "rabbit_grandma", "rabbit_uncle", "rabbit_dog"]
 
         _employee_data = {}
         for employee in rabbit_order:
@@ -2490,6 +2553,8 @@ class ChocoFactorySelector(discord.ui.View):
             "rabbit_father": "Rabbit Daddy",
             "rabbit_grandma": "Rabbit Granny",
             "rabbit_cousin": "Rabbit Cousin",
+            "rabbit_uncle": "Rabbit Uncle",
+            "rabbit_dog": "Rabbit Dog"
         }
 
         chocolate_per_second = 0
@@ -2541,7 +2606,7 @@ class ChocoFactorySelector(discord.ui.View):
 
                     
 
-        rarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"]
+        rarities = ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC", "DIVINE"]
         rarity_increases = {
             "COMMON": {
                 "cps": 1,
@@ -2566,16 +2631,30 @@ class ChocoFactorySelector(discord.ui.View):
             "MYTHIC": {
                 "cps": 0,
                 "cpsm": 0
+            },
+            "DIVINE": {
+                "cps": 0,
+                "cpsm": 0.025
             }
         }
 
         time_tower_cooldown = 28800000
+        time_tower_added_multi = 0
 
         rabbit_data:dict = easter_event.get("rabbits", {})
         rabbit_data.pop("collected_eggs", None)
 
         unique_rabbits = len(rabbit_data)
         rabbit_rarities_count = {}
+        employee_upgrade_cost_multi = 1
+        chocolate_per_second_sigma = 0
+        max_employee_cap_increase = 0
+
+        sigma_in_inv = False
+        mythic_rabbit_count = 0
+
+        mythic_rabbits = []
+        divine_rabbits = []
 
         for rabbit in set(rabbit_data):
             rabbit_name = rabbit.replace("_", " ").title()
@@ -2591,6 +2670,8 @@ class ChocoFactorySelector(discord.ui.View):
                     rabbit_rarities_count[rarity] += 1
 
                     if rarity == "MYTHIC":
+                        mythic_rabbits.append(rabbit_name)
+                        mythic_rabbit_count += 1
                         if rabbit_name == "Dante":
                             chocolate_per_second += 50
                         
@@ -2603,8 +2684,24 @@ class ChocoFactorySelector(discord.ui.View):
                         elif rabbit_name == "Zest Zephyr":
                             chocolate_per_second_multiplier += 0.03
                             chocolate_per_second += 30
+                        
+                        elif rabbit_name == "Zeta":
+                            employee_upgrade_cost_multi = 0.99
+                        
+                        elif rabbit_name == "Mu":
+                            time_tower_added_multi = 0.7
+                        
+                        elif rabbit_name == "Sigma":
+                            sigma_in_inv = True
+
+                    elif rarity == "DIVINE":
+                        divine_rabbits.append(rabbit_name)
+                        max_employee_cap_increase += 1
 
                     break
+
+        if sigma_in_inv:
+            chocolate_per_second_sigma = mythic_rabbit_count*5
 
         rabbit_rarities_count = {k: rabbit_rarities_count[k] for k in rarities if k in rabbit_rarities_count}
             
@@ -2659,7 +2756,8 @@ class ChocoFactorySelector(discord.ui.View):
             "rabbit_cousin": "<:rabbit_cousin:1238171791084621905>",
             "rabbit_father": "<:rabbit_daddy:1238171786579804212>",
             "rabbit_grandma": "<:rabbit_granny:1238171784889634888>",
-            "time_tower": "<:clock:1238167916688445511>",
+            "rabbit_uncle": "<:rabbit_uncle:1245453988711890976>",
+            "rabbit_dog": "<:rabbit_dog:1245453566995337308>",
             "time_tower": "<:clock:1238167916688445511>",
             "shrine_l": "<:Oe4fpme34QtzjRKV:1236464631741157477>",
             "rabbit_click": "<:3TN2zsLY0DkjcLm9:1236447255045738600>",
@@ -2679,6 +2777,8 @@ class ChocoFactorySelector(discord.ui.View):
             "rabbit_sis": 3,
             "rabbit_father": 4,
             "rabbit_grandma": 5,
+            "rabbit_uncle": 6,
+            "rabbit_dog": 7
         }
 
         cost_data = {}
@@ -2686,13 +2786,17 @@ class ChocoFactorySelector(discord.ui.View):
         for employee in employee_data:
             level = employee_data[employee]
             
-            if level+1 > 120+(prestige_level-1)*20:
+            if level+1 > 120+max_employee_cap_increase+(prestige_level-1)*20:
                 next_level_cost = 0
 
             else:
-                next_level_cost = self.bot.chocofactory[employee]["factory_"+str(prestige_level)][level+1]
+                try:
+                    next_level_cost = self.bot.chocofactory[employee]["factory_"+str(prestige_level)][level+1]
+                except:
+                    next_level_cost = -1
 
-            cost_data[employee] = next_level_cost
+
+            cost_data[employee] = next_level_cost*employee_upgrade_cost_multi
 
             if next_level_cost > 0:
                 cps_data[employee] = next_level_cost/(cookies_per_second_employees[employee])
@@ -2749,7 +2853,8 @@ class ChocoFactorySelector(discord.ui.View):
             2: 0.1,
             3: 0.25,
             4: 0.5,
-            5: 1
+            5: 1,
+            6: 1.5
         }
 
         cookie_mult = 0
@@ -2765,9 +2870,9 @@ class ChocoFactorySelector(discord.ui.View):
         if equipped:
             chocolate_per_second_multiplier += 0.05
 
-        _chocolate_per_second_no_time_tower = chocolate_per_second*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+jackrabbit_multi))
-        real_multi = 1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+time_tower_multiplier+jackrabbit_multi)
-        _chocolate_per_second = chocolate_per_second*(real_multi)
+        _chocolate_per_second_no_time_tower = (chocolate_per_second+chocolate_per_second_sigma)*(1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+jackrabbit_multi))
+        real_multi = 1+(chocolate_per_second_multiplier+factory_level_multis[prestige_level]+cookie_mult+time_tower_multiplier+jackrabbit_multi+time_tower_added_multi)
+        _chocolate_per_second = (chocolate_per_second+chocolate_per_second_sigma)*(real_multi)
         chocolate_since_view = _chocolate_per_second_no_time_tower*(seconds_since_last_view-seconds_time_tower) + _chocolate_per_second*(seconds_time_tower)
 
         prestige_costs = self.bot.chocofactory["prestige"]
@@ -2829,8 +2934,8 @@ class ChocoFactorySelector(discord.ui.View):
             "NIBBLE_CHOCOLATE_STICK": "<:GOD01z5DTzXeSh3r:1236497543714570301>",
             "SMOOTH_CHOCOLATE_BAR": "<:UmtTOHUyHYPXChQu:1236497557765619783>",
             "RICH_CHOCOLATE_CHUNK": "<:TRWzhgUu87k49LkV:1238415489621819425>",
-            "GANACHE_CHOCOLATE_SLAB": "<:e8t8PaUlLFJZS07z:1236428501813297255>",
-            "PRESTIGE_CHOCOLATE_REALM": "<:e8t8PaUlLFJZS07z:1236428501813297255>",
+            "GANACHE_CHOCOLATE_SLAB": "<:pM0L4jbJ8IF0tSkp:1239295709510107297>",
+            "PRESTIGE_CHOCOLATE_REALM": "<:wp1rOiSNJBpog5vG:1245446082465501288>",
             "None": "<:empty:1236755746335621181>"
         }
 
@@ -2900,6 +3005,12 @@ class ChocoFactorySelector(discord.ui.View):
 
             embed = await view.create_embed()
             await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+    
+    @button(row=1, label="Special Rabbits", style=discord.ButtonStyle.blurple)
+    async def special_rabbits(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await interaction.response.defer()
+        embed = await self.create_embed_special_rabbits()
+        await interaction.followup.send(embed=embed, ephemeral=True)
 
 class BasePaginator(View):
     def __init__(self, embeds, user_id, *args, **kwargs):
