@@ -54,22 +54,22 @@
     },
     "ENCHANTMENT_CHAMPION_1": {
         "name": "Champion I", 
-        "price": 6000,
+        "price": 4000,
         "texture": "ENCHANTED_BOOK"
     },
     "ENCHANTMENT_CULTIVATING_1": {
         "name": "Cultivating I", 
-        "price": 6000,
+        "price": 4000,
         "texture": "ENCHANTED_BOOK"
     },
     "ENCHANTMENT_EXPERTISE_1": {
         "name": "Expertise I", 
-        "price": 6000,
+        "price": 4000,
         "texture": "ENCHANTED_BOOK"
     },
     "ENCHANTMENT_COMPACT_1": {
         "name": "Compact I", 
-        "price": 6000,
+        "price": 4000,
         "texture": "ENCHANTED_BOOK"
     },
     "INFERNO_FUEL_BLOCK": {
